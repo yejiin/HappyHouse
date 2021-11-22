@@ -1,69 +1,30 @@
 package com.ssafy.happyhouse.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@ApiModel(value = "UserDto : 회원정보", description = "회원의 상세 정보를 나타낸다.")
 public class UserDto {
 
-	private String userId;
-	private String email;
+	@ApiModelProperty(value = "회원 아이디")
+	private String userid;
+	@ApiModelProperty(value = "회원 비밀번호")
 	private String password;
-	private String name;
-	private String joinDate;
-
-	public UserDto() {
-	}
-
-	public UserDto(String userId, String email, String password, String name, String joinDate) {
-		super();
-		this.userId = userId;
-		this.email = email;
-		this.password = password;
-		this.name = name;
-		this.joinDate = joinDate;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getJoinDate() {
-		return joinDate;
-	}
-
-	public void setJoinDate(String joinDate) {
-		this.joinDate = joinDate;
-	}
-
-	@Override
-	public String toString() {
-		return "UserDto [userId=" + userId + ", email=" + email + ", password=" + password + ", name=" + name
-				+ ", joinDate=" + joinDate + "]";
-	}
+	@ApiModelProperty(value = "회원 이름")
+	private String username;
+	@ApiModelProperty(value = "회원 이메일")
+	private String email;
+	@ApiModelProperty(value = "회원 연락처")
+	private String phone;
+	@ApiModelProperty(value = "회원 연령대")
+	private int ageGroup;
+	@ApiModelProperty(value = "회원 선호상권")
+	private String favStore;
+	@ApiModelProperty(value = "회원 관심지역")
+	private String favArea;
 
 }

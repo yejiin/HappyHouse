@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.happyhouse.model.mapper.QnAMapper">
+  
+	<insert id="registerQuestion" parameterType="questionDto">
+		insert into question (userid, subject, content, regtime)
+		values (#{userid}, #{subject}, #{content}, now())
+	</insert>
+	
+	<sql id="search">
+		<if test="word != null and word != ''">
+			<if test="key == 'subject'">
+				and subject like concat('%', #{word}, '%')
+			</if>
+			<if test="key != 'subject'">
+				and ${key} = #{word}
+			</if>
+		</if>
+	</sql>
+	
+	<select id="listQuestion" parameterType="map" resultType="questionDto">
+		select qno, userid, subject, content,
+				case when date_format(regtime, '%Y%m%d') = date_format(now(), '%Y%m%d')
+				then date_format(regtime, '%H:%i:%s')
+				else date_format(regtime, '%y.%m.%d')
+				end regtime
+		from question
+		order by qno desc
+		limit #{start}, #{spp}
+	</select>
+	
+	<select id="getTotalCount" parameterType="map" resultType="int">
+		select count(qno)
+		from question
+		<where>
+			<include refid="search"></include>
+		</where>
+	</select>
+	
+	<select id="getQuestion" parameterType="int" resultType="questionDto">
+		select qno, userid, subject, content, regtime
+		from question
+		where qno = #{qno}
+	</select>
+	
+	<update id="updateQuestion" parameterType="questionDto">
+		update question
+		set subject = #{subject}, content = #{content}, regtime = now() 
+		where qno = #{qno}
+	</update>
+	
+	<delete id="deleteQuestion" parameterType="int">
+		delete from question
+		where qno = #{qno}
+	</delete>
+	
+	<!-- Answer -->
+	
+	<insert id="registerAnswer" parameterType="answerDto">
+		insert into answer (qno, subject, content, regtime)
+		values (#{qno}, #{subject}, #{content}, now())
+	</insert>
+	
+	<select id="getAnswer" parameterType="int" resultType="answerDto">
+		select subject, content, regtime
+		from answer
+		where qno = #{qno}
+	</select>
+	
+	<update id="updateAnswer" parameterType="answerDto">
+		update answer
+		set subject = #{subject}, content = #{content}, regtime = now() 
+		where qno = #{qno}
+	</update>
+	
+	<delete id="deleteAnswer" parameterType="int">
+		delete from answer
+		where qno = #{qno}
+	</delete>
+
+</mapper>

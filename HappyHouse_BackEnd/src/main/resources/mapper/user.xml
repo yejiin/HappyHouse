@@ -4,33 +4,33 @@
 
 <mapper namespace="com.ssafy.happyhouse.model.mapper.UserMapper">
 
+	<select id="login" parameterType="userDto" resultType="userDto">
+		select userid, username, email
+		from user
+		where userid = #{userid} and password = #{password}
+	</select>
+	
+	<select id="userInfo" parameterType="String" resultType="userDto">
+		select userid, password, username, email, phone
+		from user
+		where userid = #{userid}
+	</select>
+	
 	<select id="idCheck" parameterType="string" resultType="int">
 		select count(userid)
 		from user
 		where userid = #{userid}
 	</select>
 
-	<insert id="registerUser" parameterType="UserDto">
-		insert into user (userid, name, password, email, joindate)
-		values (#{userId}, #{name}, #{password}, #{email}, now())
+	<insert id="registerUser" parameterType="userDto">
+		insert into user (userid, password, username, email, phone)
+		values (#{userid}, #{password}, #{username}, #{email}, #{phone})
 	</insert>
-
-	<select id="login" parameterType="map" resultType="UserDto">
-		select userid, name
-		from user
-		where userid = #{userId} and password = #{password}
-	</select>
 	
-	<select id="getUser" parameterType="String" resultType="userDto">
-		select userid, name, email
-		from user
-		where userid = #{userid}
-	</select>
-	
-	<update id="updateUser" parameterType="UserDto">
+	<update id="updateUser" parameterType="userDto">
 		update user
-		set name = #{name}, email = #{email}
-		where userid = #{userId}
+		set password = #{password}, username = #{username}, email = #{email}, phone = #{phone}
+		where userid = #{userid}
 	</update>
 	
 	<delete id="deleteUser" parameterType="String">

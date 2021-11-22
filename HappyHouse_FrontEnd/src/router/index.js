@@ -10,6 +10,22 @@ import Member from "@/views/Member.vue";
 import MemberLogin from "@/components/user/MemberLogin.vue";
 import MemberJoin from "@/components/user/MemberJoin.vue";
 import MemberMyPage from "@/components/user/MemberMyPage.vue";
+import MemberFavor from "@/components/user/MemberFavor.vue";
+
+import Notice from "@/views/Notice.vue";
+import NoticeList from "@/components/notice/NoticeList.vue";
+import NoticeWrite from "@/components/notice/NoticeWrite.vue";
+import NoticeView from "@/components/notice/NoticeView.vue";
+import NoticeUpdate from "@/components/notice/NoticeUpdate.vue";
+import NoticeDelete from "@/components/notice/NoticeDelete.vue";
+
+import QnA from "@/views/QnA.vue";
+import QnAList from "@/components/qna/QnAList.vue";
+import QnAWrite from "@/components/qna/QnAWrite.vue";
+import AnswerWrite from "@/components/qna/AnswerWrite.vue";
+import QnAView from "@/components/qna/QnAView.vue";
+import QnAUpdate from "@/components/qna/QnAUpdate.vue";
+import QnADelete from "@/components/qna/QnADelete.vue";
 
 import store from "@/store/index.js";
 
@@ -74,6 +90,11 @@ const routes = [
         component: MemberJoin,
       },
       {
+        path: "favor",
+        name: "Favor",
+        component: MemberFavor,
+      },
+      {
         path: "mypage",
         name: "MyPage",
         beforeEnter: onlyAuthUser,
@@ -82,10 +103,87 @@ const routes = [
     ],
   },
   {
+    path: "/notice",
+    name: "Notice",
+    component: Notice,
+    redirect: "/notice/list",
+    children: [
+      {
+        path: "list",
+        name: "NoticeList",
+        component: NoticeList,
+      },
+      {
+        path: "write",
+        name: "NoticeWrite",
+        beforeEnter: onlyAuthUser,
+        component: NoticeWrite,
+      },
+      {
+        path: "view/:nno",
+        name: "NoticeView",
+        beforeEnter: onlyAuthUser,
+        component: NoticeView,
+      },
+      {
+        path: "update/:nno",
+        name: "NoticeUpdate",
+        beforeEnter: onlyAuthUser,
+        component: NoticeUpdate,
+      },
+      {
+        path: "delete/:nno",
+        name: "NoticeDelete",
+        component: NoticeDelete,
+      },
+    ],
+  },
+  {
+    path: "/qna",
+    name: "QnA",
+    component: QnA,
+    redirect: "/qna/list",
+    children: [
+      {
+        path: "list",
+        name: "QnAList",
+        component: QnAList,
+      },
+      {
+        path: "write",
+        name: "QnAWrite",
+        beforeEnter: onlyAuthUser,
+        component: QnAWrite,
+      },
+      {
+        path: "view/:qno",
+        name: "QnAView",
+        beforeEnter: onlyAuthUser,
+        component: QnAView,
+      },
+      {
+        path: "update/:qno",
+        name: "QnAUpdate",
+        beforeEnter: onlyAuthUser,
+        component: QnAUpdate,
+      },
+      {
+        path: "delete/:qno",
+        name: "QnADelete",
+        component: QnADelete,
+      },
+      {
+        path: "answer",
+        name: "AnswerWrite",
+        component: AnswerWrite,
+      },
+    ],
+  },
+  {
     path: "*",
     redirect: "/",
-  },  
-]
+  },
+];
 
 const router = new VueRouter({
   mode: "history",
