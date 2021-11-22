@@ -1,6 +1,6 @@
 package com.ssafy.happyhouse.model;
 
-public class BoardParameterDto {
+public class QuestionParameterDto {
 
 	private int pg; // 현재 페이지 번호
 	private int spp; // 페이지당 글갯수
@@ -8,7 +8,7 @@ public class BoardParameterDto {
 	private String key; // 검색 조건
 	private String word; // 검색어
 	
-	public BoardParameterDto() {
+	public QuestionParameterDto() {
 		pg = 1;
 		spp = 20;
 	}

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.happyhouse.model.mapper.NoticeMapper">
+  
+	<insert id="registerNotice" parameterType="noticeDto">
+		insert into notice (subject, content, hit, regtime)
+		values (#{subject}, #{content}, 0, now())
+	</insert>
+	
+	<sql id="search">
+		<if test="word != null and word != ''">
+			<if test="key == 'subject'">
+				and subject like concat('%', #{word}, '%')
+			</if>
+			<if test="key != 'subject'">
+				and ${key} = #{word}
+			</if>
+		</if>
+	</sql>
+	
+	<select id="listNotice" parameterType="map" resultType="noticeDto">
+		select nno, subject, content, hit,
+				case when date_format(regtime, '%Y%m%d') = date_format(now(), '%Y%m%d')
+				then date_format(regtime, '%H:%i:%s')
+				else date_format(regtime, '%y.%m.%d')
+				end regtime
+		from notice
+		<where>
+			<include refid="search"></include>
+		</where>
+		order by nno desc
+		limit #{start}, #{spp}
+	</select>
+	
+	<select id="getTotalCount" parameterType="map" resultType="int">
+		select count(nno)
+		from notice
+		<where>
+			<include refid="search"></include>
+		</where>
+	</select>
+	
+	<select id="getNotice" parameterType="int" resultType="noticeDto">
+		select nno, subject, content, hit, regtime
+		from notice
+		where nno = #{nno}
+	</select>
+	
+	<update id="updateNotice" parameterType="noticeDto">
+		update notice
+		set subject = #{subject}, content = #{content}, regtime = now() 
+		where nno = #{nno}
+	</update>
+	
+	<delete id="deleteNotice" parameterType="int">
+		delete from notice
+		where nno = #{nno}
+	</delete>
+	
+	<update id="updateHit" parameterType="int">
+		update notice
+		set hit = hit + 1
+		where nno = #{nno}
+	</update>
+
+</mapper>

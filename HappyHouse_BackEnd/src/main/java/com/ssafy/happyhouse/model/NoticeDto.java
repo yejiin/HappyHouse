@@ -5,13 +5,12 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class BoardDto {
+public class NoticeDto {
 
-	private int articleno;
-	private String userId;
+	private int nno;
 	private String subject;
 	private String content;
-	private int hit; // 조회수
-	private String regTime;
+	private int hit;
+	private String regtime;
 
 }

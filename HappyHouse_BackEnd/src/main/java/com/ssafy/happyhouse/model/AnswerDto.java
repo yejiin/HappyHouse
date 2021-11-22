@@ -5,13 +5,12 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ReplyDto {
-	
-	private int replyno;
-	private int articleno;
-	private String userId;
+public class AnswerDto {
+
+	private int ano;
+	private int qno;
 	private String subject;
 	private String content;
-	private String replyTime;
-	
+	private String regtime;
+
 }

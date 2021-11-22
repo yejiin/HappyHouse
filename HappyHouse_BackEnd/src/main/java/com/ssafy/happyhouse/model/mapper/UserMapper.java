@@ -1,17 +1,18 @@
 package com.ssafy.happyhouse.model.mapper;
 
-import java.util.Map;
+import org.apache.ibatis.annotations.Mapper;
+
 import com.ssafy.happyhouse.model.UserDto;
 
+@Mapper
 public interface UserMapper {
 	
-	UserDto login(Map<String, String> map) throws Exception;
+	UserDto login(UserDto userDto) throws Exception;
 	
 	int idCheck(String checkId) throws Exception;
-	void registerUser(UserDto userDto) throws Exception;
+	int registerUser(UserDto userDto) throws Exception;
 	
-//	UserDto login(String userId, String password) throws Exception;
-	UserDto getUser(String userId) throws Exception;
-	void updateUser(UserDto userDto) throws Exception;
-	void deleteUser(String userId) throws Exception;
+	UserDto userInfo(String userid) throws Exception;
+	int updateUser(UserDto userDto) throws Exception;
+	int deleteUser(String userid) throws Exception;
 }
