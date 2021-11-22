@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 const houseStore = "houseStore";
 
@@ -15,6 +15,7 @@ export default {
     return {
       map: null,
       markers: [],
+      marker: null,
     };
   },
   mounted() {
@@ -30,16 +31,26 @@ export default {
     }
   },
   computed: {
-    ...mapState(houseStore, ["houses", "sido", "gugun"]),
+    ...mapState(houseStore, ["houses", "house", "sido", "gugun"]),
   },
   watch: {
     houses: function () {
+      if (this.houses.length === 0) {
+        if (this.markers.length > 0) {
+          this.markers.forEach((marker) => marker.setMap(null));
+        }
+      }
+
       this.displayMarkers();
+    },
+    house: function () {
+      this.displayMarker(this.house);
     },
   },
   methods: {
+    ...mapActions(houseStore, ["detailHouse", "getDealList"]),
+
     initMap() {
-      console.log("init");
       const mapContainer = document.getElementById("map"); // 지도를 표시할 div
       const mapOption = {
         center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
@@ -50,6 +61,29 @@ export default {
       this.displayMarkers();
     },
 
+    displayMarker(house) {
+      if (this.marker != null) {
+        this.marker.setMap(null);
+      }
+      if (this.markers.length > 0) {
+        this.markers.forEach((marker) => marker.setMap(null));
+      }
+
+      const bounds = new kakao.maps.LatLngBounds();
+      const placePosition = new kakao.maps.LatLng(house.lat, house.lng);
+      bounds.extend(placePosition);
+      this.map.setBounds(bounds);
+
+      this.marker = new kakao.maps.Marker({
+        map: this.map,
+        position: placePosition,
+      });
+
+      this.addOverlay(house, this.marker, placePosition);
+
+      this.marker.setMap(this.map);
+    },
+
     displayMarkers() {
       const bounds = new kakao.maps.LatLngBounds();
 
@@ -58,9 +92,9 @@ export default {
         this.markers.forEach((marker) => marker.setMap(null));
       }
 
-      this.houses.mapInfo.forEach((house) => {
+      this.houses.forEach((house) => {
         const placePosition = new kakao.maps.LatLng(house.lat, house.lng);
-        console.log(house);
+
         bounds.extend(placePosition);
         this.map.setBounds(bounds);
 
@@ -101,6 +135,11 @@ export default {
         "mouseout",
         this.makeOutListener(overlay)
       );
+      kakao.maps.event.addListener(
+        marker,
+        "click",
+        this.makeClickListener(house, overlay)
+      );
     },
 
     makeOverListener(map, overlay) {
@@ -112,6 +151,20 @@ export default {
     makeOutListener(overlay) {
       return function () {
         overlay.setMap(null);
+      };
+    },
+
+    makeClickListener(house, overlay) {
+      let self = this;
+      return function () {
+        overlay.setMap(null);
+
+        self.detailHouse(house);
+        self.getDealList({ dong: house.dong, jibun: house.jibun });
+        self.$router.replace({
+          name: "HouseDetail",
+          // query: { dong: house.dong, jibun: house.jibun },
+        });
       };
     },
   },

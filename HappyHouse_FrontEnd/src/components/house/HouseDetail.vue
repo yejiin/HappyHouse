@@ -42,28 +42,16 @@
           </template>
 
           <b-card-body>
-            <b-card-title v-if="house.dealAmount"
-              >매매가 {{ house.dealAmount }}</b-card-title
-            >
-            <b-card-title v-else-if="house.rentMoney == 0">
-              전세 {{ house.deposit }}</b-card-title
-            >
-            <b-card-title v-else
-              >월세 {{ house.deposit }} / {{ house.rentMoney }}</b-card-title
-            >
             <b-card-sub-title class="mb-2"
               >{{ house.gugunName }} {{ house.dong }}
               {{ house.jibun }}</b-card-sub-title
             >
 
-            <br />
-            <b-list-group flush>
-              <b-list-group-item>면적: {{ house.jibun }}㎡ </b-list-group-item>
-              <b-list-group-item>층: {{ house.floor }}층 </b-list-group-item>
-              <b-list-group-item
-                >건축년도: {{ house.buildYear }}년</b-list-group-item
-              >
-            </b-list-group>
+            <b-card-title v-if="dealInfo.range">시세 </b-card-title>
+            <b-card-title v-if="dealInfo.range"
+              >{{ dealInfo.range.maxAmount }} ~
+              {{ dealInfo.range.minAmount }}</b-card-title
+            >
           </b-card-body>
 
           <!-- <b-card-body>
@@ -72,16 +60,10 @@
           </b-card-body> -->
         </b-card>
 
-        <!-- <b-card no-body style="max-width: 20rem" class="mt-4">
+        <b-card no-body style="max-width: 20rem" class="mt-4">
           <b-card-body>
             <b-card-title>실거래 정보</b-card-title>
-            <b-table
-              striped
-              hover
-              :items="articles"
-              :fields="fields"
-              @row-clicked="viewArticle"
-            >
+            <b-table striped hover :items="dealInfo.deals" :fields="fields">
             </b-table>
           </b-card-body>
         </b-card>
@@ -90,7 +72,7 @@
           <b-card-body>
             <b-card-title>비교</b-card-title>
           </b-card-body>
-        </b-card> -->
+        </b-card>
       </b-container>
     </div>
   </div>
@@ -106,24 +88,31 @@ export default {
     return {
       articles: [],
       fields: [
-        { key: "articleno", label: "계약일", tdClass: "tdClass" },
-        { key: "subject", label: "가격", tdClass: "tdSubject" },
-        { key: "userid", label: "면적", tdClass: "tdClass" },
-        { key: "regtime", label: "층수", tdClass: "tdClass" },
+        { key: "date", label: "계약일" },
+        { key: "price", label: "가격" },
+        { key: "area", label: "면적" },
+        { key: "floor", label: "층수" },
       ],
     };
+  },
+  create() {
+    console.log(this.dealInfo);
   },
   watch: {
     house: function () {
       console.log(this.house);
     },
+    dealInfo: function () {
+      console.log(this.dealInfo);
+    },
   },
   computed: {
-    ...mapState(houseStore, ["house"]),
+    ...mapState(houseStore, ["house", "dealInfo"]),
   },
   methods: {
     goBack() {
-      this.$router.go(-1);
+      // this.$router.go(-1);
+      this.$router.push({ name: "HouseInfo" });
     },
   },
 };

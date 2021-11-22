@@ -14,8 +14,12 @@ function dongList(params, success, fail) {
   api.get(`/house/dong`, { params: params }).then(success).catch(fail);
 }
 
-function houseList(params, success, fail) {
-  api.get(`/house/list`, { params: params }).then(success).catch(fail);
+function aptList(params, success, fail) {
+  api.get(`/house/apt`, { params: params }).then(success).catch(fail);
 }
 
-export { sidoList, gugunList, dongList, houseList };
+function dealList(params, success, fail) {
+  api.get(`/house/apt/deal`, { params: params }).then(success).catch(fail);
+}
+
+export { sidoList, gugunList, dongList, aptList, dealList };
