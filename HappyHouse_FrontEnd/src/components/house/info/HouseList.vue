@@ -1,57 +1,123 @@
 <template>
-  <div style="width: 100%">
-    <b-table-simple hover responsive>
-      <b-thead head-variant="dark">
-        <b-tr>
-          <b-th>매물 리스트</b-th>
-        </b-tr>
-      </b-thead>
-      <tbody>
-        <!-- 하위 component인 ListRow에 데이터 전달(props) -->
-        <b-tr
-          v-for="(article, index) in houses"
-          :key="index"
-          v-bind="houses"
-          @click="viewDetail"
-        >
-          <b-td>
-            <b-row style="width: 100%">
-              <b-col cols="4">
-                <b-img
-                  src="https://picsum.photos/125/125/?image=58"
-                  v-bind="mainProps"
-                  rounded="0"
-                  alt="Not rounded image"
-                ></b-img
-              ></b-col>
-              <b-col cols="8">
-                <div>매매 3억 9,000</div>
-                <div>25m^2 3층</div>
-              </b-col>
-            </b-row>
-          </b-td>
-        </b-tr>
-      </tbody>
-    </b-table-simple>
+  <div>
+    <div
+      v-if="houses.data && houses.data.length != 0"
+      class="bv-example-row scroll-box"
+      style="overflow: auto; height: 67vh"
+    >
+      <b-table-simple
+        hover
+        responsive
+        :per-page="perPage"
+        :current-page="currentPage"
+      >
+        <b-thead head-variant="dark">
+          <b-tr>
+            <b-th>매물 리스트</b-th>
+          </b-tr>
+        </b-thead>
+        <tbody>
+          <!-- <div > -->
+          <b-tr
+            v-for="(house, index) in houses.data"
+            :key="index"
+            v-bind="houseList"
+          >
+            <b-td>
+              <b-row @click="viewDetail(house)">
+                <b-col cols="4">
+                  <b-img
+                    style="max-width: 7rem"
+                    src="https://cdn.pixabay.com/photo/2017/08/10/05/06/condo-2618421_960_720.jpg"
+                    rounded="0"
+                    alt="Not rounded image"
+                  ></b-img
+                ></b-col>
+                <b-col cols="8" class="mt-3">
+                  <h5>{{ house.name }}</h5>
+                  <div v-if="house.dealAmount">
+                    <span class="font-weight-bold">매매</span>
+                    {{ house.dealAmount }}
+                  </div>
+                  <div v-else-if="house.rentMoney == 0">
+                    <span class="font-weight-bold">전세</span>
+                    {{ house.deposit }}
+                  </div>
+                  <div v-else>
+                    <span class="font-weight-bold">월세 </span>
+                    {{ house.deposit }} / {{ house.rentMoney }}
+                  </div>
+                </b-col>
+              </b-row>
+            </b-td>
+          </b-tr>
+          <b-container>
+            <b-pagination-nav
+              :link-gen="linkGen"
+              :number-of-pages="numberOfPages"
+              use-router
+            ></b-pagination-nav>
+          </b-container>
+          <!-- </div> -->
+        </tbody>
+      </b-table-simple>
+    </div>
+    <b-container
+      v-else
+      class="bv-example-row mt-3"
+      style="overflow: auto; height: 67vh"
+    >
+      <b-row>
+        <b-col><b-alert show>목록이 없습니다.</b-alert></b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
+const houseStore = "houseStore";
+
 export default {
   data() {
     return {
-      houses: [{ house: 1 }, { house: 2 }],
+      perPage: 5,
+      currentPage: 1,
+      numberOfPages: 1,
+      houseList: [],
     };
   },
+  created() {
+    console.log(this.houses);
+  },
+  watch: {
+    houses: function () {
+      this.houseList = this.houses.data;
+      this.numberOfPages = this.houses.totalCount / this.perPage + 1;
+    },
+  },
+  computed: {
+    ...mapState(houseStore, ["houses"]),
+  },
   methods: {
-    viewDetail() {
+    ...mapActions(houseStore, ["detailHouse"]),
+    viewDetail(house) {
+      this.detailHouse(house);
       this.$router.push({
         name: "HouseDetail",
-        params: { no: 1 },
+        params: { no: house.aptCode },
       });
+    },
+    linkGen(pageNum) {
+      return pageNum === 1 ? "?" : `?page=${pageNum}`;
     },
   },
 };
 </script>
 
-<style></style>
+<style>
+.scroll-box::-webkit-scrollbar {
+  display: none; /* Chrome , Safari , Opera */
+}
+</style>

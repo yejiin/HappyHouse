@@ -1,7 +1,7 @@
 <template>
   <!-- 92.85% -->
   <div style="height: 92.85%">
-    <b-row style="height: 100%">
+    <b-row>
       <b-col cols="3"><router-view></router-view></b-col>
       <b-col cols="9"><house-map /></b-col>
     </b-row>

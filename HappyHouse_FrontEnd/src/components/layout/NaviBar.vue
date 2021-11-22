@@ -11,10 +11,16 @@
         <b-navbar-nav>
           <b-nav-item href="#"
             ><router-link :to="{ name: 'Home' }" class="link"
-              ><b-icon icon="house" font-scale="1"></b-icon> Happy House</router-link
+              ><b-icon icon="house" font-scale="1"></b-icon> Happy
+              House</router-link
             ></b-nav-item
           >
         </b-navbar-nav>
+        <b-collapse id="nav-collapse" is-nav>
+          <b-navbar-nav>
+            <router-link to="/house">house</router-link>
+          </b-navbar-nav>
+        </b-collapse>
 
         <b-navbar-nav class="ml-auto" v-if="userInfo">
           <b-nav-item class="align-self-center"
@@ -22,14 +28,19 @@
               variant="primary"
               v-text="userInfo ? userInfo.userid.charAt(0).toUpperCase() : ''"
             ></b-avatar
-            >{{ userInfo.username }}({{ userInfo.userid }})님 환영합니다.</b-nav-item
+            >{{ userInfo.username }}({{ userInfo.userid }})님
+            환영합니다.</b-nav-item
           >
           <b-nav-item class="align-self-center"
-            ><router-link :to="{ name: 'MyPage' }" class="link align-self-center"
+            ><router-link
+              :to="{ name: 'MyPage' }"
+              class="link align-self-center"
               >Mypage</router-link
             ></b-nav-item
           >
-          <b-nav-item class="link align-self-center" @click.prevent="onClickLogout"
+          <b-nav-item
+            class="link align-self-center"
+            @click.prevent="onClickLogout"
             >Logout</b-nav-item
           >
         </b-navbar-nav>
