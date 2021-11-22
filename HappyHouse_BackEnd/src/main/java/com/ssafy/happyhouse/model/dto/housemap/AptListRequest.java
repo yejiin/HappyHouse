@@ -5,10 +5,10 @@ import lombok.ToString;
 
 @Data
 @ToString
-public class HouseListRequest {
+public class AptListRequest {
 
 	private String gugunCode;
 	private String dong;
-	private int page;
+//	private int page;
 
 }

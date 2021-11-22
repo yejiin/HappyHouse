@@ -8,7 +8,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +24,9 @@ import com.ssafy.happyhouse.model.service.HouseMapService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api")
 @Api(value="house", description="Happy house")
@@ -33,10 +34,8 @@ public class DataController {
 
    private static final Logger logger = LoggerFactory.getLogger(DataController.class);
       
-   @Autowired
-   private DataService dataService;
-   @Autowired
-   private HouseMapService houseMapService;
+   private final DataService dataService;
+   private final HouseMapService houseMapService;
    
    /* 오피스텔 전월세 정보 */
    @ApiOperation(value = "오피스텔 전월세 정보를 DB에 저장")
