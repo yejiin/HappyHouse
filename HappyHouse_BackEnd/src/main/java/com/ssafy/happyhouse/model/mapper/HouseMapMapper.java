@@ -3,15 +3,18 @@ package com.ssafy.happyhouse.model.mapper;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.ssafy.happyhouse.model.HouseDealDto;
-import com.ssafy.happyhouse.model.HouseInfoDto;
-import com.ssafy.happyhouse.model.SidoGugunCodeDto;
+import com.ssafy.happyhouse.model.dto.housemap.HouseInfoDto;
+import com.ssafy.happyhouse.model.dto.housemap.HouseListParamDto;
+import com.ssafy.happyhouse.model.dto.housemap.SidoDto;
+import com.ssafy.happyhouse.model.dto.housemap.DongDto;
+import com.ssafy.happyhouse.model.dto.housemap.GugunDto;
 
 public interface HouseMapMapper {
 
-	List<SidoGugunCodeDto> getSido() throws SQLException;
-	List<SidoGugunCodeDto> getGugunInSido(String sido) throws SQLException;
-	List<HouseInfoDto> getDongInGugun(String gugun) throws SQLException;
-	List<HouseInfoDto> getAptInDong(String dong) throws SQLException;
-	List<HouseDealDto> getDealByApt(String aptCode) throws Exception;
+	List<SidoDto> getSido() throws SQLException;
+	List<GugunDto> getGugunInSido(String sido) throws SQLException;
+	List<DongDto> getDongInGugun(String gugun) throws SQLException;
+	List<HouseInfoDto> getHouseInDong(HouseListParamDto dto) throws SQLException;
+	int getTotalCount(HouseListParamDto dto) throws Exception;
+
 }
