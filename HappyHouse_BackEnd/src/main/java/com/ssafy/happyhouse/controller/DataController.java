@@ -75,7 +75,7 @@ public class DataController {
                            dealdto.setRentMoney(getTagValue("월세",eElement).trim());
                            dealdto.setFloor(getTagValue("층",eElement).trim());
                            dealdto.setDong(getTagValue("법정동",eElement).trim());
-                           dealdto.setGunguCode(getTagValue("지역코드",eElement).trim());
+                           dealdto.setGugunCode(getTagValue("지역코드",eElement).trim());
                            dealdto.setBuildYear(getTagValue("건축년도",eElement).trim());
                            dealdto.setName(getTagValue("단지",eElement).trim());
                            dealdto.setJibun(getTagValue("지번",eElement).trim());
@@ -129,7 +129,7 @@ public class DataController {
                            dealdto.setDealAmount(getTagValue("거래금액",eElement).trim());
                            dealdto.setFloor(getTagValue("층",eElement).trim());
                            dealdto.setDong(getTagValue("법정동",eElement).trim());
-                           dealdto.setGunguCode(getTagValue("지역코드",eElement).trim());
+                           dealdto.setGugunCode(getTagValue("지역코드",eElement).trim());
                            dealdto.setBuildYear(getTagValue("건축년도",eElement).trim());
                            dealdto.setName(getTagValue("단지",eElement).trim());
                            dealdto.setJibun(getTagValue("지번",eElement).trim());
@@ -186,7 +186,7 @@ public class DataController {
                      dealdto.setRentMoney(getTagValue("월세금액",eElement).trim());
                      dealdto.setFloor(getTagValue("층",eElement).trim());
                      dealdto.setDong(getTagValue("법정동",eElement).trim());
-                     dealdto.setGunguCode(getTagValue("지역코드",eElement).trim());
+                     dealdto.setGugunCode(getTagValue("지역코드",eElement).trim());
                      dealdto.setBuildYear(getTagValue("건축년도",eElement).trim());
                      dealdto.setName(getTagValue("연립다세대",eElement).trim());
                      dealdto.setJibun(getTagValue("지번",eElement).trim());
@@ -245,7 +245,7 @@ public class DataController {
                            dealdto.setDealAmount(getTagValue("거래금액",eElement).trim());
                            dealdto.setFloor(getTagValue("층",eElement).trim());
                            dealdto.setDong(getTagValue("법정동",eElement).trim());
-                           dealdto.setGunguCode(getTagValue("지역코드",eElement).trim());
+                           dealdto.setGugunCode(getTagValue("지역코드",eElement).trim());
                            dealdto.setBuildYear(getTagValue("건축년도",eElement).trim());
                            dealdto.setName(getTagValue("연립다세대",eElement).trim());
                            dealdto.setJibun(getTagValue("지번",eElement).trim());
@@ -301,7 +301,7 @@ public class DataController {
                               dealdto.setRentMoney(getTagValue("월세금액",eElement).trim());
                               dealdto.setFloor(getTagValue("층",eElement).trim());
                               dealdto.setDong(getTagValue("법정동",eElement).trim());
-                              dealdto.setGunguCode(getTagValue("지역코드",eElement).trim());
+                              dealdto.setGugunCode(getTagValue("지역코드",eElement).trim());
                               dealdto.setBuildYear(getTagValue("건축년도",eElement).trim());
                               dealdto.setName(getTagValue("아파트",eElement).trim());
                               dealdto.setJibun(getTagValue("지번",eElement).trim());
@@ -355,7 +355,7 @@ public class DataController {
                               dealdto.setDealAmount(getTagValue("거래금액",eElement).trim());
                               dealdto.setFloor(getTagValue("층",eElement).trim());
                               dealdto.setDong(getTagValue("법정동",eElement).trim());
-                              dealdto.setGunguCode(getTagValue("법정동시군구코드",eElement).trim());
+                              dealdto.setGugunCode(getTagValue("법정동시군구코드",eElement).trim());
                               dealdto.setBuildYear(getTagValue("건축년도",eElement).trim());
                               dealdto.setName(getTagValue("아파트",eElement).trim());
                               dealdto.setJibun(getTagValue("지번",eElement).trim());
