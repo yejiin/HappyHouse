@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.happyhouse.model.mapper.DataMapper">
+
+	<insert id="addOfficeRentData" parameterType="dealDto">
+		insert into deal_data
+		(area, dealday, dealmonth, dealyear, deposit, rentmoney, floor, dong, guguncode, buildyear, name, jibun, dealcate, housecate)
+		values (#{area}, #{dealDay}, #{dealMonth}, #{dealYear}, #{deposit}, #{rentMoney}, #{floor}, #{dong}, #{gunguCode}, #{buildYear}, #{name}, #{jibun}, "rent", "office")
+	</insert>
+
+	<insert id="addOfficeDealData" parameterType="dealDto">
+		insert into deal_data
+		(area, dealday, dealmonth, dealyear, dealamount, floor, dong, guguncode, buildyear, name, jibun, dealcate, housecate)
+		values (#{area}, #{dealDay}, #{dealMonth}, #{dealYear}, #{dealAmount}, #{floor}, #{dong}, #{gunguCode}, #{buildYear}, #{name}, #{jibun}, "deal", "office")
+	</insert>
+
+	<insert id="addHomeRentData" parameterType="dealDto">
+		insert into deal_data
+		(area, dealday, dealmonth, dealyear, deposit, rentmoney, floor, dong, guguncode, buildyear, name, jibun, dealcate, housecate)
+		values (#{area}, #{dealDay}, #{dealMonth}, #{dealYear}, #{deposit}, #{rentMoney}, #{floor}, #{dong}, #{gunguCode}, #{buildYear}, #{name}, #{jibun}, "rent", "home")
+	</insert>
+
+	<insert id="addHomeDealData" parameterType="dealDto">
+		insert into deal_data
+		(area, dealday, dealmonth, dealyear, dealamount, floor, dong, guguncode, buildyear, name, jibun, dealcate, housecate)
+		values (#{area}, #{dealDay}, #{dealMonth}, #{dealYear}, #{dealAmount}, #{floor}, #{dong}, #{gunguCode}, #{buildYear}, #{name}, #{jibun}, "deal", "home")
+	</insert>
+
+	<insert id="addAptRentData" parameterType="dealDto">
+		insert into deal_data
+		(area, dealday, dealmonth, dealyear, deposit, rentmoney, floor, dong, guguncode, buildyear, name, jibun, dealcate, housecate)
+		values (#{area}, #{dealDay}, #{dealMonth}, #{dealYear}, #{deposit}, #{rentMoney}, #{floor}, #{dong}, #{gunguCode}, #{buildYear}, #{name}, #{jibun}, "rent", "apt")
+	
+	</insert>
+
+	<insert id="addAptDealData" parameterType="dealDto">
+		insert into deal_data
+		(area, dealday, dealmonth, dealyear, dealamount, floor, dong, guguncode, buildyear, name, jibun, dealcate, housecate)
+		values (#{area}, #{dealDay}, #{dealMonth}, #{dealYear}, #{dealAmount}, #{floor}, #{dong}, #{gunguCode}, #{buildYear}, #{name}, #{jibun}, "deal", "apt")
+	
+	</insert>
+
+</mapper>
