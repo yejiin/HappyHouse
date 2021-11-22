@@ -27,7 +27,6 @@ import QnAView from "@/components/qna/QnAView.vue";
 import QnAUpdate from "@/components/qna/QnAUpdate.vue";
 import QnADelete from "@/components/qna/QnADelete.vue";
 
-
 import store from "@/store/index.js";
 
 Vue.use(VueRouter);
