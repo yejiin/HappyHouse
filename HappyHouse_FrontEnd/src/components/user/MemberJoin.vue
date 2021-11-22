@@ -57,13 +57,24 @@
                 @keyup.enter="confirm"
               ></b-form-input>
             </b-form-group>
-            <b-button
+            <b-button type="button" block variant="secondary" class="m-1" @click="moveMemberfavor"
+              >다음</b-button
+            >
+            <!-- <b-button
               type="button"
               block
               variant="outline-secondary"
               class="m-1"
               @click="registerSubmit"
               >회원가입</b-button
+            > -->
+            <b-button
+              type="button"
+              block
+              variant="outline-primary"
+              class="m-1"
+              @click="registerSubmit"
+              >회원가입(임시)</b-button
             >
           </b-form>
         </b-card>
@@ -95,6 +106,9 @@ export default {
   methods: {
     ...mapActions(memberStore, ["registerUser"]),
 
+    async moveMemberfavor() {
+      this.$router.push({ name: "Favor" });
+    },
     async registerSubmit() {
       await this.registerUser(this.user);
       alert("회원가입 성공!");

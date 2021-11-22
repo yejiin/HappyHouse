@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" type="dark" variant="dark">
+    <b-navbar toggleable="lg" type="" variant="light">
       <b-navbar-brand href="#">
         <router-link to="/"> </router-link>
       </b-navbar-brand>
@@ -11,8 +11,7 @@
         <b-navbar-nav>
           <b-nav-item href="#"
             ><router-link :to="{ name: 'Home' }" class="link"
-              ><b-icon icon="house" font-scale="1"></b-icon> Happy
-              House</router-link
+              ><h3><b-icon icon="house" font-scale="1"></b-icon> Happy House</h3></router-link
             ></b-nav-item
           >
         </b-navbar-nav>
@@ -22,11 +21,18 @@
           </b-navbar-nav>
         </b-collapse>
 
+        <b-navbar-nav class="ml-5">
+          <router-link :to="{ name: 'Notice' }" class="link"><h5>Notice</h5></router-link>
+        </b-navbar-nav>
+        <b-navbar-nav class="ml-5">
+          <router-link :to="{ name: 'QnA' }" class="link"><h5>QnA</h5></router-link>
+        </b-navbar-nav>
         <b-navbar-nav class="ml-auto" v-if="userInfo">
-          <b-nav-item class="align-self-center"
-            ><b-avatar
+          <b-nav-item class="align-self-center">
+            <!-- <b-avatar
               variant="primary"
               v-text="userInfo ? userInfo.userid.charAt(0).toUpperCase() : ''"
+<<<<<<< HappyHouse_FrontEnd/src/components/layout/NaviBar.vue
             ></b-avatar
             >{{ userInfo.username }}({{ userInfo.userid }})님
             환영합니다.</b-nav-item
@@ -42,19 +48,36 @@
             class="link align-self-center"
             @click.prevent="onClickLogout"
             >Logout</b-nav-item
+=======
+            ></b-avatar> -->
+            <b-avatar
+              variant="info"
+              src="http://img.danawa.com/prod_img/500000/126/615/img/14615126_1.jpg?shrink=330:330&_v=20210629160554"
+            ></b-avatar>
+            {{ userInfo.username }}({{ userInfo.userid }})님
+          </b-nav-item>
+          <b-nav-item class="align-self-center"
+            ><router-link :to="{ name: 'MyPage' }" class="link align-self-center"
+              ><h6>Mypage</h6></router-link
+            ></b-nav-item
+          >
+          <b-nav-item class="link align-self-center" @click.prevent="onClickLogout"
+            ><h6>Logout</h6></b-nav-item
           >
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto" v-else>
-          <template #button-content>
-            <b-icon icon="people" font-scale="2"></b-icon>
-          </template>
-          <router-link :to="{ name: 'SignUp' }" class="link"
-            ><b-icon icon="person-circle"></b-icon>Join</router-link
+          <b-nav-item class="align-self-center">
+            <template #button-content>
+              <b-icon icon="people" font-scale="2"></b-icon>
+            </template>
+            <router-link :to="{ name: 'SignUp' }" class="link"
+              ><h6>Join</h6></router-link
+            ></b-nav-item
           >
-          >
-          <router-link :to="{ name: 'SignIn' }" class="link"
-            ><b-icon icon="key"></b-icon>Login</router-link
-          >
+          <b-nav-item class="align-self-center">
+            <router-link :to="{ name: 'SignIn' }" class="link"
+              ><h6>Login</h6></router-link
+            ></b-nav-item
           >
         </b-navbar-nav>
       </b-collapse>
