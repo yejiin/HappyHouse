@@ -11,21 +11,26 @@
         <b-navbar-nav>
           <b-nav-item href="#"
             ><router-link :to="{ name: 'Home' }" class="link"
-              ><h3><b-icon icon="house" font-scale="1"></b-icon> Happy House</h3></router-link
+              ><h3>
+                <b-icon icon="house" font-scale="1"></b-icon> Happy House
+              </h3></router-link
             ></b-nav-item
           >
         </b-navbar-nav>
-        <b-collapse id="nav-collapse" is-nav>
-          <b-navbar-nav>
-            <router-link to="/house">house</router-link>
-          </b-navbar-nav>
-        </b-collapse>
-
         <b-navbar-nav class="ml-5">
-          <router-link :to="{ name: 'Notice' }" class="link"><h5>Notice</h5></router-link>
+          <router-link :to="{ name: 'House' }" class="link"
+            ><h5>house</h5></router-link
+          >
         </b-navbar-nav>
         <b-navbar-nav class="ml-5">
-          <router-link :to="{ name: 'QnA' }" class="link"><h5>QnA</h5></router-link>
+          <router-link :to="{ name: 'Notice' }" class="link"
+            ><h5>Notice</h5></router-link
+          >
+        </b-navbar-nav>
+        <b-navbar-nav class="ml-5">
+          <router-link :to="{ name: 'QnA' }" class="link"
+            ><h5>QnA</h5></router-link
+          >
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto" v-if="userInfo">
           <b-nav-item class="align-self-center">
@@ -57,11 +62,15 @@
             {{ userInfo.username }}({{ userInfo.userid }})님
           </b-nav-item>
           <b-nav-item class="align-self-center"
-            ><router-link :to="{ name: 'MyPage' }" class="link align-self-center"
+            ><router-link
+              :to="{ name: 'MyPage' }"
+              class="link align-self-center"
               ><h6>Mypage</h6></router-link
             ></b-nav-item
           >
-          <b-nav-item class="link align-self-center" @click.prevent="onClickLogout"
+          <b-nav-item
+            class="link align-self-center"
+            @click.prevent="onClickLogout"
             ><h6>Logout</h6></b-nav-item
           >
         </b-navbar-nav>
