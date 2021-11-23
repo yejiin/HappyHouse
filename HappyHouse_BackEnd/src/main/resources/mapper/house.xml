@@ -24,7 +24,25 @@
 		order by dongName
 	</select>
 	
-	<select id="getHouseInDong" parameterType="houseListParamDto" resultType="houseInfoDto">
+	<select id="getAptInDong" parameterType="String" resultType="aptInfoDto">
+		select distinct d.dong, d.guguncode, d.buildyear, d.name, d.jibun, g.gugunName
+		from deal_data d, guguncode g
+		where d.dong = #{dong} and d.guguncode = #{gugunCode} and d.guguncode = left(g.guguncode, 5) 
+	</select>
+	
+	<select id="getAptDeal" parameterType="String" resultType="dealDto">
+		select area, dealday, dealmonth, dealyear, deposit, rentmoney, dealamount, floor, dong, guguncode, buildyear, name, jibun
+		from deal_data
+		where dong = #{dong} and jibun = #{jibun} 
+	</select>
+	
+	<select id="getDealRange" parameterType="String" resultType="dealRangeDto">
+		select max(dealamount) maxamount, min(dealamount) minamount
+		from deal_data
+		where dong = #{dong} and jibun = #{jibun} 
+	</select>
+	
+	<!-- select id="getHouseInDong" parameterType="houseListParamDto" resultType="houseInfoDto">
 		select d.no, d.area, d.dealday, d.dealmonth, d.dealyear, d.deposit, d.rentmoney, d.dealamount, d.floor, d.dong, d.guguncode, d.buildyear, d.name, d.jibun, d.dealcate, d.housecate, g.gugunName
 		from deal_data d, guguncode g
 		where d.dong = #{dong} and d.guguncode = #{gugunCode} and d.guguncode = left(g.guguncode, 5) 
@@ -37,5 +55,5 @@
 		from deal_data
 		where dong = #{dong} and guguncode = #{gugunCode}
 	</select>
-
+ 	-->
 </mapper>

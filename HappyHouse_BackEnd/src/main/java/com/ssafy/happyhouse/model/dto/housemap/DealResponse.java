@@ -1,15 +1,14 @@
 package com.ssafy.happyhouse.model.dto.housemap;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class HouseListParamDto {
-
-	private String gugunCode;
-	private String dong;
-	private int start;
-	private int end;
-
+public class DealResponse {
+	
+	public DealRangeDto range;
+	public List<DealFormatDto> deals;
 }

@@ -36,34 +36,28 @@
                 </h4>
               </b-col>
               <b-col cols="2" class="mt-1">
-                <b-icon icon="star"></b-icon>
+                <b-icon v-if="!isFavorite" icon="star" @click="like"></b-icon>
+                <b-icon
+                  v-else
+                  icon="star-fill"
+                  variant="warning"
+                  @click="unlike"
+                ></b-icon>
               </b-col>
             </b-row>
           </template>
 
           <b-card-body>
-            <b-card-title v-if="house.dealAmount"
-              >매매가 {{ house.dealAmount }}</b-card-title
-            >
-            <b-card-title v-else-if="house.rentMoney == 0">
-              전세 {{ house.deposit }}</b-card-title
-            >
-            <b-card-title v-else
-              >월세 {{ house.deposit }} / {{ house.rentMoney }}</b-card-title
-            >
             <b-card-sub-title class="mb-2"
               >{{ house.gugunName }} {{ house.dong }}
               {{ house.jibun }}</b-card-sub-title
             >
 
-            <br />
-            <b-list-group flush>
-              <b-list-group-item>면적: {{ house.jibun }}㎡ </b-list-group-item>
-              <b-list-group-item>층: {{ house.floor }}층 </b-list-group-item>
-              <b-list-group-item
-                >건축년도: {{ house.buildYear }}년</b-list-group-item
-              >
-            </b-list-group>
+            <b-card-title v-if="dealInfo.range">시세 </b-card-title>
+            <b-card-title v-if="dealInfo.range"
+              >{{ dealInfo.range.maxAmount }} ~
+              {{ dealInfo.range.minAmount }}</b-card-title
+            >
           </b-card-body>
 
           <!-- <b-card-body>
@@ -72,58 +66,93 @@
           </b-card-body> -->
         </b-card>
 
-        <!-- <b-card no-body style="max-width: 20rem" class="mt-4">
+        <b-card no-body style="max-width: 20rem" class="mt-4">
           <b-card-body>
             <b-card-title>실거래 정보</b-card-title>
-            <b-table
-              striped
-              hover
-              :items="articles"
-              :fields="fields"
-              @row-clicked="viewArticle"
-            >
+            <b-table striped hover :items="dealInfo.deals" :fields="fields">
             </b-table>
           </b-card-body>
         </b-card>
 
         <b-card no-body style="max-width: 20rem" class="mt-4">
           <b-card-body>
-            <b-card-title>비교</b-card-title>
+            <b-card-title>시설 비교 차트</b-card-title>
+            <radar-chart></radar-chart>
           </b-card-body>
-        </b-card> -->
+        </b-card>
       </b-container>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import RadarChart from "@/components/chart/RadarChart";
+import { mapState, mapActions } from "vuex";
 
 const houseStore = "houseStore";
+const favoriteStore = "favoriteStore";
+const memberStore = "memberStore";
 
 export default {
+  components: {
+    RadarChart,
+  },
   data() {
     return {
       articles: [],
       fields: [
-        { key: "articleno", label: "계약일", tdClass: "tdClass" },
-        { key: "subject", label: "가격", tdClass: "tdSubject" },
-        { key: "userid", label: "면적", tdClass: "tdClass" },
-        { key: "regtime", label: "층수", tdClass: "tdClass" },
+        { key: "date", label: "계약일" },
+        { key: "price", label: "가격" },
+        { key: "area", label: "면적" },
+        { key: "floor", label: "층수" },
       ],
+      likey: true,
+      liken: false,
     };
   },
   watch: {
     house: function () {
+      console.log("상세화면 house: ", this.house);
+    },
+    dealInfo: function () {
+      console.log("상세화면 deal : ", this.dealInfo);
       console.log(this.house);
     },
   },
   computed: {
-    ...mapState(houseStore, ["house"]),
+    ...mapState(houseStore, ["house", "dealInfo"]),
+    ...mapState(favoriteStore, ["isFavorite"]),
+    ...mapState(memberStore, ["isLogin", "userInfo"]),
+  },
+  created() {
+    if (this.isLogin) {
+      this.favorite({
+        housename: this.house.name,
+        userid: this.userInfo.userid,
+      });
+    }
   },
   methods: {
+    ...mapActions(favoriteStore, ["favorite", "addFavorite", "cancelFavorite"]),
     goBack() {
-      this.$router.go(-1);
+      // this.$router.go(-1);
+      this.$router.push({ name: "HouseInfo" });
+    },
+    like() {
+      if (this.isLogin) {
+        this.addFavorite({
+          housename: this.house.name,
+          userid: this.userInfo.userid,
+        });
+      }
+    },
+    unlike() {
+      if (this.isLogin) {
+        this.cancelFavorite({
+          housename: this.house.name,
+          userid: this.userInfo.userid,
+        });
+      }
     },
   },
 };

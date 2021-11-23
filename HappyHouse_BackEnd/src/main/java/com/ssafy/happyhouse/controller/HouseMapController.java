@@ -7,15 +7,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ssafy.happyhouse.model.dto.housemap.HouseListRequest;
-import com.ssafy.happyhouse.model.dto.housemap.HouseListResponse;
+import com.ssafy.happyhouse.model.dto.housemap.AptInfoDto;
+import com.ssafy.happyhouse.model.dto.housemap.AptListRequest;
+import com.ssafy.happyhouse.model.dto.housemap.DealResponse;
 import com.ssafy.happyhouse.model.dto.housemap.SidoDto;
 import com.ssafy.happyhouse.model.dto.housemap.DongDto;
 import com.ssafy.happyhouse.model.dto.housemap.GugunDto;
 import com.ssafy.happyhouse.model.service.HouseMapService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/house")
@@ -38,9 +41,14 @@ public class HouseMapController {
 		return houseMapService.getDongInGugun(gugun);
 	}
 	
-	@GetMapping("/list")
-	public HouseListResponse house(HouseListRequest req) throws Exception {
-		System.out.println(req);
-		return houseMapService.getHouseInDong(req);
+	@GetMapping("/apt")
+	public List<AptInfoDto> apt(AptListRequest req) throws Exception {
+		return houseMapService.getAptInDong(req);
+	}
+	
+	@GetMapping("/apt/deal")
+	public DealResponse aptDeal(@RequestParam("dong") String dong, @RequestParam("jibun") String jibun) throws Exception {
+		log.info(dong + " " + jibun);
+		return houseMapService.getAptDeal(dong, jibun);
 	}
 }

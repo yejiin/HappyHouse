@@ -50,8 +50,7 @@ export default {
       "getSidoList",
       "getGugunList",
       "getDongList",
-      "getHouseList",
-      "getHouesApiList",
+      "getAptList",
       "setAddress",
     ]),
     ...mapMutations(houseStore, [
@@ -76,10 +75,9 @@ export default {
       if (this.dongCode) {
         for (let dong of this.dongs) {
           if (dong.value == this.dongCode) {
-            this.getHouseList({
+            this.getAptList({
               dong: dong.text,
               gugunCode: this.gugunCode,
-              page: 1,
             });
             break;
           }

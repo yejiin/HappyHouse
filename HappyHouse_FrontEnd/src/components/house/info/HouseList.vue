@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      v-if="houses.data && houses.data.length != 0"
+      v-if="houses && houses.length != 0"
       class="bv-example-row scroll-box"
       style="overflow: auto; height: 67vh"
     >
@@ -13,16 +13,12 @@
       >
         <b-thead head-variant="dark">
           <b-tr>
-            <b-th>매물 리스트</b-th>
+            <b-th>House List</b-th>
           </b-tr>
         </b-thead>
         <tbody>
           <!-- <div > -->
-          <b-tr
-            v-for="(house, index) in houses.data"
-            :key="index"
-            v-bind="houseList"
-          >
+          <b-tr v-for="(house, index) in houses" :key="index" v-bind="houses">
             <b-td>
               <b-row @click="viewDetail(house)">
                 <b-col cols="4">
@@ -35,18 +31,10 @@
                 ></b-col>
                 <b-col cols="8" class="mt-3">
                   <h5>{{ house.name }}</h5>
-                  <div v-if="house.dealAmount">
-                    <span class="font-weight-bold">매매</span>
-                    {{ house.dealAmount }}
+                  <div>
+                    {{ house.gugunName }} {{ house.dong }} {{ house.jibun }}
                   </div>
-                  <div v-else-if="house.rentMoney == 0">
-                    <span class="font-weight-bold">전세</span>
-                    {{ house.deposit }}
-                  </div>
-                  <div v-else>
-                    <span class="font-weight-bold">월세 </span>
-                    {{ house.deposit }} / {{ house.rentMoney }}
-                  </div>
+                  <div>건축년도: {{ house.buildYear }}</div>
                 </b-col>
               </b-row>
             </b-td>
@@ -91,23 +79,24 @@ export default {
   created() {
     console.log(this.houses);
   },
-  watch: {
-    houses: function () {
-      this.houseList = this.houses.data;
-      this.numberOfPages = this.houses.totalCount / this.perPage + 1;
-    },
-  },
+  // watch: {
+  //   houses: function () {
+  //     this.houseList = this.houses;
+  //     // this.numberOfPages = this.houses.totalCount / this.perPage + 1;
+  //   },
+  // },
   computed: {
     ...mapState(houseStore, ["houses"]),
   },
   methods: {
     ...mapActions(houseStore, ["detailHouse"]),
+
     viewDetail(house) {
       this.detailHouse(house);
-      this.$router.push({
-        name: "HouseDetail",
-        params: { no: house.aptCode },
-      });
+      // this.$router.push({
+      //   name: "HouseDetail",
+      //   params: { no: house.aptCode },
+      // });
     },
     linkGen(pageNum) {
       return pageNum === 1 ? "?" : `?page=${pageNum}`;

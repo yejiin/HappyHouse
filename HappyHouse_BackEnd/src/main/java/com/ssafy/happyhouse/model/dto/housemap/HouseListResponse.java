@@ -11,6 +11,6 @@ public class HouseListResponse {
 
 	public int totalCount;
 	public int page;
-	public List<HouseInfoDto> data;
+	public List<AptInfoDto> data;
 	public List<MapDto> mapInfo;
 }

@@ -2,37 +2,38 @@ package com.ssafy.happyhouse.model.service;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ssafy.happyhouse.model.dto.housemap.HouseInfoDto;
-import com.ssafy.happyhouse.model.dto.housemap.HouseListParamDto;
-import com.ssafy.happyhouse.model.dto.housemap.HouseListRequest;
-import com.ssafy.happyhouse.model.dto.housemap.HouseListResponse;
-import com.ssafy.happyhouse.model.dto.housemap.MapDto;
+import com.ssafy.happyhouse.model.dto.data.DealDto;
+import com.ssafy.happyhouse.model.dto.housemap.AptInfoDto;
+import com.ssafy.happyhouse.model.dto.housemap.AptListRequest;
+import com.ssafy.happyhouse.model.dto.housemap.DealFormatDto;
+import com.ssafy.happyhouse.model.dto.housemap.DealRangeDto;
+import com.ssafy.happyhouse.model.dto.housemap.DealResponse;
 import com.ssafy.happyhouse.model.dto.housemap.SidoDto;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ssafy.happyhouse.model.dto.housemap.DongDto;
 import com.ssafy.happyhouse.model.dto.housemap.GugunDto;
 import com.ssafy.happyhouse.model.mapper.HouseMapMapper;
-import com.ssafy.happyhouse.util.AptImagePath;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Service
-public class HouserMapServiceImpl implements HouseMapService {
-
-	@Autowired
-	private SqlSession sqlSession;
+public class HouseMapServiceImpl implements HouseMapService {
+	
+	private final SqlSession sqlSession;
 
 	@Override
 	public List<SidoDto> getSido() throws Exception {
@@ -49,48 +50,68 @@ public class HouserMapServiceImpl implements HouseMapService {
 		return sqlSession.getMapper(HouseMapMapper.class).getDongInGugun(gugun);
 	}
 
+	// 동에 따른 아파트 리스트 (페이징 처리 x)
 	@Override
-	public HouseListResponse getHouseInDong(HouseListRequest req) throws Exception {
-
-		int numberOfPages = 10;
-		int page = req.getPage();
-		int start = numberOfPages * (page - 1);
-		
-		HouseListParamDto dto = new HouseListParamDto(req.getGugunCode(), req.getDong(), start, start + numberOfPages);
+	public List<AptInfoDto> getAptInDong(AptListRequest req) throws Exception {
+//		int numberOfPages = 10;
+//		int page = req.getPage();
+//		int start = numberOfPages * (page - 1);
 				
-		List<HouseInfoDto> list = sqlSession.getMapper(HouseMapMapper.class).getHouseInDong(dto);
+		List<AptInfoDto> list = sqlSession.getMapper(HouseMapMapper.class).getAptInDong(req.getGugunCode(), req.getDong());
 		
-		HashMap<String, HouseInfoDto> map = new HashMap<String, HouseInfoDto>();
-
-		for (HouseInfoDto houseInfoDto : list) {
-//			houseInfoDto.setImage(AptImagePath.aptImagePath[0]);
-			if (!map.containsKey(houseInfoDto.getJibun())) {
-				
-				map.put(houseInfoDto.getJibun(), houseInfoDto);
-			}
-		}
-		
-		List<MapDto> mapDto = new ArrayList<MapDto>();
-		
-		for (String key: map.keySet()) {
-			HouseInfoDto houseInfoDto = map.get(key);
-			String address = "서울시 " + houseInfoDto.getGugunName() + " " + houseInfoDto.getDong() + " " + houseInfoDto.getJibun();
-			
+		//아파트 주소를 좌표로 저장
+		for (AptInfoDto dto : list) {
+			String address = "서울시 " + dto.getGugunName() + " " + dto.getDong() + " " + dto.getJibun();
 			String jsonString = getKakaoApiFromAddress(address);
-			
-	        HashMap<String, String> XYMap = getXYMapFromJson(jsonString);
-	        
-	        mapDto.add(new MapDto(houseInfoDto.getName(), address, XYMap.get("y"), XYMap.get("x"), houseInfoDto.getBuildYear()));
+			HashMap<String, String> XYMap = getXYMapFromJson(jsonString);
+			dto.setLat(XYMap.get("y"));
+			dto.setLng(XYMap.get("x"));
 		}
-		
 
-		int totalCount = sqlSession.getMapper(HouseMapMapper.class).getTotalCount(dto);
-		
-
-        
-		return new HouseListResponse(totalCount, page, list, mapDto);
+		return list;
 	}
 	
+	@Override
+	public DealResponse getAptDeal(String dong, String jibun) throws Exception {
+		
+		DealRangeDto range = sqlSession.getMapper(HouseMapMapper.class).getDealRange(dong, jibun);
+		if (range != null)
+			range.setMaxAmount(formatMoney(range.getMaxAmount()));
+		if (range != null)
+			range.setMinAmount(formatMoney(range.getMinAmount()));
+		
+		List<DealDto> dealList = sqlSession.getMapper(HouseMapMapper.class).getAptDeal(dong, jibun);
+		List<DealFormatDto> deals = dealList.stream().map((dto) -> new DealFormatDto(dto)).collect(Collectors.toList());
+		
+		System.out.println(range);
+		System.out.println(deals);
+		return new DealResponse(range, deals);
+	}
+	
+	
+	private String formatMoney(String money) {
+		if (money == null)
+			return null;
+		
+		String result = "";
+		int len = money.length();
+		
+		if (len > 5) {
+			result += money.substring(0, len - 5) + "억";
+			String s = money.substring(len - 5, len);	
+			
+			if (s.charAt(0) != '0')
+				result += " " +s;
+	
+		} else {
+			result += money;
+		}
+		
+
+		return result;
+	}
+	
+	// 주소를 좌표로 전환
 	public String getKakaoApiFromAddress(String address) {
 		String apiKey = "6a640507a314058d490bb6d379a72600";
 		String apiUrl = "https://dapi.kakao.com/v2/local/search/address.json";
@@ -124,6 +145,7 @@ public class HouserMapServiceImpl implements HouseMapService {
 	    return jsonString;
 	}
 	
+	// 좌표를 전환한 json string에서 좌표만 추출
 	public HashMap<String, String> getXYMapFromJson(String jsonString) {
 		ObjectMapper mapper = new ObjectMapper();
 		HashMap<String, String> XYMap = new HashMap<String, String>();
@@ -143,5 +165,6 @@ public class HouserMapServiceImpl implements HouseMapService {
 		}
 	    return XYMap;
 	}
+	
 
 }

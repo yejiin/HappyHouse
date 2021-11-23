@@ -68,7 +68,7 @@ const routes = [
         component: HouseInfo,
       },
       {
-        path: "detail/:no",
+        path: "detail",
         name: "HouseDetail",
         component: HouseDetail,
       },

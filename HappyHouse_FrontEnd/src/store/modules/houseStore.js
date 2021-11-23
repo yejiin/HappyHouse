@@ -1,4 +1,10 @@
-import { sidoList, gugunList, dongList, houseList } from "@/api/house.js";
+import {
+  sidoList,
+  gugunList,
+  dongList,
+  aptList,
+  dealList,
+} from "@/api/house.js";
 
 const houseStore = {
   namespaced: true,
@@ -10,6 +16,7 @@ const houseStore = {
     house: null,
     sido: null,
     gugun: null,
+    dealInfo: null,
   },
 
   getters: {},
@@ -21,7 +28,6 @@ const houseStore = {
       });
     },
     SET_GUGUN_LIST: (state, { data, sidoCode }) => {
-      console.log(sidoCode);
       state.sido = state.sidos.filter((sido) => sido.value == sidoCode);
 
       data.forEach((gugun) => {
@@ -47,6 +53,9 @@ const houseStore = {
     },
     SET_DETAIL_HOUSE: (state, house) => {
       state.house = house;
+    },
+    SET_DEAL_INFO: (state, dealInfo) => {
+      state.dealInfo = dealInfo;
     },
   },
 
@@ -89,13 +98,12 @@ const houseStore = {
         }
       );
     },
-    getHouseList: ({ commit }, { dong, gugunCode, page }) => {
+    getAptList: ({ commit }, { dong, gugunCode }) => {
       const params = {
         dong,
         gugunCode,
-        page,
       };
-      houseList(
+      aptList(
         params,
         ({ data }) => {
           commit("SET_HOUSE_LIST", data);
@@ -107,6 +115,21 @@ const houseStore = {
     },
     detailHouse: ({ commit }, house) => {
       commit("SET_DETAIL_HOUSE", house);
+    },
+    getDealList: ({ commit }, { dong, jibun }) => {
+      const params = {
+        dong,
+        jibun,
+      };
+      dealList(
+        params,
+        ({ data }) => {
+          commit("SET_DEAL_INFO", data);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
     },
   },
 };
