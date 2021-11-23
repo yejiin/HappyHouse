@@ -36,7 +36,13 @@
                 </h4>
               </b-col>
               <b-col cols="2" class="mt-1">
-                <b-icon icon="star"></b-icon>
+                <b-icon v-if="!isFavorite" icon="star" @click="like"></b-icon>
+                <b-icon
+                  v-else
+                  icon="star-fill"
+                  variant="warning"
+                  @click="unlike"
+                ></b-icon>
               </b-col>
             </b-row>
           </template>
@@ -79,9 +85,11 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 const houseStore = "houseStore";
+const favoriteStore = "favoriteStore";
+const memberStore = "memberStore";
 
 export default {
   data() {
@@ -93,26 +101,53 @@ export default {
         { key: "area", label: "면적" },
         { key: "floor", label: "층수" },
       ],
+      likey: true,
+      liken: false,
     };
-  },
-  create() {
-    console.log(this.dealInfo);
   },
   watch: {
     house: function () {
-      console.log(this.house);
+      console.log("상세화면 house: ", this.house);
     },
     dealInfo: function () {
-      console.log(this.dealInfo);
+      console.log("상세화면 deal : ", this.dealInfo);
+      console.log(this.house);
     },
   },
   computed: {
     ...mapState(houseStore, ["house", "dealInfo"]),
+    ...mapState(favoriteStore, ["isFavorite"]),
+    ...mapState(memberStore, ["isLogin", "userInfo"]),
+  },
+  created() {
+    if (this.isLogin) {
+      this.favorite({
+        housename: this.house.name,
+        userid: this.userInfo.userid,
+      });
+    }
   },
   methods: {
+    ...mapActions(favoriteStore, ["favorite", "addFavorite", "cancelFavorite"]),
     goBack() {
       // this.$router.go(-1);
       this.$router.push({ name: "HouseInfo" });
+    },
+    like() {
+      if (this.isLogin) {
+        this.addFavorite({
+          housename: this.house.name,
+          userid: this.userInfo.userid,
+        });
+      }
+    },
+    unlike() {
+      if (this.isLogin) {
+        this.cancelFavorite({
+          housename: this.house.name,
+          userid: this.userInfo.userid,
+        });
+      }
     },
   },
 };

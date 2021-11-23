@@ -28,7 +28,6 @@ const houseStore = {
       });
     },
     SET_GUGUN_LIST: (state, { data, sidoCode }) => {
-      console.log(sidoCode);
       state.sido = state.sidos.filter((sido) => sido.value == sidoCode);
 
       data.forEach((gugun) => {

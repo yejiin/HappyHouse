@@ -90,6 +90,7 @@ export default {
   },
   methods: {
     ...mapActions(houseStore, ["detailHouse"]),
+
     viewDetail(house) {
       this.detailHouse(house);
       // this.$router.push({
