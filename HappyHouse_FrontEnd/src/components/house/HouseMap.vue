@@ -8,7 +8,7 @@
 import { mapState, mapActions } from "vuex";
 
 const houseStore = "houseStore";
-
+const chartStore = "chartStore";
 export default {
   name: "HouseMap",
   data() {
@@ -49,6 +49,7 @@ export default {
   },
   methods: {
     ...mapActions(houseStore, ["detailHouse", "getDealList"]),
+    ...mapActions(chartStore, ["getChartData"]),
 
     initMap() {
       const mapContainer = document.getElementById("map"); // 지도를 표시할 div
@@ -161,6 +162,7 @@ export default {
 
         self.detailHouse(house);
         self.getDealList({ dong: house.dong, jibun: house.jibun });
+        self.getChartData({ lat: house.lat, lng: house.lng, name: house.name });
         self.$router.replace({
           name: "HouseDetail",
           // query: { dong: house.dong, jibun: house.jibun },

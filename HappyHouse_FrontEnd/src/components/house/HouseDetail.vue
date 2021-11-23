@@ -76,7 +76,8 @@
 
         <b-card no-body style="max-width: 20rem" class="mt-4">
           <b-card-body>
-            <b-card-title>비교</b-card-title>
+            <b-card-title>시설 비교 차트</b-card-title>
+            <radar-chart></radar-chart>
           </b-card-body>
         </b-card>
       </b-container>
@@ -85,6 +86,7 @@
 </template>
 
 <script>
+import RadarChart from "@/components/chart/RadarChart";
 import { mapState, mapActions } from "vuex";
 
 const houseStore = "houseStore";
@@ -92,6 +94,9 @@ const favoriteStore = "favoriteStore";
 const memberStore = "memberStore";
 
 export default {
+  components: {
+    RadarChart,
+  },
   data() {
     return {
       articles: [],
