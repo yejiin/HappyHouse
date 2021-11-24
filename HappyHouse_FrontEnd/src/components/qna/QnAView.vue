@@ -22,8 +22,8 @@
     <b-row class="mb-1">
       <b-col>
         <b-card
-          :header-html="`<h3>${question.qno}.
-          ${question.subject}</h3><div><h6>${question.userid}<br>${question.regtime}</h6></div>`"
+          :header-html="`<h4>${question.qno}.
+          ${question.subject}</h4><div><h6>ID: ${question.userid}<br>${question.regtime}</h6></div>`"
           class="mb-2 text-left"
           border-variant="dark"
           no-body

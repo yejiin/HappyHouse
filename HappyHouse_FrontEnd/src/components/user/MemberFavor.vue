@@ -74,13 +74,6 @@ export default {
     };
   },
   created() {
-    this.user.userid = this.$route.params.userid;
-    this.user.password = this.$route.params.password;
-    this.user.username = this.$route.params.username;
-    this.user.email = this.$route.params.email;
-    this.user.phone = this.$route.params.phone;
-    this.user.ageGroup = this.$route.params.ageGroup;
-    this.user.favStore = this.$route.params.favStore;
     this.isUserid = true;
   },
   methods: {
