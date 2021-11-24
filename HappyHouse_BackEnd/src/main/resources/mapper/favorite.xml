@@ -12,14 +12,20 @@
 
 	<insert id="addfavorite" parameterType="String">
 		insert into favoritehouse
-		(userid, name)
-		values (#{userid}, #{name})
+		(userid, name, gugunname, dong, jibun)
+		values (#{userid}, #{name}, #{gugunname}, #{dong}, #{jibun})
 	</insert>
 
 	<delete id="cancelfavorite" parameterType="String">
 		delete from favoritehouse
 		where userid = #{userid} and name = #{name}
 	</delete>
+	
+	<select id="getFavoriteInGugun" parameterType="String" resultType="favoriteDto">
+		select distinct d.name name, f.gugunname gugunname, d.dong dong, d.jibun jibun 
+		from favoritehouse f, deal_data d
+		where f.userid = #{userid} and f.gugunname = #{gugunname} and f.name != #{name} and f.name = d.name;
+	</select>
 
 
 </mapper>

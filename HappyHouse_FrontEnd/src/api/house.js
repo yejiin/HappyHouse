@@ -22,4 +22,8 @@ function dealList(params, success, fail) {
   api.get(`/house/apt/deal`, { params: params }).then(success).catch(fail);
 }
 
-export { sidoList, gugunList, dongList, aptList, dealList };
+function favoriteList(param, success, fail) {
+  api.get(`/house/apt/favorite/${param}`).then(success).catch(fail);
+}
+
+export { sidoList, gugunList, dongList, aptList, dealList, favoriteList };

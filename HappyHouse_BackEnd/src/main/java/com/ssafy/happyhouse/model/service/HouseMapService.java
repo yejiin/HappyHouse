@@ -16,4 +16,5 @@ public interface HouseMapService {
 	List<DongDto> getDongInGugun(String gugun) throws Exception;
 	List<AptInfoDto> getAptInDong(AptListRequest req) throws Exception;
 	DealResponse getAptDeal(String dong, String jibun) throws Exception;
+	List<AptInfoDto> getFavoriteApt(String userid) throws Exception;
 }

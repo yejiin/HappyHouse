@@ -4,6 +4,7 @@ import {
   dongList,
   aptList,
   dealList,
+  favoriteList,
 } from "@/api/house.js";
 
 const houseStore = {
@@ -56,6 +57,12 @@ const houseStore = {
     },
     SET_DEAL_INFO: (state, dealInfo) => {
       state.dealInfo = dealInfo;
+    },
+    SET_FAVORITE_LIST: (state, favorites) => {
+      state.houses = favorites;
+    },
+    CLEAR_House_LIST: (state) => {
+      state.houses = [];
     },
   },
 
@@ -125,6 +132,17 @@ const houseStore = {
         params,
         ({ data }) => {
           commit("SET_DEAL_INFO", data);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    },
+    getFavoriteList: ({ commit }, userid) => {
+      favoriteList(
+        userid,
+        ({ data }) => {
+          commit("SET_FAVORITE_LIST", data);
         },
         (error) => {
           console.log(error);

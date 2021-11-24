@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <b-container class="bv-example-row mt-4 text-center" style="width: 100%">
+    <h3>관심목록</h3>
     <div
       v-if="houses && houses.length != 0"
       class="bv-example-row scroll-box"
@@ -14,11 +15,10 @@
       >
         <b-thead head-variant="dark">
           <b-tr>
-            <b-th>House List</b-th>
+            <b-th></b-th>
           </b-tr>
         </b-thead>
         <tbody>
-          <!-- <div > -->
           <b-tr v-for="(house, index) in houses" :key="index" v-bind="houses">
             <b-td>
               <b-row @click="viewDetail(house)">
@@ -47,69 +47,37 @@
               use-router
             ></b-pagination-nav>
           </b-container>
-          <!-- </div> -->
         </tbody>
       </b-table-simple>
     </div>
-    <b-container
-      v-else
-      class="bv-example-row mt-3"
-      style="overflow: auto; height: 67vh"
-    >
+    <b-container v-else class="bv-example-row mt-3">
       <b-row>
-        <b-col><b-alert show>목록이 없습니다.</b-alert></b-col>
+        <b-col><b-alert show>관심 단지를 추가해주세요.</b-alert></b-col>
       </b-row>
     </b-container>
-  </div>
+  </b-container>
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 const houseStore = "houseStore";
+const memberStore = "memberStore";
 
 export default {
-  data() {
-    return {
-      perPage: 5,
-      currentPage: 1,
-      numberOfPages: 1,
-      houseList: [],
-    };
-  },
+  name: "Favorite",
+  components: {},
   created() {
-    console.log(this.houses);
-    this.CLEAR_House_LIST();
+    this.getFavoriteList(this.userInfo.userid);
   },
-  // watch: {
-  //   houses: function () {
-  //     this.houseList = this.houses;
-  //     // this.numberOfPages = this.houses.totalCount / this.perPage + 1;
-  //   },
-  // },
   computed: {
     ...mapState(houseStore, ["houses"]),
+    ...mapState(memberStore, ["userInfo"]),
   },
   methods: {
-    ...mapActions(houseStore, ["detailHouse"]),
-    ...mapMutations(houseStore, ["CLEAR_House_LIST"]),
-
-    viewDetail(house) {
-      this.detailHouse(house);
-      // this.$router.push({
-      //   name: "HouseDetail",
-      //   params: { no: house.aptCode },
-      // });
-    },
-    linkGen(pageNum) {
-      return pageNum === 1 ? "?" : `?page=${pageNum}`;
-    },
+    ...mapActions(houseStore, ["getFavoriteList"]),
   },
 };
 </script>
 
-<style>
-.scroll-box::-webkit-scrollbar {
-  display: none; /* Chrome , Safari , Opera */
-}
-</style>
+<style></style>

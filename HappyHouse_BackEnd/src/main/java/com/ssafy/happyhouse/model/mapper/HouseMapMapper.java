@@ -18,4 +18,5 @@ public interface HouseMapMapper {
 	List<AptInfoDto> getAptInDong(String gugunCode, String dong) throws SQLException;
 	List<DealDto> getAptDeal(String dong, String jibun) throws SQLException;
 	DealRangeDto getDealRange(String dong, String jibun) throws SQLException;
+	List<AptInfoDto> getFavoriteApt(String userid)throws SQLException;
 }
