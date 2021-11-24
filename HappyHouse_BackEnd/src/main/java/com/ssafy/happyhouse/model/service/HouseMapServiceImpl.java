@@ -14,9 +14,14 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ssafy.happyhouse.model.dto.data.AptDetailDto;
 import com.ssafy.happyhouse.model.dto.data.DealDto;
+import com.ssafy.happyhouse.model.dto.housemap.AptCodeDto;
 import com.ssafy.happyhouse.model.dto.housemap.AptInfoDto;
 import com.ssafy.happyhouse.model.dto.housemap.AptListRequest;
+import com.ssafy.happyhouse.model.dto.housemap.CompareDto;
+import com.ssafy.happyhouse.model.dto.housemap.CompareRequest;
+import com.ssafy.happyhouse.model.dto.housemap.CompareResponse;
 import com.ssafy.happyhouse.model.dto.housemap.DealFormatDto;
 import com.ssafy.happyhouse.model.dto.housemap.DealRangeDto;
 import com.ssafy.happyhouse.model.dto.housemap.DealResponse;
@@ -104,6 +109,16 @@ public class HouseMapServiceImpl implements HouseMapService {
 		return list;
 	}
 	
+	@Override
+	public CompareResponse getCompareInfo(CompareRequest req) {
+		AptCodeDto aptCode = sqlSession.getMapper(HouseMapMapper.class).getAptCode(req.getName(), req.getDong());
+		AptDetailDto dto = sqlSession.getMapper(HouseMapMapper.class).getAptDetail(aptCode.getAptCode());
+		
+		AptCodeDto compAptCode = sqlSession.getMapper(HouseMapMapper.class).getAptCode(req.getCompName(), req.getCompDong());
+		AptDetailDto compdto = sqlSession.getMapper(HouseMapMapper.class).getAptDetail(compAptCode.getAptCode());
+		
+		return new CompareResponse(new CompareDto(dto, aptCode), new CompareDto(compdto, compAptCode));
+	}
 	
 	private String formatMoney(String money) {
 		if (money == null)
@@ -181,6 +196,8 @@ public class HouseMapServiceImpl implements HouseMapService {
 		}
 	    return XYMap;
 	}
+
+
 
 
 	

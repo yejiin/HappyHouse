@@ -31,8 +31,7 @@ export default {
       const script = document.createElement("script");
       /* global kakao */
       script.onload = () => kakao.maps.load(this.initMap);
-      script.src =
-        "http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=d3586605b6e80b00c4ba672b8b64327a";
+      script.src = "http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=d3586605b6e80b00c4ba672b8b64327a";
       document.head.appendChild(script);
     }
   },
@@ -135,21 +134,9 @@ export default {
         position: position,
       });
 
-      kakao.maps.event.addListener(
-        marker,
-        "mouseover",
-        this.makeOverListener(this.map, overlay)
-      );
-      kakao.maps.event.addListener(
-        marker,
-        "mouseout",
-        this.makeOutListener(overlay)
-      );
-      kakao.maps.event.addListener(
-        marker,
-        "click",
-        this.makeClickListener(house, overlay, user)
-      );
+      kakao.maps.event.addListener(marker, "mouseover", this.makeOverListener(this.map, overlay));
+      kakao.maps.event.addListener(marker, "mouseout", this.makeOutListener(overlay));
+      kakao.maps.event.addListener(marker, "click", this.makeClickListener(house, overlay, user));
     },
 
     makeOverListener(map, overlay) {
@@ -172,8 +159,8 @@ export default {
         self.detailHouse(house);
         self.getDealList({ dong: house.dong, jibun: house.jibun });
         self.getChartData({ lat: house.lat, lng: house.lng, name: house.name });
+        console.log("구군 관심지역 조회시 user정보", user);
         if (user) {
-          console.log(user);
           console.log("구군 관심지역 조회");
           self.getFavoriteInGugun({
             gugunname: house.gugunName,

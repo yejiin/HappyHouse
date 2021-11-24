@@ -29,7 +29,15 @@ public class FavoriteHouseService {
 	}
 
 	public List<FavoriteDto> getFavoriteInGugun(String gugunname, String name, String userid) {
-		return sqlSession.getMapper(FavoriteHouseMapper.class).getFavoriteInGugun(gugunname, name, userid);
+		
+		List<FavoriteDto> list = sqlSession.getMapper(FavoriteHouseMapper.class).getFavoriteInGugun(gugunname, name, userid);
+		
+		for (int i = 0; i < list.size(); i++) {
+			list.get(i).setId(i + 1);
+		}
+		System.out.println(list);
+		
+		return list;
 	}
 	
 }

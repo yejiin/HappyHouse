@@ -18,9 +18,9 @@
 	</select>
 	
 	<select id="getDongInGugun" parameterType="string" resultType="dongDto">
-		select dongName, dongCode
+		select dongName, bjdCode dongCode
 		from dongcode
-		where left(dongCode, 5) = #{gugun}
+		where left(bjdCode, 5) = #{gugun}
 		order by dongName
 	</select>
 	
@@ -47,6 +47,19 @@
 		select distinct d.dong dong, d.guguncode guguncode, d.buildyear buildyear, d.name name, d.jibun jibun, f.gugunName gugunname
 		from favoritehouse f, deal_data d
 		where f.userid = #{userid} and f.name = d.name and f.jibun = d.jibun
+	</select>
+	
+	<select id="getAptCode" parameterType="String" resultType="aptCodeDto">
+		select a.aptCode aptCode, b.aptAddr aptAddress
+		from apartment a, aptbasic b
+		where a.aptName = #{name} and a.dong = #{dong} and a.aptCode = b.aptCode
+	</select>
+	
+	<select id="getAptDetail" parameterType="String" resultType="aptDetailDto">
+		select aptCode, aptName, mgrCnt, secuCnt, eleCnt, parkUCnt, parkDCnt, cctvCnt,welFac, disBus, subLine, subStation, disSub, convFac, eduFac 
+		from aptdetail
+		where aptCode = #{aptCode}
+	
 	</select>
 	
 	<!-- select id="getHouseInDong" parameterType="houseListParamDto" resultType="houseInfoDto">

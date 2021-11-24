@@ -22,9 +22,9 @@
 	</delete>
 	
 	<select id="getFavoriteInGugun" parameterType="String" resultType="favoriteDto">
-		select distinct d.name name, f.gugunname gugunname, d.dong dong, d.jibun jibun 
+		select distinct d.dong dong, f.gugunname gugunname, f.jibun jibun, d.name name
 		from favoritehouse f, deal_data d
-		where f.userid = #{userid} and f.gugunname = #{gugunname} and f.name != #{name} and f.name = d.name;
+		where f.userid = #{userid} and f.gugunname = #{gugunname} and d.name != #{name} and f.name = d.name and f.jibun = d.jibun;
 	</select>
 
 

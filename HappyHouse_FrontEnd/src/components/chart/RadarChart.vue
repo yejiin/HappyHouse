@@ -54,8 +54,6 @@ export default {
       this.data.agvData.traffic,
     ];
     this.renderChart(this.chartData, this.options);
-    console.log(this.data.curData.traffic);
-    console.log(this.chartData);
   },
 };
 </script>

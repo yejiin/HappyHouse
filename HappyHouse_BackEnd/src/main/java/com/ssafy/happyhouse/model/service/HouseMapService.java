@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.ssafy.happyhouse.model.dto.housemap.AptInfoDto;
 import com.ssafy.happyhouse.model.dto.housemap.AptListRequest;
+import com.ssafy.happyhouse.model.dto.housemap.CompareRequest;
+import com.ssafy.happyhouse.model.dto.housemap.CompareResponse;
 import com.ssafy.happyhouse.model.dto.housemap.DealResponse;
 import com.ssafy.happyhouse.model.dto.housemap.SidoDto;
 import com.ssafy.happyhouse.model.dto.housemap.DongDto;
@@ -17,4 +19,5 @@ public interface HouseMapService {
 	List<AptInfoDto> getAptInDong(AptListRequest req) throws Exception;
 	DealResponse getAptDeal(String dong, String jibun) throws Exception;
 	List<AptInfoDto> getFavoriteApt(String userid) throws Exception;
+	CompareResponse getCompareInfo(CompareRequest req);
 }

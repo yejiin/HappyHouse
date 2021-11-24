@@ -1,17 +1,7 @@
 <template>
   <div>
-    <div
-      v-if="houses && houses.length != 0"
-      class="bv-example-row scroll-box"
-      style="overflow: auto; height: 67vh"
-    >
-      <b-table-simple
-        hover
-        responsive
-        :per-page="perPage"
-        :current-page="currentPage"
-        class="scroll-box"
-      >
+    <div v-if="houses && houses.length != 0" class="bv-example-row scroll-box" style="overflow: auto; height: 67vh">
+      <b-table-simple hover responsive :per-page="perPage" :current-page="currentPage" class="scroll-box">
         <b-thead head-variant="dark">
           <b-tr>
             <b-th>House List</b-th>
@@ -32,30 +22,20 @@
                 ></b-col>
                 <b-col cols="8" class="mt-3">
                   <h5>{{ house.name }}</h5>
-                  <div>
-                    {{ house.gugunName }} {{ house.dong }} {{ house.jibun }}
-                  </div>
+                  <div>{{ house.gugunName }} {{ house.dong }} {{ house.jibun }}</div>
                   <div>건축년도: {{ house.buildYear }}</div>
                 </b-col>
               </b-row>
             </b-td>
           </b-tr>
           <b-container>
-            <b-pagination-nav
-              :link-gen="linkGen"
-              :number-of-pages="numberOfPages"
-              use-router
-            ></b-pagination-nav>
+            <b-pagination-nav :link-gen="linkGen" :number-of-pages="numberOfPages" use-router></b-pagination-nav>
           </b-container>
           <!-- </div> -->
         </tbody>
       </b-table-simple>
     </div>
-    <b-container
-      v-else
-      class="bv-example-row mt-3"
-      style="overflow: auto; height: 67vh"
-    >
+    <b-container v-else class="bv-example-row mt-3" style="overflow: auto; height: 67vh">
       <b-row>
         <b-col><b-alert show>목록이 없습니다.</b-alert></b-col>
       </b-row>
@@ -78,7 +58,7 @@ export default {
     };
   },
   created() {
-    console.log(this.houses);
+    // HOUSE LIST 없애주는 시점 다시 정하기
     this.CLEAR_House_LIST();
   },
   // watch: {
@@ -96,10 +76,6 @@ export default {
 
     viewDetail(house) {
       this.detailHouse(house);
-      // this.$router.push({
-      //   name: "HouseDetail",
-      //   params: { no: house.aptCode },
-      // });
     },
     linkGen(pageNum) {
       return pageNum === 1 ? "?" : `?page=${pageNum}`;

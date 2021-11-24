@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.happyhouse.model.dto.housemap.AptInfoDto;
 import com.ssafy.happyhouse.model.dto.housemap.AptListRequest;
+import com.ssafy.happyhouse.model.dto.housemap.CompareRequest;
+import com.ssafy.happyhouse.model.dto.housemap.CompareResponse;
 import com.ssafy.happyhouse.model.dto.housemap.DealResponse;
 import com.ssafy.happyhouse.model.dto.housemap.SidoDto;
 import com.ssafy.happyhouse.model.dto.housemap.DongDto;
@@ -57,5 +59,10 @@ public class HouseMapController {
 	@GetMapping("/apt/favorite/{userid}")
 	public List<AptInfoDto> favoriteApt(@PathVariable("userid") String userid) throws Exception {
 		return houseMapService.getFavoriteApt(userid);
+	}
+	
+	@GetMapping("/apt/compare")
+	public CompareResponse compareApt(CompareRequest req) {
+		return houseMapService.getCompareInfo(req);
 	}
 }

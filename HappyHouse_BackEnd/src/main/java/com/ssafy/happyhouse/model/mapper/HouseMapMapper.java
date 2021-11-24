@@ -3,7 +3,9 @@ package com.ssafy.happyhouse.model.mapper;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.ssafy.happyhouse.model.dto.data.AptDetailDto;
 import com.ssafy.happyhouse.model.dto.data.DealDto;
+import com.ssafy.happyhouse.model.dto.housemap.AptCodeDto;
 import com.ssafy.happyhouse.model.dto.housemap.AptInfoDto;
 import com.ssafy.happyhouse.model.dto.housemap.DealRangeDto;
 import com.ssafy.happyhouse.model.dto.housemap.SidoDto;
@@ -19,4 +21,6 @@ public interface HouseMapMapper {
 	List<DealDto> getAptDeal(String dong, String jibun) throws SQLException;
 	DealRangeDto getDealRange(String dong, String jibun) throws SQLException;
 	List<AptInfoDto> getFavoriteApt(String userid)throws SQLException;
+	AptCodeDto getAptCode(String name, String dong);
+	AptDetailDto getAptDetail(String aptCode);
 }
