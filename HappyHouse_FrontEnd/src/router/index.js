@@ -28,7 +28,9 @@ import QnAView from "@/components/qna/QnAView.vue";
 import QnAUpdate from "@/components/qna/QnAUpdate.vue";
 import QnADelete from "@/components/qna/QnADelete.vue";
 
-// import Favorite from "@/views/Favorite";/
+import Trend from "@/views/Trend.vue";
+import AgeList from "@/components/trend/AgeList.vue";
+import Store from "@/components/trend/Store.vue";
 
 import store from "@/store/index.js";
 
@@ -192,6 +194,24 @@ const routes = [
   //   name: "Favorite",
   //   component: Favorite,
   // },
+  {
+    path: "/trend",
+    name: "Trend",
+    component: Trend,
+    redirect: "/trend/agelist",
+    children: [
+      {
+        path: "agelist",
+        name: "AgeList",
+        component: AgeList,
+      },
+      {
+        path: "view/:ageGroup",
+        name: "Store",
+        component: Store,
+      },
+    ],
+  },
   {
     path: "*",
     redirect: "/",

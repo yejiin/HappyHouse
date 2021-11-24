@@ -11,8 +11,16 @@
       </b-col>
     </b-row>
     <b-row>
-      <b-col v-if="questions.length">
-        <b-table-simple hover responsive>
+      <b-col>
+        <!-- <b-col v-if="questions.length"> -->
+        <b-table-simple
+          hover
+          responsive
+          id="qnA-list"
+          :items="questions"
+          :per-page="perPage"
+          :current-page="currentPage"
+        >
           <b-thead>
             <b-tr>
               <b-th>번호</b-th>
@@ -22,12 +30,22 @@
             </b-tr>
           </b-thead>
           <tbody>
-            <!-- 하위 component인 ListRow에 데이터 전달(props) -->
             <qnA-list-row v-for="(question, index) in questions" :key="index" v-bind="question" />
           </tbody>
         </b-table-simple>
       </b-col>
-      <!-- <b-col v-else class="text-center">도서 목록이 없습니다.</b-col> -->
+    </b-row>
+    <b-row>
+      <b-col>
+        <b-pagination
+          v-model="currentPage"
+          pills
+          :total-rows="rows"
+          :per-page="perPage"
+          aria-controls="qnA-list"
+          align="center"
+        ></b-pagination>
+      </b-col>
     </b-row>
   </b-container>
 </template>
@@ -43,18 +61,24 @@ export default {
   },
   data() {
     return {
+      perPage: 5,
+      currentPage: 1,
       questions: [],
     };
   },
+  computed: {
+    rows() {
+      return this.questions.length;
+    },
+  },
   created() {
-    let param = {
-      pg: 1,
-      spp: 20,
-      key: null,
-      word: null,
-    };
+    // let param = {
+    //   pg: 1,
+    //   spp: 20,
+    //   key: null,
+    //   word: null,
+    // };
     listQuestion(
-      param,
       (response) => {
         this.questions = response.data;
       },
@@ -67,13 +91,6 @@ export default {
     moveWrite() {
       this.$router.push({ name: "QnAWrite" });
     },
-    // viewQuestion(question) {
-    //   console.log(question.qno);
-    //   this.$router.push({
-    //     name: "QnAView",
-    //     params: { qno: question.qno },
-    //   });
-    // },
   },
 };
 </script>

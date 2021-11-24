@@ -38,4 +38,18 @@
 		where userid = #{userid}
 	</delete>
 	
+	<!-- Trend Store -->
+	<select id="getStoreData" parameterType="int" resultType="TrendStoreDto">
+		select ageGroup, food, cafe, convenience, hof, hospital 
+		from trendstore
+		where ageGroup = #{ageGroup}
+	</select>
+	
+	<!-- <insert id="updateCount" parameterType="String">
+		insert into trendstore values (#{favStore} , 1)
+		on duplicate key update
+		weight = weight + 0.3;
+		where ageGroup = #{ageGroup}
+	</insert> -->
+	
 </mapper>
