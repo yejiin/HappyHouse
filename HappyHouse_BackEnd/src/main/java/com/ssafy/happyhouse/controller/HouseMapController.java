@@ -3,6 +3,7 @@ package com.ssafy.happyhouse.controller;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -50,5 +51,11 @@ public class HouseMapController {
 	public DealResponse aptDeal(@RequestParam("dong") String dong, @RequestParam("jibun") String jibun) throws Exception {
 		log.info(dong + " " + jibun);
 		return houseMapService.getAptDeal(dong, jibun);
+	}
+	
+	
+	@GetMapping("/apt/favorite/{userid}")
+	public List<AptInfoDto> favoriteApt(@PathVariable("userid") String userid) throws Exception {
+		return houseMapService.getFavoriteApt(userid);
 	}
 }

@@ -1,6 +1,6 @@
 <template>
-  <div style="height: 100%">
-    <div id="map" style="width: 100%; height: 100%"></div>
+  <div style="height: 100vh">
+    <div id="map" style="width: 100%; height: 100vh"></div>
   </div>
 </template>
 
@@ -9,6 +9,9 @@ import { mapState, mapActions } from "vuex";
 
 const houseStore = "houseStore";
 const chartStore = "chartStore";
+const favoriteStore = "favoriteStore";
+const memberStore = "memberStore";
+
 export default {
   name: "HouseMap",
   data() {
@@ -17,6 +20,9 @@ export default {
       markers: [],
       marker: null,
     };
+  },
+  created() {
+    console.log("지도 생성");
   },
   mounted() {
     if (window.kakao && window.kakao.maps) {
@@ -32,6 +38,7 @@ export default {
   },
   computed: {
     ...mapState(houseStore, ["houses", "house", "sido", "gugun"]),
+    ...mapState(memberStore, ["isLogin", "userInfo"]),
   },
   watch: {
     houses: function () {
@@ -50,6 +57,7 @@ export default {
   methods: {
     ...mapActions(houseStore, ["detailHouse", "getDealList"]),
     ...mapActions(chartStore, ["getChartData"]),
+    ...mapActions(favoriteStore, ["getFavoriteInGugun"]),
 
     initMap() {
       const mapContainer = document.getElementById("map"); // 지도를 표시할 div
@@ -104,11 +112,11 @@ export default {
           position: placePosition,
         });
         this.markers.push(marker);
-        this.addOverlay(house, marker, placePosition);
+        this.addOverlay(house, marker, placePosition, this.userInfo);
       });
     },
 
-    addOverlay(house, marker, position) {
+    addOverlay(house, marker, position, user) {
       var content = `<div class="wrap">
             <div class="info">
               <div class="title">${house.name}</div>
@@ -116,6 +124,7 @@ export default {
                 <div class="desc">
                   <div class="ellipsis">${house.address}</div>
                   <div class="ellipsis">건축년도: ${house.buildYear}</div>
+                  <div class="ellipsis">클릭하여 상세정보를 확인하세요</div>
                 </div>
               </div>
             </div>
@@ -139,7 +148,7 @@ export default {
       kakao.maps.event.addListener(
         marker,
         "click",
-        this.makeClickListener(house, overlay)
+        this.makeClickListener(house, overlay, user)
       );
     },
 
@@ -155,7 +164,7 @@ export default {
       };
     },
 
-    makeClickListener(house, overlay) {
+    makeClickListener(house, overlay, user) {
       let self = this;
       return function () {
         overlay.setMap(null);
@@ -163,6 +172,15 @@ export default {
         self.detailHouse(house);
         self.getDealList({ dong: house.dong, jibun: house.jibun });
         self.getChartData({ lat: house.lat, lng: house.lng, name: house.name });
+        if (user) {
+          console.log(user);
+          console.log("구군 관심지역 조회");
+          self.getFavoriteInGugun({
+            gugunname: house.gugunName,
+            housename: house.name,
+            userid: user.userid,
+          });
+        }
         self.$router.replace({
           name: "HouseDetail",
           // query: { dong: house.dong, jibun: house.jibun },

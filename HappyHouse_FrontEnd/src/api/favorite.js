@@ -9,9 +9,13 @@ function favorite(param, success, fail) {
     .catch(fail);
 }
 
-function addFavorite(param, success, fail) {
+function addFavorite(params, success, fail) {
   api
-    .post(`/favorite/${param.housename}/${param.userid}`)
+    .post(`/favorite/${params.housename}/${params.userid}`, {
+      gugunname: params.gugunname,
+      dong: params.dong,
+      jibun: params.jibun,
+    })
     .then(success)
     .catch(fail);
 }
@@ -23,4 +27,11 @@ function cancelFavorite(param, success, fail) {
     .catch(fail);
 }
 
-export { favorite, addFavorite, cancelFavorite };
+function favoriteInGugun(param, success, fail) {
+  api
+    .get(`/favorite/list/${param.gugunname}/${param.housename}/${param.userid}`)
+    .then(success)
+    .catch(fail);
+}
+
+export { favorite, addFavorite, cancelFavorite, favoriteInGugun };

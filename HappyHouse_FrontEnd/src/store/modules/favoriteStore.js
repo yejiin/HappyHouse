@@ -1,9 +1,15 @@
-import { favorite, addFavorite, cancelFavorite } from "@/api/favorite.js";
+import {
+  favorite,
+  addFavorite,
+  cancelFavorite,
+  favoriteInGugun,
+} from "@/api/favorite.js";
 
 const favoriteStore = {
   namespaced: true,
   state: {
     isFavorite: false,
+    favoriteInGugun: [],
   },
 
   getters: {}, // state를 가공
@@ -18,6 +24,9 @@ const favoriteStore = {
     },
     SET_FAVORITE_N: (state) => {
       state.isFavorite = false;
+    },
+    SET_FAVORITE_IN_GUGUN: (state, data) => {
+      state.favoriteInGugun = data;
     },
   },
   actions: {
@@ -36,9 +45,13 @@ const favoriteStore = {
         }
       );
     },
-    addFavorite({ commit }, { housename, userid }) {
+    addFavorite({ commit }, { housename, gugunname, jibun, dong, userid }) {
+      console.log(gugunname);
       const params = {
         housename,
+        gugunname,
+        jibun,
+        dong,
         userid,
       };
       addFavorite(
@@ -70,6 +83,22 @@ const favoriteStore = {
           } else {
             console.log("favorite 삭제 실패");
           }
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    },
+    getFavoriteInGugun({ commit }, { gugunname, housename, userid }) {
+      const params = {
+        gugunname,
+        housename,
+        userid,
+      };
+      favoriteInGugun(
+        params,
+        ({ data }) => {
+          commit("SET_FAVORITE_IN_GUGUN", data);
         },
         (error) => {
           console.log(error);

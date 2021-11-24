@@ -27,6 +27,11 @@
         <b-navbar-nav class="ml-5">
           <router-link :to="{ name: 'Trend' }" class="link"><h5>Trend</h5></router-link>
         </b-navbar-nav>
+        <b-navbar-nav class="ml-5">
+          <router-link :to="{ name: 'HouseFavorite' }" class="link"
+            ><h5>관심목록</h5></router-link
+          >
+        </b-navbar-nav>
         <b-navbar-nav class="ml-auto" v-if="userInfo">
           <b-nav-item class="align-self-center">
             <!-- <b-avatar

@@ -34,12 +34,19 @@
 		select area, dealday, dealmonth, dealyear, deposit, rentmoney, dealamount, floor, dong, guguncode, buildyear, name, jibun
 		from deal_data
 		where dong = #{dong} and jibun = #{jibun} 
+		limit 0, 8
 	</select>
 	
 	<select id="getDealRange" parameterType="String" resultType="dealRangeDto">
 		select max(dealamount) maxamount, min(dealamount) minamount
 		from deal_data
 		where dong = #{dong} and jibun = #{jibun} 
+	</select>
+	
+	<select id="getFavoriteApt" parameterType="String" resultType="aptInfoDto">
+		select distinct d.dong dong, d.guguncode guguncode, d.buildyear buildyear, d.name name, d.jibun jibun, f.gugunName gugunname
+		from favoritehouse f, deal_data d
+		where f.userid = #{userid} and f.name = d.name and f.jibun = d.jibun
 	</select>
 	
 	<!-- select id="getHouseInDong" parameterType="houseListParamDto" resultType="houseInfoDto">

@@ -23,19 +23,19 @@
       <b-container>
         <b-card
           no-body
-          style="max-width: 20rem"
+          style="max-width: 30rem"
           img-src="https://cdn.pixabay.com/photo/2017/08/10/05/06/condo-2618421_960_720.jpg"
           img-alt="Image"
           img-top
         >
           <template #header>
             <b-row>
-              <b-col cols="10">
+              <b-col cols="11">
                 <h4 class="mb-0">
                   {{ house.name }}
                 </h4>
               </b-col>
-              <b-col cols="2" class="mt-1">
+              <b-col cols="1" class="mt-1">
                 <b-icon v-if="!isFavorite" icon="star" @click="like"></b-icon>
                 <b-icon
                   v-else
@@ -66,7 +66,7 @@
           </b-card-body> -->
         </b-card>
 
-        <b-card no-body style="max-width: 20rem" class="mt-4">
+        <b-card no-body style="max-width: 30rem" class="mt-4">
           <b-card-body>
             <b-card-title>실거래 정보</b-card-title>
             <b-table striped hover :items="dealInfo.deals" :fields="fields">
@@ -74,10 +74,17 @@
           </b-card-body>
         </b-card>
 
-        <b-card no-body style="max-width: 20rem" class="mt-4">
+        <b-card no-body style="max-width: 30rem" class="mt-4">
           <b-card-body>
             <b-card-title>시설 비교 차트</b-card-title>
             <radar-chart></radar-chart>
+          </b-card-body>
+        </b-card>
+
+        <b-card no-body style="max-width: 30rem" class="mt-4" v-if="isLogin">
+          <b-card-body>
+            <b-card-title>같은 지역 관심 주택</b-card-title>
+            <house-favorite></house-favorite>
           </b-card-body>
         </b-card>
       </b-container>
@@ -87,6 +94,7 @@
 
 <script>
 import RadarChart from "@/components/chart/RadarChart";
+import HouseFavorite from "@/components/house/info/HouseFavorite";
 import { mapState, mapActions } from "vuex";
 
 const houseStore = "houseStore";
@@ -96,15 +104,16 @@ const memberStore = "memberStore";
 export default {
   components: {
     RadarChart,
+    HouseFavorite,
   },
   data() {
     return {
       articles: [],
       fields: [
-        { key: "date", label: "계약일" },
-        { key: "price", label: "가격" },
-        { key: "area", label: "면적" },
-        { key: "floor", label: "층수" },
+        { key: "date", label: "계약일", tdClass: "tdClass" },
+        { key: "price", label: "가격", tdClass: "tdClass" },
+        { key: "area", label: "면적", tdClass: "tdClass" },
+        { key: "floor", label: "층수", tdClass: "tdClass" },
       ],
       likey: true,
       liken: false,
@@ -126,6 +135,7 @@ export default {
   },
   created() {
     if (this.isLogin) {
+      console.log("favorite 여부 판별");
       this.favorite({
         housename: this.house.name,
         userid: this.userInfo.userid,
@@ -140,10 +150,16 @@ export default {
     },
     like() {
       if (this.isLogin) {
+        console.log(this.house.gugunName);
         this.addFavorite({
           housename: this.house.name,
+          gugunname: this.house.gugunName,
+          jibun: this.house.jibun,
+          dong: this.house.dong,
           userid: this.userInfo.userid,
         });
+      } else {
+        alert("로그인 후 이용 가능합니다.");
       }
     },
     unlike() {
@@ -158,4 +174,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.tdClass {
+  height: 20px;
+  font-size: 12px;
+  text-align: center;
+}
+</style>

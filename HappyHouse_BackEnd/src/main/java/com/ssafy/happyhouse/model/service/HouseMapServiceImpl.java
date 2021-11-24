@@ -28,7 +28,9 @@ import com.ssafy.happyhouse.model.dto.housemap.GugunDto;
 import com.ssafy.happyhouse.model.mapper.HouseMapMapper;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class HouseMapServiceImpl implements HouseMapService {
@@ -82,10 +84,24 @@ public class HouseMapServiceImpl implements HouseMapService {
 		
 		List<DealDto> dealList = sqlSession.getMapper(HouseMapMapper.class).getAptDeal(dong, jibun);
 		List<DealFormatDto> deals = dealList.stream().map((dto) -> new DealFormatDto(dto)).collect(Collectors.toList());
-		
-		System.out.println(range);
-		System.out.println(deals);
+
 		return new DealResponse(range, deals);
+	}
+	
+	@Override
+	public List<AptInfoDto> getFavoriteApt(String userid) throws Exception {
+		List<AptInfoDto> list = sqlSession.getMapper(HouseMapMapper.class).getFavoriteApt(userid);
+		
+		for (AptInfoDto dto : list) {
+			String address = "서울시 " + dto.getGugunName() + " " + dto.getDong() + " " + dto.getJibun();
+			log.debug("주소 : " + address);
+			String jsonString = getKakaoApiFromAddress(address);
+			HashMap<String, String> XYMap = getXYMapFromJson(jsonString);
+			dto.setLat(XYMap.get("y"));
+			dto.setLng(XYMap.get("x"));
+		}
+
+		return list;
 	}
 	
 	
@@ -165,6 +181,8 @@ public class HouseMapServiceImpl implements HouseMapService {
 		}
 	    return XYMap;
 	}
+
+
 	
 
 }

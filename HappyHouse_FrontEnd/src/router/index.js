@@ -5,6 +5,7 @@ import Home from "@/views/Home";
 import House from "@/views/House";
 import HouseInfo from "@/components/house/HouseInfo";
 import HouseDetail from "@/components/house/HouseDetail";
+import HouseFavorite from "@/components/house/HouseFavorite";
 
 import Member from "@/views/Member.vue";
 import MemberLogin from "@/components/user/MemberLogin.vue";
@@ -75,6 +76,11 @@ const routes = [
         path: "detail",
         name: "HouseDetail",
         component: HouseDetail,
+      },
+      {
+        path: "favorite",
+        name: "HouseFavorite",
+        component: HouseFavorite,
       },
     ],
   },
@@ -183,6 +189,11 @@ const routes = [
       },
     ],
   },
+  // {
+  //   path: "/favorite",
+  //   name: "Favorite",
+  //   component: Favorite,
+  // },
   {
     path: "/trend",
     name: "Trend",
