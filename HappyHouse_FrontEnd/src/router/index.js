@@ -27,6 +27,10 @@ import QnAView from "@/components/qna/QnAView.vue";
 import QnAUpdate from "@/components/qna/QnAUpdate.vue";
 import QnADelete from "@/components/qna/QnADelete.vue";
 
+import Trend from "@/views/Trend.vue";
+import AgeList from "@/components/trend/AgeList.vue";
+import Store from "@/components/trend/Store.vue";
+
 import store from "@/store/index.js";
 
 Vue.use(VueRouter);
@@ -176,6 +180,24 @@ const routes = [
         path: "answer",
         name: "AnswerWrite",
         component: AnswerWrite,
+      },
+    ],
+  },
+  {
+    path: "/trend",
+    name: "Trend",
+    component: Trend,
+    redirect: "/trend/agelist",
+    children: [
+      {
+        path: "agelist",
+        name: "AgeList",
+        component: AgeList,
+      },
+      {
+        path: "view/:ageGroup",
+        name: "Store",
+        component: Store,
       },
     ],
   },

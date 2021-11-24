@@ -2,8 +2,8 @@ import { apiInstance } from "./index.js";
 
 const api = apiInstance();
 
-function listQuestion(param, success, fail) {
-  api.get(`/qna`, { params: param }).then(success).catch(fail);
+function listQuestion(success, fail) {
+  api.get(`/qna`).then(success).catch(fail);
 }
 
 function writeQuestion(question, success, fail) {

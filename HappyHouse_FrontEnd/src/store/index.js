@@ -8,6 +8,7 @@ import noticeStore from "@/store/modules/noticeStore.js";
 import qnaStore from "@/store/modules/qnaStore.js";
 import favoriteStore from "@/store/modules/favoriteStore.js";
 import chartStore from "@/store/modules/chartStore.js";
+import trendStore from "@/store/modules/trendStore.js";
 
 Vue.use(Vuex);
 
@@ -19,6 +20,7 @@ const store = new Vuex.Store({
     qnaStore,
     favoriteStore,
     chartStore,
+    trendStore,
   },
   plugins: [
     createPersistedState({

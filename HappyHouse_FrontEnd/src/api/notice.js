@@ -2,8 +2,8 @@ import { apiInstance } from "./index.js";
 
 const api = apiInstance();
 
-function listNotice(param, success, fail) {
-  api.get(`/notice`, { params: param }).then(success).catch(fail);
+function listNotice(success, fail) {
+  api.get(`/notice`).then(success).catch(fail);
 }
 
 function writeNotice(notice, success, fail) {
