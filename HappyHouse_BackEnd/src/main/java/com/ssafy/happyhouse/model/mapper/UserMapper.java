@@ -2,6 +2,7 @@ package com.ssafy.happyhouse.model.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.ssafy.happyhouse.model.TrendStoreDto;
 import com.ssafy.happyhouse.model.UserDto;
 
 @Mapper
@@ -15,4 +16,9 @@ public interface UserMapper {
 	UserDto userInfo(String userid) throws Exception;
 	int updateUser(UserDto userDto) throws Exception;
 	int deleteUser(String userid) throws Exception;
+	
+//	TrendStore
+//	List<TrendStoreDto> listTstore() throws Exception;
+	TrendStoreDto getStoreData(int ageGroup) throws Exception;
+	int updateCount(String favStore) throws Exception;
 }
