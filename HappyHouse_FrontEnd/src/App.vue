@@ -30,10 +30,13 @@ a.router-link-exact-active {
   color: #ffcd71;
 }
 
-html,
 body {
   margin: 0;
   padding: 0;
+}
+
+html,
+body {
   height: 100%;
 }
 

@@ -21,7 +21,7 @@
 	</sql>
 	
 	<select id="listQuestion" parameterType="map" resultType="questionDto">
-		select qno, userid, subject, content,
+		select qno, userid, subject, content, isreply,
 				case when date_format(regtime, '%Y%m%d') = date_format(now(), '%Y%m%d')
 				then date_format(regtime, '%H:%i:%s')
 				else date_format(regtime, '%y.%m.%d')
@@ -60,11 +60,15 @@
 	
 	<insert id="registerAnswer" parameterType="answerDto">
 		insert into answer (qno, subject, content, regtime)
-		values (#{qno}, #{subject}, #{content}, now())
+		values (#{qno}, #{subject}, #{content}, now());
+		
+		update question
+		set isreply = 1
+		where qno = #{qno};
 	</insert>
 	
 	<select id="getAnswer" parameterType="int" resultType="answerDto">
-		select subject, content, regtime
+		select ano, qno, subject, content, regtime
 		from answer
 		where qno = #{qno}
 	</select>

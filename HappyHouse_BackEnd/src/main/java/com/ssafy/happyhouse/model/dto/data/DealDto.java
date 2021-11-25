@@ -18,4 +18,5 @@ public class DealDto {
 	private String buildYear;
 	private String name;
 	private String jibun;
+	private String dongCode;
 }
