@@ -385,24 +385,25 @@ export default {
 <style>
 .wrap {
   position: absolute;
-  left: 0;
-  bottom: 50px;
-  width: 200px;
+  /* right: 40px; */
+  /* left: 1px; */
+  bottom: 40px;
+  width: 60000px;
   height: 80px;
-  margin-left: -100px;
+  margin-left: -144px;
   text-align: left;
   overflow: hidden;
   font-size: 12px;
   font-family: "Malgun Gothic", dotum, "돋움", sans-serif;
   line-height: 1.5;
 }
-.wrap * {
+.wrapa * {
   padding: 0;
   margin: 0;
 }
 .wrap .info {
-  width: 286px;
-  height: 120px;
+  width: 200px;
+  height: 80px;
   border-radius: 5px;
   border-bottom: 2px solid #ccc;
   border-right: 1px solid #ccc;
@@ -433,6 +434,11 @@ export default {
   margin: 13px 0 0 13px;
   height: 75px;
 }
+.desc .ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .desc .jibun {
   font-size: 11px;
   color: #888;
@@ -448,6 +454,9 @@ export default {
   width: 22px;
   height: 12px;
   background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png");
+}
+.info .link {
+  color: #5085bb;
 }
 
 .map_wrap,
