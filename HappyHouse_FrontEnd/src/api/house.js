@@ -15,6 +15,7 @@ function dongList(params, success, fail) {
 }
 
 function aptList(params, success, fail) {
+  console.log(params);
   api.get(`/house/apt`, { params: params }).then(success).catch(fail);
 }
 
@@ -22,4 +23,13 @@ function dealList(params, success, fail) {
   api.get(`/house/apt/deal`, { params: params }).then(success).catch(fail);
 }
 
-export { sidoList, gugunList, dongList, aptList, dealList };
+function favoriteList(param, success, fail) {
+  api.get(`/house/apt/favorite/${param}`).then(success).catch(fail);
+}
+
+function compareData(params, success, fail) {
+  console.log(params);
+  api.get(`/house/apt/compare`, { params: params }).then(success).catch(fail);
+}
+
+export { sidoList, gugunList, dongList, aptList, dealList, favoriteList, compareData };

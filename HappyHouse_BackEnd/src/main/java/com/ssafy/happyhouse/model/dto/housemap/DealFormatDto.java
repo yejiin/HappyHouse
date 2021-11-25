@@ -9,7 +9,7 @@ import com.ssafy.happyhouse.model.dto.data.DealDto;
 import lombok.Data;
 import lombok.Getter;
 
-@Getter
+@Data
 public class DealFormatDto {
 	
 	private String area;

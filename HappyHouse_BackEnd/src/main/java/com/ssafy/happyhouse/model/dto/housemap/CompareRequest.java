@@ -5,7 +5,7 @@ import java.util.List;
 import lombok.Data;
 import lombok.Getter;
 
-@Getter
+@Data
 public class CompareRequest {
 	
 	private String name;

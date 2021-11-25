@@ -10,7 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 
-@Getter
+@Data
 public class CompareDto {
 	
 	private String address;
@@ -29,7 +29,7 @@ public class CompareDto {
 
 }
 
-@Getter
+@Data
 @AllArgsConstructor
 class Add {
 	private String parkUCnt;
@@ -37,7 +37,7 @@ class Add {
 	private String cctvCnt;
 }
 
-@Getter
+@Data
 @AllArgsConstructor
 class Traffic {
 	private String disBus;
@@ -46,7 +46,7 @@ class Traffic {
 	private String disSub;
 }
 
-@Getter
+@Data
 @AllArgsConstructor
 class Conv {
 	private String welFac;

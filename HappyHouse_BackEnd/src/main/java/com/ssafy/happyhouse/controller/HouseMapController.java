@@ -57,6 +57,7 @@ public class HouseMapController {
 	
 	@GetMapping("/apt")
 	public List<AptInfoDto> apt(AptListRequest req) throws Exception {
+		log.info("apt",req);
 		return houseMapService.getAptInDong(req);
 	}
 	
