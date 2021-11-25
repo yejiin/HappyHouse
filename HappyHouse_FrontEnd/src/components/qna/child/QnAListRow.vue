@@ -4,6 +4,7 @@
     <b-td class="tdSubject">
       <router-link :to="{ name: 'QnAView', params: { qno: qno } }">{{ subject }}</router-link>
     </b-td>
+    <b-td class="tdClass">{{ isreply }}</b-td>
     <b-td class="tdClass">{{ userid }}</b-td>
     <b-td class="tdClass">{{ regtime }}</b-td>
   </b-tr>
@@ -19,6 +20,7 @@ export default {
     userid: String,
     subject: String,
     regtime: String,
+    isreply: Number,
   },
   computed: {
     // changeDateFormat() {

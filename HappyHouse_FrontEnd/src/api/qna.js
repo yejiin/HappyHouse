@@ -42,4 +42,8 @@ function deleteAnswer(qno, success, fail) {
   api.delete(`/qna/answer/${qno}`).then(success).catch(fail);
 }
 
-export { listQuestion, writeQuestion, getQuestion, modifyQuestion, deleteQuestion, writeAnswer, getAnswer, modifyAnswer, deleteAnswer };
+function updateIsreply(qno, success, fail) {
+  api.put(`/qna/answer/${qno}`).then(success).catch(fail);
+}
+
+export { listQuestion, writeQuestion, getQuestion, modifyQuestion, deleteQuestion, writeAnswer, getAnswer, modifyAnswer, deleteAnswer, updateIsreply };

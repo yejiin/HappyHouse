@@ -47,7 +47,7 @@ export default {
   components: {},
   data() {
     return {
-      perPage: 5,
+      perPage: 10,
       currentPage: 1,
       notices: [],
       fields: [

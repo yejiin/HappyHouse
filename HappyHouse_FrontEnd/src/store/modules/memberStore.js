@@ -3,6 +3,7 @@ import { login } from "@/api/member.js";
 import { findById } from "../../api/member";
 import { register } from "@/api/member.js";
 import { updateUser } from "../../api/member";
+import { updateCount } from "@/api/member.js";
 
 const memberStore = {
   namespaced: true,
@@ -33,6 +34,9 @@ const memberStore = {
     },
     SET_UPDATE_USER_INFO: (state, user) => {
       state.userInfo = user;
+    },
+    SET_UPDATE_COUNT: (state, user) => {
+      state.user = user;
     },
   },
   actions: {
@@ -94,6 +98,22 @@ const memberStore = {
             commit("SET_UPDATE_USER_INFO", user);
           } else {
             console.log("회원정보 수정 실패!!");
+          }
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    },
+    async updateCount({ commit }, user) {
+      await updateCount(
+        user,
+        (response) => {
+          if (response.status === 200) {
+            console.log("Count +1 성공!!");
+            commit("SET_UPDATE_COUNT", user);
+          } else {
+            console.log("Count +1 실패!!");
           }
         },
         (error) => {

@@ -57,24 +57,33 @@
                 @keyup.enter="confirm"
               ></b-form-input>
             </b-form-group>
-            <b-button type="button" block variant="secondary" class="m-1" @click="moveMemberfavor"
-              >다음</b-button
-            >
-            <!-- <b-button
-              type="button"
-              block
-              variant="outline-secondary"
-              class="m-1"
-              @click="registerSubmit"
-              >회원가입</b-button
-            > -->
+            <hr />
+            <b-form-group label="연령대" label-for="ageGroup">
+              <b-form-radio v-model="user.ageGroup" value="20">20대</b-form-radio>
+              <b-form-radio v-model="user.ageGroup" value="30">30대</b-form-radio>
+              <b-form-radio v-model="user.ageGroup" value="40">40대</b-form-radio>
+              <b-form-radio v-model="user.ageGroup" value="50">50대</b-form-radio>
+              <b-form-radio v-model="user.ageGroup" value="60">60대</b-form-radio>
+            </b-form-group>
+            <b-form-group label="자주 가는 상권 카테고리" label-for="favStore">
+              <b-form-select v-model="favStore" :options="storeOptions"></b-form-select>
+            </b-form-group>
+            <b-form-group label="관심지역" label-for="favArea">
+              <b-form-input
+                id="favArea"
+                v-model="user.favArea"
+                required
+                placeholder="관심지역"
+                @keyup.enter="confirm"
+              ></b-form-input>
+            </b-form-group>
             <b-button
               type="button"
               block
               variant="outline-primary"
               class="m-1"
               @click="registerSubmit"
-              >회원가입(임시)</b-button
+              >회원가입</b-button
             >
           </b-form>
         </b-card>
@@ -88,6 +97,7 @@
 import { mapActions } from "vuex";
 
 const memberStore = "memberStore";
+// const trendStore = "trendStore";
 
 export default {
   name: "MemberJoin",
@@ -99,18 +109,29 @@ export default {
         username: "",
         email: "",
         phone: "",
+        ageGroup: "",
+        favStore: "",
       },
+      favStore: null,
+      storeOptions: [
+        { value: null, text: "자주 가는 장소를 선택해주세요" },
+        { value: "food", text: "음식점" },
+        { value: "cafe", text: "카페" },
+        { value: "convenience", text: "편의점" },
+        { value: "hof", text: "호프/주점" },
+        { value: "hospital", text: "병원" },
+      ],
     };
   },
 
   methods: {
     ...mapActions(memberStore, ["registerUser"]),
+    // ...mapActions(trendStore, ["updateCount"]),
 
-    async moveMemberfavor() {
-      this.$router.push({ name: "Favor" });
-    },
     async registerSubmit() {
+      this.user.favStore = this.favStore;
       await this.registerUser(this.user);
+      await this.updateCount(this.user);
       alert("회원가입 성공!");
       this.$router.push({ name: "SignIn" });
     },

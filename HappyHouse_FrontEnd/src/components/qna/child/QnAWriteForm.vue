@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { writeQuestion, getQuestion, modifyQuestion, writeAnswer } from "@/api/qna";
+import { writeQuestion, getQuestion, modifyQuestion, writeAnswer, updateIsreply } from "@/api/qna";
 import { mapState } from "vuex";
 
 const memberStore = "memberStore";
@@ -176,6 +176,23 @@ export default {
           let msg = "답글 작성시 문제가 발생했습니다.";
           if (data === "success") {
             msg = "답글 작성이 완료되었습니다.";
+          }
+          alert(msg);
+          // 현재 route를 /list로 변경.
+          // this.$router.push({ name: "QnAList" });
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+      updateIsreply(
+        {
+          qno: this.question.qno,
+        },
+        ({ data }) => {
+          let msg = "답변여부 처리시 문제가 발생했습니다.";
+          if (data === "success") {
+            msg = "답변여부 수정이 완료되었습니다.";
           }
           alert(msg);
           // 현재 route를 /list로 변경.

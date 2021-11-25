@@ -26,7 +26,11 @@ async function deleteUser(userid, success, fail) {
   await api.delete(`/user/${userid}`).then(success).catch(fail);
 }
 
+async function updateCount(user, success, fail) {
+  await api.put(`/user/count`, JSON.stringify(user)).then(success).catch(fail);
+}
+
 
 // function logout(success, fail)
 
-export { login, findById, register, updateUser, deleteUser };
+export { login, findById, register, updateUser, deleteUser, updateCount };

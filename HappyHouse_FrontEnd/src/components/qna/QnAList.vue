@@ -25,6 +25,7 @@
             <b-tr>
               <b-th>번호</b-th>
               <b-th>제목</b-th>
+              <b-th>RE:</b-th>
               <b-th>작성자</b-th>
               <b-th>작성일</b-th>
             </b-tr>
@@ -61,7 +62,7 @@ export default {
   },
   data() {
     return {
-      perPage: 5,
+      perPage: 10,
       currentPage: 1,
       questions: [],
     };

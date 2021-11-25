@@ -10,7 +10,6 @@ import Member from "@/views/Member.vue";
 import MemberLogin from "@/components/user/MemberLogin.vue";
 import MemberJoin from "@/components/user/MemberJoin.vue";
 import MemberMyPage from "@/components/user/MemberMyPage.vue";
-import MemberFavor from "@/components/user/MemberFavor.vue";
 
 import Notice from "@/views/Notice.vue";
 import NoticeList from "@/components/notice/NoticeList.vue";
@@ -92,11 +91,6 @@ const routes = [
         path: "singup",
         name: "SignUp",
         component: MemberJoin,
-      },
-      {
-        path: "favor",
-        name: "Favor",
-        component: MemberFavor,
       },
       {
         path: "mypage",
