@@ -16,7 +16,7 @@
           >
         </b-navbar-nav>
         <b-navbar-nav class="ml-5">
-          <router-link :to="{ name: 'House' }" class="link"><h5>house</h5></router-link>
+          <router-link :to="{ name: 'House' }" class="link"><h5>House</h5></router-link>
         </b-navbar-nav>
         <b-navbar-nav class="ml-5">
           <router-link :to="{ name: 'Notice' }" class="link"><h5>Notice</h5></router-link>
@@ -28,9 +28,7 @@
           <router-link :to="{ name: 'Trend' }" class="link"><h5>Trend</h5></router-link>
         </b-navbar-nav>
         <b-navbar-nav class="ml-5">
-          <router-link :to="{ name: 'HouseFavorite' }" class="link"
-            ><h5>관심목록</h5></router-link
-          >
+          <router-link :to="{ name: 'HouseFavorite' }" class="link"><h5>관심목록</h5></router-link>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto" v-if="userInfo">
           <b-nav-item class="align-self-center">
@@ -66,23 +64,17 @@
               ><h6>Mypage</h6></router-link
             ></b-nav-item
           >
-          <b-nav-item class="link align-self-center" @click.prevent="onClickLogout"
-            ><h6>Logout</h6></b-nav-item
-          >
+          <b-nav-item class="link align-self-center" @click.prevent="onClickLogout"><h6>Logout</h6></b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto" v-else>
           <b-nav-item class="align-self-center">
             <template #button-content>
               <b-icon icon="people" font-scale="2"></b-icon>
             </template>
-            <router-link :to="{ name: 'SignUp' }" class="link"
-              ><h6>Join</h6></router-link
-            ></b-nav-item
+            <router-link :to="{ name: 'SignUp' }" class="link"><h6>Join</h6></router-link></b-nav-item
           >
           <b-nav-item class="align-self-center">
-            <router-link :to="{ name: 'SignIn' }" class="link"
-              ><h6>Login</h6></router-link
-            ></b-nav-item
+            <router-link :to="{ name: 'SignIn' }" class="link"><h6>Login</h6></router-link></b-nav-item
           >
         </b-navbar-nav>
       </b-collapse>

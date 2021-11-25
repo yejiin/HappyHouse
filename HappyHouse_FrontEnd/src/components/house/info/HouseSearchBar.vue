@@ -1,12 +1,12 @@
 <template>
   <b-container>
-    <b-row class="mt-3 mb-3 text-center">
+    <b-row class="ml-1 mr-1 mt-3 mb-3 text-center">
       <b-form-select v-model="sidoCode" :options="sidos" @change="gugunList"></b-form-select>
     </b-row>
-    <b-row class="mt-3 mb-3 text-center">
+    <b-row class="ml-1 mr-1 mt-3 mb-3 text-center">
       <b-form-select v-model="gugunCode" :options="guguns" @change="dongList"></b-form-select>
     </b-row>
-    <b-row class="mt-3 mb-3 text-center">
+    <b-row class="ml-1 mr-1 mt-3 mb-3 text-center">
       <b-form-select v-model="dongCode" :options="dongs" @change="searchHouse"></b-form-select>
     </b-row>
   </b-container>

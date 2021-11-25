@@ -6,49 +6,83 @@
           class="swiper-slide"
           v-for="slide in slides"
           :key="slide.id"
-          style="height: 200px; background-color: #d3d3d3"
+          style="height: 200px; background-color: #f1f2eb"
         >
-          <!-- <v-row> -->
-          <v-row>
-            <h4>{{ slide.name }}</h4>
-          </v-row>
-          <br />
+          <b-container>
+            <v-row>
+              <h4 class="mt-5 text-center">
+                <strong>{{ slide.name }}</strong>
+              </h4>
+            </v-row>
+            <br />
 
-          <v-row>
-            <div>{{ slide.gugunName }} {{ slide.dong }} {{ slide.jibun }}</div>
-            <b-button v-b-modal.modal-1 @click="compareHouse(slide.name, slide.dong)">비교하기</b-button>
-          </v-row>
+            <v-row>
+              <div class="text-center">{{ slide.gugunName }} {{ slide.dong }} {{ slide.jibun }}</div>
+            </v-row>
+
+            <v-row>
+              <div v-if="house.comparable">
+                <b-button v-b-modal.modal-1 @click="compareHouse(slide.name, slide.dong)" style="float: right"
+                  >비교하기</b-button
+                >
+              </div>
+              <b-icon
+                style="float: right"
+                icon="exclamation-circle-fill"
+                v-else
+                v-b-tooltip.hover
+                title="비교데이터를 제공하지 않습니다."
+              ></b-icon>
+            </v-row>
+          </b-container>
         </div>
       </div>
-      <!-- If we need navigation buttons -->
-      <!-- <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div> -->
       <div class="swiper-pagination"></div>
     </div>
 
-    <b-modal id="modal-1" size="lg" centered title="단지 비교하기" body-bg-variant="light">
-      <template style="background-color: black">
+    <b-modal id="modal-1" size="lg" centered title="단지 비교하기" body-bg-variant="light" ok-only>
+      <template>
         <div style="margin: 0; width: 100%">
           <b-row>
             <b-col>
               <b-alert show
                 ><div>
-                  <b-card :title="this.house.name" :sub-title="this.compare.cur.address">
+                  <b-card
+                    :title="this.house.name"
+                    title-tag="h3"
+                    :sub-title="this.compare.cur.address"
+                    style="height: 450px"
+                  >
+                    <br />
                     <b-card-text>
-                      <h5>추가 정보</h5>
-                      <div>CCTV 개수 : {{ this.compare.cur.add.cctvCnt }}</div>
-                      <div>지상 주차장 : {{ this.compare.cur.add.parkUCnt }}</div>
-                      <div>지하 주차장 : {{ this.compare.cur.add.parkDCnt }}</div>
+                      <h5>거래 정보</h5>
+                      <b-table :items="compare.cur.deal" :fields="fields" class="text-center"> </b-table>
                     </b-card-text>
                   </b-card>
                 </div>
                 <div>
                   <b-card title="" sub-title="">
                     <b-card-text>
-                      <h5>편의 시설</h5>
-                      <div>공공 : {{ this.compare.cur.conv.convFac }}</div>
-                      <div>교육 : {{ this.compare.cur.conv.eduFac }}</div>
-                      <div>복지 : {{ this.compare.cur.conv.welFac }}</div>
+                      <h5>추가 정보</h5>
+                      <div>CCTV 대수 : {{ this.compare.cur.add.cctvCnt }}</div>
+                      <div>주차대수(지상) : {{ this.compare.cur.add.parkUCnt }}</div>
+                      <div>주차대수(지하) : {{ this.compare.cur.add.parkDCnt }}</div>
+                    </b-card-text>
+                  </b-card>
+                </div>
+                <div>
+                  <b-card title="" sub-title="" style="height: 340px">
+                    <b-card-text>
+                      <h5>시설</h5>
+                      <div>부대,복리</div>
+                      <p v-if="this.compare.cur.conv.welFac != '0'">: {{ this.compare.cur.conv.welFac }}</p>
+                      <p v-else>-</p>
+                      <div>편의</div>
+                      <p v-if="this.compare.cur.conv.convFac != '0'">: {{ this.compare.cur.conv.convFac }}</p>
+                      <p v-else>-</p>
+                      <div>교육</div>
+                      <p v-if="this.compare.cur.conv.eduFac != '0'">: {{ this.compare.cur.conv.eduFac }}</p>
+                      <p v-else>-</p>
                     </b-card-text>
                   </b-card>
                 </div>
@@ -56,10 +90,14 @@
                   <b-card title="" sub-title="">
                     <b-card-text>
                       <h5>교통</h5>
-                      <div>버스 정류장까지 걸리는 시간 : {{ this.compare.cur.traffic.disBus }}</div>
-                      <div>지하철 노선 : {{ this.compare.cur.traffic.subLine }}</div>
-                      <div>지하철역 : {{ this.compare.cur.traffic.subStation }}</div>
-                      <div>지하철역까지 걸리는 시간 : {{ this.compare.cur.traffic.disSub }}</div>
+                      <div>버스정류장 거리</div>
+                      <p>: {{ this.compare.cur.traffic.disBus }}</p>
+                      <div>지하철호선</div>
+                      <p>: {{ this.compare.cur.traffic.subLine }}</p>
+                      <div>지하철역</div>
+                      <p>: {{ this.compare.cur.traffic.subStation }}</p>
+                      <div>지하철역 거리</div>
+                      <p>: {{ this.compare.cur.traffic.disSub }}</p>
                     </b-card-text>
                   </b-card>
                 </div></b-alert
@@ -69,22 +107,42 @@
             <b-col>
               <b-alert show
                 ><div>
-                  <b-card :title="this.compName" :sub-title="this.compare.comp.address">
+                  <b-card
+                    :title="this.compName"
+                    title-tag="h3"
+                    :sub-title="this.compare.comp.address"
+                    style="height: 450px"
+                  >
+                    <br />
                     <b-card-text>
-                      <h5>추가 정보</h5>
-                      <div>CCTV 개수 : {{ this.compare.comp.add.cctvCnt }}</div>
-                      <div>지상 주차장 : {{ this.compare.comp.add.parkUCnt }}</div>
-                      <div>지하 주차장 : {{ this.compare.comp.add.parkDCnt }}</div>
+                      <h5>거래 정보</h5>
+                      <b-table :items="compare.comp.deal" :fields="fields" class="text-center"> </b-table>
                     </b-card-text>
                   </b-card>
                 </div>
                 <div>
                   <b-card title="" sub-title="">
                     <b-card-text>
-                      <h5>편의 시설</h5>
-                      <div>공공 : {{ this.compare.comp.conv.convFac }}</div>
-                      <div>교육 : {{ this.compare.comp.conv.eduFac }}</div>
-                      <div>복지 : {{ this.compare.comp.conv.welFac }}</div>
+                      <h5>추가 정보</h5>
+                      <div>CCTV 대수 : {{ this.compare.comp.add.cctvCnt }}</div>
+                      <div>주차대수(지상) : {{ this.compare.comp.add.parkUCnt }}</div>
+                      <div>주차대수(지하) : {{ this.compare.comp.add.parkDCnt }}</div>
+                    </b-card-text>
+                  </b-card>
+                </div>
+                <div>
+                  <b-card title="" sub-title="" style="height: 340px">
+                    <b-card-text>
+                      <h5>시설</h5>
+                      <div>부대,복리</div>
+                      <p v-if="this.compare.comp.conv.welFac != '0'">: {{ this.compare.comp.conv.welFac }}</p>
+                      <p v-else>-</p>
+                      <div>편의</div>
+                      <p v-if="this.compare.comp.conv.convFac != '0'">: {{ this.compare.comp.conv.convFac }}</p>
+                      <p v-else>-</p>
+                      <div>교육</div>
+                      <p v-if="this.compare.comp.conv.eduFac != '0'">: {{ this.compare.comp.conv.eduFac }}</p>
+                      <p v-else>-</p>
                     </b-card-text>
                   </b-card>
                 </div>
@@ -92,15 +150,19 @@
                   <b-card title="" sub-title="">
                     <b-card-text>
                       <h5>교통</h5>
-                      <div>버스 정류장까지 걸리는 시간 : {{ this.compare.comp.traffic.disBus }}</div>
-                      <div>지하철 노선 : {{ this.compare.comp.traffic.subLine }}</div>
-                      <div>지하철역 : {{ this.compare.comp.traffic.subStation }}</div>
-                      <div>지하철역까지 걸리는 시간 : {{ this.compare.comp.traffic.disSub }}</div>
+                      <div>버스정류장 거리</div>
+                      <p>: {{ this.compare.comp.traffic.disBus }}</p>
+                      <div>지하철호선</div>
+                      <p>: {{ this.compare.comp.traffic.subLine }}</p>
+                      <div>지하철역</div>
+                      <p>: {{ this.compare.comp.traffic.subStation }}</p>
+                      <div>지하철역 거리</div>
+                      <p>: {{ this.compare.comp.traffic.disSub }}</p>
                     </b-card-text>
                   </b-card>
                 </div></b-alert
-              ></b-col
-            >
+              >
+            </b-col>
           </b-row>
         </div>
       </template>
@@ -137,6 +199,11 @@ export default {
       },
       slides: null,
       compName: null,
+      fields: [
+        { key: "date", label: "계약일", tdClass: "tdClass" },
+        { key: "price", label: "가격", tdClass: "tdClass" },
+        { key: "area", label: "면적", tdClass: "tdClass" },
+      ],
     };
   },
   created() {

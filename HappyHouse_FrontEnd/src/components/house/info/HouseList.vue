@@ -1,7 +1,14 @@
 <template>
   <div>
-    <div v-if="houses && houses.length != 0" class="bv-example-row scroll-box" style="overflow: auto; height: 67vh">
-      <b-table-simple hover responsive :per-page="perPage" :current-page="currentPage" class="scroll-box">
+    <div v-if="houses && houses.length != 0" class="bv-example-row scroll-box" style="overflow: auto">
+      <b-table-simple
+        hover
+        responsive
+        :per-page="perPage"
+        :current-page="currentPage"
+        class="scroll-box"
+        style="height: 67vh"
+      >
         <b-thead head-variant="dark">
           <b-tr>
             <b-th>House List</b-th>
@@ -14,26 +21,33 @@
               <b-row @click="viewDetail(house)">
                 <b-col cols="4">
                   <b-img
-                    style="max-width: 7rem"
+                    style="width: 9rem"
                     src="https://cdn.pixabay.com/photo/2017/08/10/05/06/condo-2618421_960_720.jpg"
                     rounded="0"
                     alt="Not rounded image"
                   ></b-img
                 ></b-col>
                 <b-col cols="8" class="mt-3">
-                  <h5>{{ house.name }}</h5>
+                  <h5>
+                    <strong>{{ house.name }}</strong>
+                  </h5>
                   <div>{{ house.gugunName }} {{ house.dong }} {{ house.jibun }}</div>
                   <div>건축년도: {{ house.buildYear }}</div>
                 </b-col>
               </b-row>
             </b-td>
           </b-tr>
-          <b-container>
-            <b-pagination-nav :link-gen="linkGen" :number-of-pages="numberOfPages" use-router></b-pagination-nav>
-          </b-container>
-          <!-- </div> -->
         </tbody>
       </b-table-simple>
+      <b-container>
+        <b-row>
+          <b-col></b-col>
+          <b-col>
+            <b-pagination-nav :link-gen="linkGen" :number-of-pages="numberOfPages" use-router></b-pagination-nav>
+          </b-col>
+          <b-col></b-col>
+        </b-row>
+      </b-container>
     </div>
     <b-container v-else class="bv-example-row mt-3" style="overflow: auto; height: 67vh">
       <b-row>
@@ -57,10 +71,7 @@ export default {
       houseList: [],
     };
   },
-  created() {
-    // HOUSE LIST 없애주는 시점 다시 정하기
-    this.CLEAR_House_LIST();
-  },
+  created() {},
   // watch: {
   //   houses: function () {
   //     this.houseList = this.houses;

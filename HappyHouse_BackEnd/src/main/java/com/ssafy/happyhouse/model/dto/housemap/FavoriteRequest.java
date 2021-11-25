@@ -1,4 +1,4 @@
-package com.ssafy.happyhouse.model.dto.favorite;
+package com.ssafy.happyhouse.model.dto.housemap;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

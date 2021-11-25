@@ -1,18 +1,8 @@
 <template>
   <b-container class="bv-example-row mt-4 text-center" style="width: 100%">
     <h3>관심목록</h3>
-    <div
-      v-if="houses && houses.length != 0"
-      class="bv-example-row scroll-box"
-      style="overflow: auto; height: 67vh"
-    >
-      <b-table-simple
-        hover
-        responsive
-        :per-page="perPage"
-        :current-page="currentPage"
-        class="scroll-box"
-      >
+    <div v-if="houses && houses.length != 0" class="bv-example-row scroll-box" style="overflow: auto; height: 67vh">
+      <b-table-simple hover responsive :per-page="perPage" :current-page="currentPage" class="scroll-box">
         <b-thead head-variant="dark">
           <b-tr>
             <b-th></b-th>
@@ -32,23 +22,23 @@
                 ></b-col>
                 <b-col cols="8" class="mt-3">
                   <h5>{{ house.name }}</h5>
-                  <div>
-                    {{ house.gugunName }} {{ house.dong }} {{ house.jibun }}
-                  </div>
+                  <div>{{ house.gugunName }} {{ house.dong }} {{ house.jibun }}</div>
                   <div>건축년도: {{ house.buildYear }}</div>
                 </b-col>
               </b-row>
             </b-td>
           </b-tr>
-          <b-container>
-            <b-pagination-nav
-              :link-gen="linkGen"
-              :number-of-pages="numberOfPages"
-              use-router
-            ></b-pagination-nav>
-          </b-container>
         </tbody>
       </b-table-simple>
+      <b-container>
+        <b-row>
+          <b-col></b-col>
+          <b-col>
+            <b-pagination-nav :link-gen="linkGen" :number-of-pages="numberOfPages" use-router></b-pagination-nav>
+          </b-col>
+          <b-col></b-col>
+        </b-row>
+      </b-container>
     </div>
     <b-container v-else class="bv-example-row mt-3">
       <b-row>
@@ -59,7 +49,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapMutations } from "vuex";
 
 const houseStore = "houseStore";
 const memberStore = "memberStore";
@@ -71,8 +61,9 @@ export default {
     this.getFavoriteList(this.userInfo.userid);
   },
   computed: {
-    ...mapState(houseStore, ["houses"]),
+    ...mapState(houseStore, ["houses", "house"]),
     ...mapState(memberStore, ["userInfo"]),
+    ...mapMutations(houseStore, ["CLEAR_HOUSE_LIST"]),
   },
   methods: {
     ...mapActions(houseStore, ["getFavoriteList"]),

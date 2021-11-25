@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
-import com.ssafy.happyhouse.model.dto.favorite.FavoriteDto;
+import com.ssafy.happyhouse.model.dto.housemap.FavoriteDto;
 import com.ssafy.happyhouse.model.mapper.FavoriteHouseMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -34,6 +34,8 @@ public class FavoriteHouseService {
 		
 		for (int i = 0; i < list.size(); i++) {
 			list.get(i).setId(i + 1);
+			if (list.get(i).getAptCode() != null)
+				list.get(i).setComparable(true);
 		}
 		System.out.println(list);
 		

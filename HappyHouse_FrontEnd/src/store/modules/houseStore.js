@@ -55,7 +55,7 @@ const houseStore = {
     SET_FAVORITE_LIST: (state, favorites) => {
       state.houses = favorites;
     },
-    CLEAR_House_LIST: (state) => {
+    CLEAR_HOUSE_LIST: (state) => {
       state.houses = [];
     },
     SET_COMPARE_DATA: (state, compareData) => {
