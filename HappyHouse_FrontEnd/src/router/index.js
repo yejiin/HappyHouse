@@ -10,7 +10,6 @@ import Member from "@/views/Member.vue";
 import MemberLogin from "@/components/user/MemberLogin.vue";
 import MemberJoin from "@/components/user/MemberJoin.vue";
 import MemberMyPage from "@/components/user/MemberMyPage.vue";
-import MemberFavor from "@/components/user/MemberFavor.vue";
 
 import Notice from "@/views/Notice.vue";
 import NoticeList from "@/components/notice/NoticeList.vue";
@@ -25,7 +24,12 @@ import QnAWrite from "@/components/qna/QnAWrite.vue";
 import AnswerWrite from "@/components/qna/AnswerWrite.vue";
 import QnAView from "@/components/qna/QnAView.vue";
 import QnAUpdate from "@/components/qna/QnAUpdate.vue";
+import QnAUpdate2 from "@/components/qna/QnAUpdate2.vue";
 import QnADelete from "@/components/qna/QnADelete.vue";
+
+import Trend from "@/views/Trend.vue";
+import AgeList from "@/components/trend/AgeList.vue";
+import Store from "@/components/trend/Store.vue";
 
 import store from "@/store/index.js";
 
@@ -88,11 +92,6 @@ const routes = [
         path: "singup",
         name: "SignUp",
         component: MemberJoin,
-      },
-      {
-        path: "favor",
-        name: "Favor",
-        component: MemberFavor,
       },
       {
         path: "mypage",
@@ -168,6 +167,12 @@ const routes = [
         component: QnAUpdate,
       },
       {
+        path: "updatea/:qno",
+        name: "QnAUpdate2",
+        beforeEnter: onlyAuthUser,
+        component: QnAUpdate2,
+      },
+      {
         path: "delete/:qno",
         name: "QnADelete",
         component: QnADelete,
@@ -176,6 +181,24 @@ const routes = [
         path: "answer",
         name: "AnswerWrite",
         component: AnswerWrite,
+      },
+    ],
+  },
+  {
+    path: "/trend",
+    name: "Trend",
+    component: Trend,
+    redirect: "/trend/agelist",
+    children: [
+      {
+        path: "agelist",
+        name: "AgeList",
+        component: AgeList,
+      },
+      {
+        path: "view/:ageGroup",
+        name: "Store",
+        component: Store,
       },
     ],
   },

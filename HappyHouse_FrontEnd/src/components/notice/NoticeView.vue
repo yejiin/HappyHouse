@@ -1,10 +1,10 @@
 <template>
   <b-container class="bv-example-row mt-3">
-    <b-row>
+    <!-- <b-row>
       <b-col>
         <b-alert variant="" show><h3>공지사항</h3></b-alert>
       </b-col>
-    </b-row>
+    </b-row> -->
     <b-row class="mb-1">
       <b-col class="text-left">
         <b-button variant="outline-primary" @click="listNotice">목록</b-button>
@@ -19,11 +19,10 @@
     <b-row class="mb-1">
       <b-col>
         <b-card
-          :header-html="`<h3>${notice.nno}.
-          ${notice.subject} (${notice.hit})</h3><div><h6><div>${notice.regtime}</h6></div>`"
+          :header-html="`<h4>${notice.nno}.
+          ${notice.subject} [${notice.hit}]</h4><h6>${notice.regtime}</h6>`"
           class="mb-2 text-left"
-          border-variant="dark"
-          no-body
+          border-variant="light"
         >
           <b-card-body class="text-left">
             <div v-html="message"></div>
