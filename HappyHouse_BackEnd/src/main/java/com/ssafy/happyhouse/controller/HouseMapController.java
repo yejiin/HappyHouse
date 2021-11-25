@@ -2,16 +2,27 @@ package com.ssafy.happyhouse.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.happyhouse.model.dto.housemap.AptInfoDto;
 import com.ssafy.happyhouse.model.dto.housemap.AptListRequest;
+import com.ssafy.happyhouse.model.dto.housemap.ChartResponse;
+import com.ssafy.happyhouse.model.dto.housemap.CompareRequest;
+import com.ssafy.happyhouse.model.dto.housemap.CompareResponse;
 import com.ssafy.happyhouse.model.dto.housemap.DealResponse;
 import com.ssafy.happyhouse.model.dto.housemap.SidoDto;
 import com.ssafy.happyhouse.model.dto.housemap.DongDto;
+import com.ssafy.happyhouse.model.dto.housemap.FavoriteDto;
+import com.ssafy.happyhouse.model.dto.housemap.FavoriteRequest;
 import com.ssafy.happyhouse.model.dto.housemap.GugunDto;
 import com.ssafy.happyhouse.model.service.HouseMapService;
 
@@ -23,6 +34,9 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/house")
 public class HouseMapController {
+	
+	private static final String SUCCESS = "success";
+	private static final String FAIL = "fail";
 	
 	private final HouseMapService houseMapService;
 	

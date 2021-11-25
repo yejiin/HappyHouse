@@ -1,4 +1,4 @@
-package com.ssafy.happyhouse.model.dto.QnA;
+package com.ssafy.happyhouse.model.dto.qna;
 
 import lombok.Getter;
 import lombok.Setter;

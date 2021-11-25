@@ -2,9 +2,9 @@ package com.ssafy.happyhouse.model.mapper;
 
 import java.util.List;
 
-import com.ssafy.happyhouse.model.dto.QnA.AnswerDto;
-import com.ssafy.happyhouse.model.dto.QnA.QuestionDto;
-import com.ssafy.happyhouse.model.dto.QnA.QuestionParameterDto;
+import com.ssafy.happyhouse.model.dto.qna.AnswerDto;
+import com.ssafy.happyhouse.model.dto.qna.QuestionDto;
+import com.ssafy.happyhouse.model.dto.qna.QuestionParameterDto;
 import com.ssafy.util.PageNavigation;
 
 public interface QnAMapper {

@@ -17,9 +17,12 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.ssafy.happyhouse.model.dto.data.AptBasicDto;
+import com.ssafy.happyhouse.model.dto.data.AptDetailDto;
+import com.ssafy.happyhouse.model.dto.data.AptDto;
 import com.ssafy.happyhouse.model.dto.data.DealDto;
 import com.ssafy.happyhouse.model.dto.housemap.GugunDto;
-import com.ssafy.happyhouse.model.service.DataServiceImpl;
+import com.ssafy.happyhouse.model.service.DataService;
 import com.ssafy.happyhouse.model.service.HouseMapService;
 
 import io.swagger.annotations.Api;
@@ -27,14 +30,14 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-@RestController
+//@RestController
 @RequestMapping("/api")
 @Api(value="house", description="Happy house")
 public class DataController {
 
 	private static final Logger logger = LoggerFactory.getLogger(DataController.class);
 
-	private final DataServiceImpl dataService;
+	private final DataService dataService;
 	private final HouseMapService houseMapService;
 
 	/* 오피스텔 전월세 정보 */
@@ -303,7 +306,7 @@ public class DataController {
 							dealdto.setBuildYear(getTagValue("건축년도", eElement).trim());
 							dealdto.setName(getTagValue("아파트", eElement).trim());
 							dealdto.setJibun(getTagValue("지번", eElement).trim());
-							dealdto.setDongCode(getTagValue("법정동읍면동코드", eElement).trim());
+							dealdto.setDong(getTagValue("법정동읍면동코드", eElement).trim());
 							
 							dataService.addAptRentData(dealdto);
 
@@ -358,7 +361,7 @@ public class DataController {
 							dealdto.setBuildYear(getTagValue("건축년도", eElement).trim());
 							dealdto.setName(getTagValue("아파트", eElement).trim());
 							dealdto.setJibun(getTagValue("지번", eElement).trim());
-							dealdto.setDongCode(getTagValue("법정동읍면동코드", eElement).trim());
+							dealdto.setDong(getTagValue("법정동읍면동코드", eElement).trim());
 
 							dataService.addAptDealData(dealdto);
 

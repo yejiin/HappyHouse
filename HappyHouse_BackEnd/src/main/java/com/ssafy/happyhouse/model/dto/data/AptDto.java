@@ -1,11 +1,8 @@
 package com.ssafy.happyhouse.model.dto.data;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 public class AptDto {
 	
 	private String aptCode;

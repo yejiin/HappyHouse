@@ -12,7 +12,7 @@ import com.ssafy.happyhouse.model.dto.data.AptDto;
 import com.ssafy.happyhouse.model.dto.data.DealDto;
 import com.ssafy.happyhouse.model.mapper.DataMapper;
 
-@Service
+//@Service
 public class DataServiceImpl implements DataService {
 	
 	@Autowired

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ssafy.happyhouse.model.dto.trendstore.TrendStoreDto;
 import com.ssafy.happyhouse.model.dto.user.UserDto;
 import com.ssafy.happyhouse.model.mapper.UserMapper;
 
@@ -29,7 +30,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean registerUser(UserDto userDto) throws Exception {
-		return sqlSession.getMapper(UserMapper.class).registerUser(userDto) == 1;
+		 sqlSession.getMapper(UserMapper.class).registerUser(userDto);
+		return sqlSession.getMapper(UserMapper.class).updateCount(userDto) == 1; 
 		
 	}
 
@@ -47,6 +49,17 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public boolean deleteUser(String userid) throws Exception {
 		return sqlSession.getMapper(UserMapper.class).deleteUser(userid) == 1;
+	}
+	
+//	TrendStore
+
+	@Override
+	public TrendStoreDto getStoreData(int ageGroup) throws Exception {
+		return sqlSession.getMapper(UserMapper.class).getStoreData(ageGroup);
+	}
+	
+	public boolean updateCount(UserDto userDto) throws Exception {
+		return sqlSession.getMapper(UserMapper.class).updateCount(userDto) == 1; 
 	}
 	
 }
