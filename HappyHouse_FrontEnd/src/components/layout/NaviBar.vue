@@ -10,14 +10,9 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-3 mr-5">
           <b-nav-item href="#"
-
             ><router-link :to="{ name: 'Home' }" class="link">
               <img src="img/logo.png" height="70" width="150" /> </router-link
           ></b-nav-item>
-        </b-navbar-nav>
-        <b-navbar-nav class="ml-5">
-          <router-link :to="{ name: 'House' }" class="link"><h5>House</h5></router-link>
-
         </b-navbar-nav>
         <b-navbar-nav class="ml-5">
           <router-link :to="{ name: 'House' }" class="link"
@@ -68,7 +63,7 @@
               ><h5 class="text-white">Login</h5></router-link
             ></b-nav-item
           >
-        </b-navbar-nav>
+          </b-navbar-nav>
       </b-collapse>
     </b-navbar>
   </div>
