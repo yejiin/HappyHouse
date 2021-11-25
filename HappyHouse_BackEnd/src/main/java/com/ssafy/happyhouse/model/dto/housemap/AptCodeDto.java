@@ -1,8 +1,8 @@
 package com.ssafy.happyhouse.model.dto.housemap;
 
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 public class AptCodeDto {
 	private String aptCode;
 	private String aptAddress;

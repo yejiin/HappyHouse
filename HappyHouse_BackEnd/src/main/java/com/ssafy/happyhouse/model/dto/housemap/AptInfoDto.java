@@ -2,11 +2,9 @@ package com.ssafy.happyhouse.model.dto.housemap;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 public class AptInfoDto {
 
 	private String dong;

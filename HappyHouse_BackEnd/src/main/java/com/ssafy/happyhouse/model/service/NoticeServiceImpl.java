@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ssafy.happyhouse.model.NoticeDto;
-import com.ssafy.happyhouse.model.NoticeParameterDto;
+import com.ssafy.happyhouse.model.dto.notice.NoticeDto;
+import com.ssafy.happyhouse.model.dto.notice.NoticeParameterDto;
 import com.ssafy.happyhouse.model.mapper.NoticeMapper;
 import com.ssafy.util.PageNavigation;
 

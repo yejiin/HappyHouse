@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ssafy.happyhouse.model.AnswerDto;
-import com.ssafy.happyhouse.model.QuestionDto;
-import com.ssafy.happyhouse.model.QuestionParameterDto;
+import com.ssafy.happyhouse.model.dto.QnA.AnswerDto;
+import com.ssafy.happyhouse.model.dto.QnA.QuestionDto;
+import com.ssafy.happyhouse.model.dto.QnA.QuestionParameterDto;
 import com.ssafy.happyhouse.model.mapper.QnAMapper;
 import com.ssafy.util.PageNavigation;
 

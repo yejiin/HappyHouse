@@ -8,8 +8,9 @@ import com.ssafy.happyhouse.model.dto.data.DealDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 public class CompareDto {
 	
 	private String address;
@@ -28,7 +29,7 @@ public class CompareDto {
 
 }
 
-@Data
+@Getter
 @AllArgsConstructor
 class Add {
 	private String parkUCnt;
@@ -36,7 +37,7 @@ class Add {
 	private String cctvCnt;
 }
 
-@Data
+@Getter
 @AllArgsConstructor
 class Traffic {
 	private String disBus;
@@ -45,7 +46,7 @@ class Traffic {
 	private String disSub;
 }
 
-@Data
+@Getter
 @AllArgsConstructor
 class Conv {
 	private String welFac;

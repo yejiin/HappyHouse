@@ -1,4 +1,4 @@
-package com.ssafy.happyhouse.model;
+package com.ssafy.happyhouse.model.dto.user;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

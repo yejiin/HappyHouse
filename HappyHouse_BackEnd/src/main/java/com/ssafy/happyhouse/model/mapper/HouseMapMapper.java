@@ -11,6 +11,7 @@ import com.ssafy.happyhouse.model.dto.housemap.ChartDto;
 import com.ssafy.happyhouse.model.dto.housemap.DealRangeDto;
 import com.ssafy.happyhouse.model.dto.housemap.SidoDto;
 import com.ssafy.happyhouse.model.dto.housemap.DongDto;
+import com.ssafy.happyhouse.model.dto.housemap.FavoriteDto;
 import com.ssafy.happyhouse.model.dto.housemap.GugunDto;
 
 public interface HouseMapMapper {
@@ -21,13 +22,18 @@ public interface HouseMapMapper {
 	List<AptInfoDto> getAptInDong(String gugunCode, String dong) throws SQLException;
 	List<DealDto> getAptDeal(String dong, String jibun) throws SQLException;
 	DealRangeDto getDealRange(String dong, String jibun) throws SQLException;
-	List<AptInfoDto> getFavoriteApt(String userid) throws SQLException;
 	AptCodeDto getAptCode(String name, String dong) throws SQLException;
 	AptDetailDto getAptDetail(String aptCode) throws SQLException;
 	List<DealDto> getDealLatest(String dong, String name) throws SQLException;
 	
-	ChartDto getChartData(String name);
-	int addChartData(ChartDto dto);
-	ChartDto getMaxData();
-	ChartDto getAvgData();
+	List<AptInfoDto> getFavoriteApt(String userid) throws SQLException;
+	int favorite(String name, String userid) throws SQLException;
+	int addfavorite(String name, String userid, String gugunname, String dong, String jibun) throws SQLException;
+	int cancelfavorite(String name, String userid) throws SQLException;
+	List<FavoriteDto> getFavoriteInGugun(String gugunname, String name, String userid) throws SQLException;
+	
+	ChartDto getChartData(String name) throws SQLException;
+	int addChartData(ChartDto dto) throws SQLException;
+	ChartDto getMaxData() throws SQLException;
+	ChartDto getAvgData() throws SQLException;
 }
