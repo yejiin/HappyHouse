@@ -13,10 +13,17 @@
         <b-button variant="outline-primary" size="sm" @click="moveRegisterAnswer" class="mr-2">
           답글 작성
         </b-button>
-        <b-button variant="outline-info" size="sm" @click="moveModifyQuestion" class="mr-2"
+        <b-button variant="outline-secondary" size="sm" @click="moveModifyAnswer" class="mr-2"
+          >답글 수정</b-button
+        >
+        <b-button
+          variant="outline-secondary"
+          size="sm"
+          @click="moveModifyQuestion"
+          class="mr-2 ml-2"
           >문의 수정</b-button
         >
-        <b-button variant="outline-secondary" size="sm" @click="removeQuestion">문의 삭제</b-button>
+        <b-button variant="outline-danger" size="sm" @click="removeQuestion">문의 삭제</b-button>
       </b-col>
     </b-row>
     <b-row class="mb-1">
@@ -25,8 +32,7 @@
           :header-html="`<h4>${question.qno}.
           ${question.subject}</h4><div><h6>ID: ${question.userid}<br>${question.regtime}</h6></div>`"
           class="mb-2 text-left"
-          border-variant="dark"
-          no-body
+          border-variant="light"
         >
           <b-card-body class="text-left">
             <div v-html="message"></div>
@@ -52,6 +58,7 @@ export default {
       question: {},
       answer: {},
       show: true,
+      qno: null,
     };
   },
   components: {
@@ -91,6 +98,12 @@ export default {
     moveModifyQuestion() {
       this.$router.replace({
         name: "QnAUpdate",
+        params: { qno: this.question.qno },
+      });
+    },
+    moveModifyAnswer() {
+      this.$router.replace({
+        name: "QnAUpdate2",
         params: { qno: this.question.qno },
       });
     },

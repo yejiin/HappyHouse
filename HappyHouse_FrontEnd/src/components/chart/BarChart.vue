@@ -13,10 +13,11 @@ export default {
         datasets: [
           {
             label: "연령별 인기 상권 카테고리",
-            backgroundColor: "#f87979",
+            backgroundColor: "#FFE798",
             pointBackgroundColor: "white",
-            borderWidth: 1,
+            borderWidth: 2,
             pointBorderColor: "#249EBF",
+            borderColor: "#F6C51F",
           },
         ],
       },
@@ -48,11 +49,19 @@ export default {
       },
     };
   },
-  created() {},
+  created() {
+    console.log("barchart created");
+  },
+  watch: {
+    data: function () {
+      this.changeAgeGroup();
+    },
+  },
   computed: {
     ...mapState(trendStore, ["data"]),
   },
   mounted() {
+    console.log("mounted");
     this.chartData.datasets[0].data = [
       this.data.food,
       this.data.cafe,
@@ -62,6 +71,19 @@ export default {
     ];
     this.renderChart(this.chartData, this.options);
     console.log(this.chartData);
+  },
+  methods: {
+    changeAgeGroup() {
+      this.chartData.datasets[0].data = [
+        this.data.food,
+        this.data.cafe,
+        this.data.convenience,
+        this.data.hof,
+        this.data.hospital,
+      ];
+      this.renderChart(this.chartData, this.options);
+      console.log(this.chartData);
+    },
   },
 };
 </script>

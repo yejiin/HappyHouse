@@ -35,6 +35,7 @@ function getAnswer(qno, success, fail) {
 }
 
 function modifyAnswer(answer, success, fail) {
+  console.log(answer);
   api.put(`/qna/answer`, JSON.stringify(answer)).then(success).catch(fail);
 }
 
@@ -42,4 +43,8 @@ function deleteAnswer(qno, success, fail) {
   api.delete(`/qna/answer/${qno}`).then(success).catch(fail);
 }
 
-export { listQuestion, writeQuestion, getQuestion, modifyQuestion, deleteQuestion, writeAnswer, getAnswer, modifyAnswer, deleteAnswer };
+function updateIsreply(qno, success, fail) {
+  api.put(`/qna/answer/${qno}`).then(success).catch(fail);
+}
+
+export { listQuestion, writeQuestion, getQuestion, modifyQuestion, deleteQuestion, writeAnswer, getAnswer, modifyAnswer, deleteAnswer, updateIsreply };

@@ -20,6 +20,7 @@ const chartStore = {
       };
       console.log(lat);
       chartData(params, ({ data }) => {
+        console.log(data);
         commit("SET_CHART_DATA", data);
       }),
         (error) => {

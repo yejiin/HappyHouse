@@ -22,6 +22,7 @@ public interface HouseMapMapper {
 	List<AptInfoDto> getAptInDong(String gugunCode, String dong) throws SQLException;
 	List<DealDto> getAptDeal(String dong, String jibun) throws SQLException;
 	DealRangeDto getDealRange(String dong, String jibun) throws SQLException;
+
 	AptCodeDto getAptCode(String name, String dong) throws SQLException;
 	AptDetailDto getAptDetail(String aptCode) throws SQLException;
 	List<DealDto> getDealLatest(String dong, String name) throws SQLException;
@@ -36,4 +37,5 @@ public interface HouseMapMapper {
 	int addChartData(ChartDto dto) throws SQLException;
 	ChartDto getMaxData() throws SQLException;
 	ChartDto getAvgData() throws SQLException;
+
 }

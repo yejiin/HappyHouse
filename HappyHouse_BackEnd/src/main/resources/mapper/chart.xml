@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.happyhouse.model.mapper.ChartMapper">
+
+	<select id="getChartData" parameterType="String" resultType="chartDto">
+		select name, lat, lng, convenience, education, traffic, publicfac, medical
+		from chart
+		where name = #{name}
+	</select>
+	
+	<select id="getMaxData" parameterType="String" resultType="chartDto">
+		select max(convenience) convenience, max(education) education, max(traffic) traffic, max(publicfac) publicfac, max(medical) medical
+		from chart
+	</select>
+
+	<select id="getAvgData" parameterType="String" resultType="chartDto">
+		select avg(convenience) convenience, avg(education) education, avg(traffic) traffic, avg(publicfac) publicfac, avg(medical) medical
+		from chart
+	</select>
+	
+	<insert id="addChartData" parameterType="chartDto">
+		insert into chart
+		(name, lat, lng, convenience, education, traffic, publicfac, medical)
+		values (#{name}, #{lat}, #{lng}, #{convenience}, #{education}, #{traffic}, #{publicFac}, #{medical})
+	</insert>
+
+</mapper>

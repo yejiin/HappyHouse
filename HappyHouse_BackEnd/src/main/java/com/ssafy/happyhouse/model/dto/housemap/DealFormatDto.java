@@ -44,7 +44,7 @@ public class DealFormatDto {
 		
 		if (dto.getDealAmount() != null) {
 			return "매매 " + formatMoney(dto.getDealAmount());
-		} else if (!dto.getRentMoney().equals("0")) {
+		} else if (dto.getRentMoney() != null) {
 			return "월세 " + formatMoney(dto.getDeposit()) + "/" + formatMoney(dto.getRentMoney());
 		} else {
 			return "전세 " + formatMoney(dto.getDeposit());

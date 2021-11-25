@@ -1,6 +1,6 @@
 <template>
   <!-- 92.85% -->
-  <div class="scroll-box" style="overflow: auto">
+  <div style="height: 92.85%">
     <b-row>
       <b-col cols="3"><router-view></router-view></b-col>
       <b-col cols="9"><house-map /></b-col>
@@ -19,8 +19,4 @@ export default {
 };
 </script>
 
-<style>
-.scroll-box::-webkit-scrollbar {
-  display: none; /* Chrome , Safari , Opera */
-}
-</style>
+<style></style>

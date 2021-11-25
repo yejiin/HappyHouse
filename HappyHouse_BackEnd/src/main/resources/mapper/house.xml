@@ -18,27 +18,22 @@
 	</select>
 	
 	<select id="getDongInGugun" parameterType="string" resultType="dongDto">
-		select dongName, bjdCode dongCode
+		select dongName, dongCode
 		from dongcode
-		where left(bjdCode, 5) = #{gugun}
+		where left(dongCode, 5) = #{gugun}
 		order by dongName
 	</select>
 	
 	<select id="getAptInDong" parameterType="String" resultType="aptInfoDto">
-		select distinct d.dong, d.guguncode, d.buildyear, d.name, d.jibun,  g.gugunName, a.aptCode
-		from deal_data d
-		left join apartment a
-		on d.dong = a.dong and d.name = a.aptName
-		join guguncode g
-		on d.guguncode = left(g.guguncode, 5) 
-		where d.dong = #{dong} and d.guguncode = #{gugunCode} and d.guguncode = left(g.guguncode, 5);
+		select distinct d.dong, d.guguncode, d.buildyear, d.name, d.jibun, g.gugunName
+		from deal_data d, guguncode g
+		where d.dong = #{dong} and d.guguncode = #{gugunCode} and d.guguncode = left(g.guguncode, 5) 
 	</select>
 	
 	<select id="getAptDeal" parameterType="String" resultType="dealDto">
 		select area, dealday, dealmonth, dealyear, deposit, rentmoney, dealamount, floor, dong, guguncode, buildyear, name, jibun
 		from deal_data
 		where dong = #{dong} and jibun = #{jibun} 
-		limit 0, 8
 	</select>
 	
 	<select id="getDealRange" parameterType="String" resultType="dealRangeDto">
@@ -47,6 +42,7 @@
 		where dong = #{dong} and jibun = #{jibun} 
 	</select>
 	
+<<<<<<< HEAD
 	<select id="getFavoriteApt" parameterType="String" resultType="aptInfoDto">
 		select distinct d.dong dong, d.guguncode guguncode, d.buildyear buildyear, d.name name, d.jibun jibun, f.gugunName gugunname
 		from favoritehouse f, deal_data d
@@ -120,6 +116,8 @@
 		values (#{name}, #{lat}, #{lng}, #{convenience}, #{education}, #{traffic}, #{publicFac}, #{medical})
 	</insert>
 	
+=======
+>>>>>>> d68ef2cc187a62c76ef6ff738c85cf23a732c008
 	<!-- select id="getHouseInDong" parameterType="houseListParamDto" resultType="houseInfoDto">
 		select d.no, d.area, d.dealday, d.dealmonth, d.dealyear, d.deposit, d.rentmoney, d.dealamount, d.floor, d.dong, d.guguncode, d.buildyear, d.name, d.jibun, d.dealcate, d.housecate, g.gugunName
 		from deal_data d, guguncode g

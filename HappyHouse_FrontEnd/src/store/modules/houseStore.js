@@ -1,4 +1,10 @@
-import { sidoList, gugunList, dongList, aptList, dealList, favoriteList, compareData } from "@/api/house.js";
+import {
+  sidoList,
+  gugunList,
+  dongList,
+  aptList,
+  dealList,
+} from "@/api/house.js";
 
 const houseStore = {
   namespaced: true,
@@ -11,7 +17,6 @@ const houseStore = {
     sido: null,
     gugun: null,
     dealInfo: null,
-    compare: null,
   },
 
   getters: {},
@@ -51,15 +56,6 @@ const houseStore = {
     },
     SET_DEAL_INFO: (state, dealInfo) => {
       state.dealInfo = dealInfo;
-    },
-    SET_FAVORITE_LIST: (state, favorites) => {
-      state.houses = favorites;
-    },
-    CLEAR_HOUSE_LIST: (state) => {
-      state.houses = [];
-    },
-    SET_COMPARE_DATA: (state, compareData) => {
-      state.compare = compareData;
     },
   },
 
@@ -129,34 +125,6 @@ const houseStore = {
         params,
         ({ data }) => {
           commit("SET_DEAL_INFO", data);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    },
-    getFavoriteList: ({ commit }, userid) => {
-      favoriteList(
-        userid,
-        ({ data }) => {
-          commit("SET_FAVORITE_LIST", data);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    },
-    getCompareData: ({ commit }, { name, dong, compName, compDong }) => {
-      const params = {
-        name,
-        dong,
-        compName,
-        compDong,
-      };
-      compareData(
-        params,
-        ({ data }) => {
-          commit("SET_COMPARE_DATA", data);
         },
         (error) => {
           console.log(error);

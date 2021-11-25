@@ -17,9 +17,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.ssafy.happyhouse.model.dto.data.AptBasicDto;
-import com.ssafy.happyhouse.model.dto.data.AptDetailDto;
-import com.ssafy.happyhouse.model.dto.data.AptDto;
 import com.ssafy.happyhouse.model.dto.data.DealDto;
 import com.ssafy.happyhouse.model.dto.housemap.GugunDto;
 import com.ssafy.happyhouse.model.service.DataServiceImpl;
@@ -32,7 +29,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api")
-@Api(value = "house", description = "Happy house")
+@Api(value="house", description="Happy house")
 public class DataController {
 
 	private static final Logger logger = LoggerFactory.getLogger(DataController.class);
@@ -539,5 +536,4 @@ public class DataController {
 			return null;
 		return nValue.getNodeValue();
 	}
-
 }

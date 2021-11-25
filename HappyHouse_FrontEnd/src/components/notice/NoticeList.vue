@@ -1,13 +1,8 @@
 <template>
   <b-container class="bv-example-row mt-3">
-    <b-row>
-      <b-col>
-        <b-alert variant="" show><h3>공지사항</h3></b-alert>
-      </b-col>
-    </b-row>
     <b-row class="mb-1">
       <b-col class="text-right">
-        <b-button variant="outline-primary" @click="moveWrite()">공지 작성</b-button>
+        <b-button size="sm" variant="outline-primary" @click="moveWrite()">공지 작성</b-button>
       </b-col>
     </b-row>
     <b-row>
@@ -24,7 +19,7 @@
         </b-table>
       </b-col>
     </b-row>
-    <b-row>
+    <b-row class="mt-5">
       <b-col>
         <b-pagination
           v-model="currentPage"
@@ -47,7 +42,7 @@ export default {
   components: {},
   data() {
     return {
-      perPage: 5,
+      perPage: 10,
       currentPage: 1,
       notices: [],
       fields: [
@@ -95,13 +90,13 @@ export default {
 };
 </script>
 
-<style scope>
+<style>
 .tdClass {
   width: 50px;
   text-align: center;
 }
 .tdSubject {
-  width: 300px;
+  width: 250px;
   text-align: left;
 }
 </style>

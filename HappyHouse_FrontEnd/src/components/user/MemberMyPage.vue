@@ -57,6 +57,34 @@
                   @keyup.enter="confirm"
                 ></b-form-input>
               </b-form-group>
+              <hr />
+              <b-form-group label="연령대" label-for="ageGroup">
+                <b-form-input
+                  id="ageGroup"
+                  v-model="userInfo.ageGroup"
+                  required
+                  placeholder="예: 20/30/40/50/60"
+                  @keyup.enter="confirm"
+                ></b-form-input>
+              </b-form-group>
+              <b-form-group label="자주 가는 상권 카테고리">
+                <b-form-input
+                  id="favStore"
+                  v-model="userInfo.favStore"
+                  required
+                  @keyup.enter="confirm"
+                ></b-form-input>
+                <b-form-select v-model="favStore" :options="storeOptions"></b-form-select>
+              </b-form-group>
+              <b-form-group label="관심지역" label-for="favArea">
+                <b-form-input
+                  id="favArea"
+                  v-model="userInfo.favArea"
+                  required
+                  placeholder="관심지역"
+                  @keyup.enter="confirm"
+                ></b-form-input>
+              </b-form-group>
             </b-form>
           </b-card>
         </b-container>
@@ -91,7 +119,18 @@ export default {
         username: "",
         email: "",
         phone: "",
+        ageGroup: "",
+        favStore: "",
       },
+      favStore: null,
+      storeOptions: [
+        { value: null, text: "자주 가는 장소를 선택해주세요" },
+        { value: "food", text: "음식점" },
+        { value: "cafe", text: "카페" },
+        { value: "convenience", text: "편의점" },
+        { value: "hof", text: "호프/주점" },
+        { value: "hospital", text: "병원" },
+      ],
     };
   },
 
@@ -109,6 +148,8 @@ export default {
       this.user.username = this.userInfo.username;
       this.user.email = this.userInfo.email;
       this.user.phone = this.userInfo.phone;
+      this.user.ageGroup = this.userInfo.ageGroup;
+      this.user.favStore = this.userInfo.favStore;
       await this.updateUser(this.user);
 
       alert("수정 완료!");

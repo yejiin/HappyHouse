@@ -15,6 +15,4 @@ public class AptInfoDto {
 	private String lat;
 	private String lng;
 	private String gugunName;
-	private String aptCode;
-	private boolean isComparable;
 }

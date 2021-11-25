@@ -30,39 +30,16 @@
 
 	<insert id="addAptRentData" parameterType="dealDto">
 		insert into deal_data
-		(area, dealday, dealmonth, dealyear, deposit, rentmoney, floor, dong, guguncode, buildyear, name, jibun, dongcode)
-		values (#{area}, #{dealDay}, #{dealMonth}, #{dealYear}, #{deposit}, #{rentMoney}, #{floor}, #{dong}, #{gugunCode}, #{buildYear}, #{name}, #{jibun}, #{dongCode})
-	</insert>
+		(area, dealday, dealmonth, dealyear, deposit, rentmoney, floor, dong, guguncode, buildyear, name, jibun, dealcate, housecate)
+		values (#{area}, #{dealDay}, #{dealMonth}, #{dealYear}, #{deposit}, #{rentMoney}, #{floor}, #{dong}, #{gunguCode}, #{buildYear}, #{name}, #{jibun}, "rent", "apt")
 	
+	</insert>
+
 	<insert id="addAptDealData" parameterType="dealDto">
 		insert into deal_data
-		(area, dealday, dealmonth, dealyear, dealamount, floor, dong, guguncode, buildyear, name, jibun, dongcode)
-		values (#{area}, #{dealDay}, #{dealMonth}, #{dealYear}, #{dealAmount}, #{floor}, #{dong}, #{gugunCode}, #{buildYear}, #{name}, #{jibun}, #{dongCode})
-	</insert>
-
-	<insert id="addAptListData" parameterType="aptDto">
-		insert into apartment
-		(aptCode, aptName, sido, gugun, dong, bjdCode)
-		values (#{aptCode}, #{aptName}, #{sido}, #{gugun}, #{dong}, #{bjdCode})
+		(area, dealday, dealmonth, dealyear, dealamount, floor, dong, guguncode, buildyear, name, jibun, dealcate, housecate)
+		values (#{area}, #{dealDay}, #{dealMonth}, #{dealYear}, #{dealAmount}, #{floor}, #{dong}, #{gunguCode}, #{buildYear}, #{name}, #{jibun}, "deal", "apt")
 	
-	</insert>
-		
-	<select id="getAptCode" resultType="String">
-		select aptCode
-		from apartment
-	</select>
-	
-	
-	<insert id="addAptBasicData" parameterType="aptBasicDto">
-		insert into aptbasic
-		(aptCode, aptName, aptAddr, dongCnt, aptTel, aptCnt, hoCnt, bjdCode)
-		values (#{aptCode}, #{aptName}, #{aptAddr}, #{dongCnt}, #{aptTel}, #{aptCnt}, ${hoCnt}, #{bjdCode})
-	</insert>
-
-	<insert id="addAptDetailData" parameterType="aptDetailDto">
-		insert into aptdetail
-		(aptCode, aptName, mgrCnt, secuCnt, eleCnt, parkUCnt, parkDCnt, cctvCnt,welFac, disBus, subLine, subStation, disSub, convFac, eduFac)
-		values (#{aptCode}, #{aptName}, #{mgrCnt}, #{secuCnt}, #{eleCnt}, #{parkUCnt}, #{parkDCnt}, #{cctvCnt}, #{welFac}, #{disBus}, #{subLine}, #{subStation}, #{disSub}, #{convFac}, #{eduFac})
 	</insert>
 
 </mapper>

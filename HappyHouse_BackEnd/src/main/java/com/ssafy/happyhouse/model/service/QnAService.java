@@ -21,6 +21,4 @@ public interface QnAService {
 	AnswerDto getAnswer(int qno) throws Exception;
 	boolean updateAnswer(AnswerDto answerDto) throws Exception;
 	boolean deleteAnswer(int qno) throws Exception;
-	
-	boolean updateIsreply(int qno) throws Exception;
 }

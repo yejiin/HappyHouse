@@ -7,7 +7,7 @@
     </b-row>
     <b-row class="mb-1">
       <b-col class="text-right">
-        <b-button variant="outline-primary" @click="moveWrite()">문의하기</b-button>
+        <b-button variant="outline-primary" size="sm" @click="moveWrite()">문의하기</b-button>
       </b-col>
     </b-row>
     <b-row>
@@ -25,6 +25,7 @@
             <b-tr>
               <b-th>번호</b-th>
               <b-th>제목</b-th>
+              <b-th></b-th>
               <b-th>작성자</b-th>
               <b-th>작성일</b-th>
             </b-tr>
@@ -35,7 +36,7 @@
         </b-table-simple>
       </b-col>
     </b-row>
-    <b-row>
+    <b-row class="mt-5">
       <b-col>
         <b-pagination
           v-model="currentPage"
@@ -61,7 +62,7 @@ export default {
   },
   data() {
     return {
-      perPage: 5,
+      perPage: 10,
       currentPage: 1,
       questions: [],
     };

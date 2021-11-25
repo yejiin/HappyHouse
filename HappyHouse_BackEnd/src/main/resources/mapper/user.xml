@@ -11,7 +11,7 @@
 	</select>
 	
 	<select id="userInfo" parameterType="String" resultType="userDto">
-		select userid, password, username, email, phone, ageGroup, favStore
+		select userid, password, username, email, phone
 		from user
 		where userid = #{userid}
 	</select>
@@ -23,30 +23,13 @@
 	</select>
 
 	<insert id="registerUser" parameterType="userDto">
-		insert into user (userid, password, username, email, phone, ageGroup, favStore)
-		values (#{userid}, #{password}, #{username}, #{email}, #{phone}, #{ageGroup}, #{favStore});
-		update trendstore
-		<if test="favStore.equals('food')">
-       		set food = food + 1
-    	</if>
-    	<if test="favStore.equals('cafe')">
-       		set cafe = cafe + 1
-    	</if>
-    	<if test="favStore.equals('convenience')">
-       		set convenience = convenience + 1
-    	</if>
-    	<if test="favStore.equals('hof')">
-       		set hof = hof + 1
-    	</if>
-    	<if test="favStore.equals('hospital')">
-       		set hospital = hospital + 1
-    	</if>
-		where ageGroup = #{ageGroup};
+		insert into user (userid, password, username, email, phone)
+		values (#{userid}, #{password}, #{username}, #{email}, #{phone})
 	</insert>
 	
 	<update id="updateUser" parameterType="userDto">
 		update user
-		set password = #{password}, username = #{username}, email = #{email}, phone = #{phone}, ageGroup = #{ageGroup}, favStore = #{favStore}
+		set password = #{password}, username = #{username}, email = #{email}, phone = #{phone}
 		where userid = #{userid}
 	</update>
 	
@@ -54,33 +37,5 @@
 		delete from user
 		where userid = #{userid}
 	</delete>
-	
-	<!-- Trend Store -->
-	<select id="getStoreData" parameterType="int" resultType="TrendStoreDto">
-		select ageGroup, food, cafe, convenience, hof, hospital 
-		from trendstore
-		where ageGroup = #{ageGroup}
-	</select>
-	
-	<!-- <update id="updateCount" parameterType="userDto">
-		update trendstore
-		<if test="favStore.equals('food')">
-       		set food = food + 1
-    	</if>
-    	<if test="favStore.equals('cafe')">
-       		set cafe = cafe + 1
-    	</if>
-    	<if test="favStore.equals('convenience')">
-       		set convenience = convenience + 1
-    	</if>
-    	<if test="favStore.equals('hof')">
-       		set hof = hof + 1
-    	</if>
-    	<if test="favStore.equals('hospital')">
-       		set hospital = hospital + 1
-    	</if>
-		where ageGroup = #{ageGroup}
-	</update> -->
-
 	
 </mapper>

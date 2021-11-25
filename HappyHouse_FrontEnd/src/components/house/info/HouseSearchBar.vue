@@ -1,13 +1,25 @@
 <template>
   <b-container>
-    <b-row class="ml-1 mr-1 mt-3 mb-3 text-center">
-      <b-form-select v-model="sidoCode" :options="sidos" @change="gugunList"></b-form-select>
+    <b-row class="mt-3 mb-3 text-center">
+      <b-form-select
+        v-model="sidoCode"
+        :options="sidos"
+        @change="gugunList"
+      ></b-form-select>
     </b-row>
-    <b-row class="ml-1 mr-1 mt-3 mb-3 text-center">
-      <b-form-select v-model="gugunCode" :options="guguns" @change="dongList"></b-form-select>
+    <b-row class="mt-3 mb-3 text-center">
+      <b-form-select
+        v-model="gugunCode"
+        :options="guguns"
+        @change="dongList"
+      ></b-form-select>
     </b-row>
-    <b-row class="ml-1 mr-1 mt-3 mb-3 text-center">
-      <b-form-select v-model="dongCode" :options="dongs" @change="searchHouse"></b-form-select>
+    <b-row class="mt-3 mb-3 text-center">
+      <b-form-select
+        v-model="dongCode"
+        :options="dongs"
+        @change="searchHouse"
+      ></b-form-select>
     </b-row>
   </b-container>
 </template>
@@ -34,8 +46,18 @@ export default {
     this.getSidoList();
   },
   methods: {
-    ...mapActions(houseStore, ["getSidoList", "getGugunList", "getDongList", "getAptList", "setAddress"]),
-    ...mapMutations(houseStore, ["CLEAR_SIDO_LIST", "CLEAR_GUGUN_LIST", "CLEAR_DONG_LIST"]),
+    ...mapActions(houseStore, [
+      "getSidoList",
+      "getGugunList",
+      "getDongList",
+      "getAptList",
+      "setAddress",
+    ]),
+    ...mapMutations(houseStore, [
+      "CLEAR_SIDO_LIST",
+      "CLEAR_GUGUN_LIST",
+      "CLEAR_DONG_LIST",
+    ]),
 
     gugunList() {
       this.CLEAR_GUGUN_LIST();
