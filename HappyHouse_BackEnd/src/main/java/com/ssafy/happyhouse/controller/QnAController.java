@@ -94,13 +94,6 @@ public class QnAController {
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
 	
-//	@ApiOperation(value = "답글 목록", notes = "모든 답글의 정보를 반환한다.", response = List.class)
-//	@GetMapping("/answer/{qno}")
-//	public ResponseEntity<List<AnswerDto>> listAnswer(@ApiParam(value = "답글을 얻기위한 부가정보.", required = true) int qno) throws Exception {
-//		logger.info("listAnswer - 호출");
-//		return new ResponseEntity<List<AnswerDto>>(qnaService.listAnswer(qno), HttpStatus.OK);
-//	}
-	
 	@ApiOperation(value = "답글보기", notes = "글번호에 해당하는 답글의 정보를 반환한다.", response = AnswerDto.class)
 	@GetMapping("/answer/{qno}")
 	public ResponseEntity<AnswerDto> getAnswer(@PathVariable("qno") @ApiParam(value = "얻어올 답글의 글번호.", required = true) int qno) throws Exception {
