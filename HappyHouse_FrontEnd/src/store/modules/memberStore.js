@@ -105,6 +105,7 @@ const memberStore = {
         }
       );
     },
+    
     async updateCount({ commit }, user) {
       await updateCount(
         user,

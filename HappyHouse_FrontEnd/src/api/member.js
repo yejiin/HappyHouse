@@ -30,7 +30,6 @@ async function updateCount(user, success, fail) {
   await api.put(`/user/count`, JSON.stringify(user)).then(success).catch(fail);
 }
 
-
 // function logout(success, fail)
 
 export { login, findById, register, updateUser, deleteUser, updateCount };
