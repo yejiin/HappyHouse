@@ -128,5 +128,15 @@ public class QnAController {
 		}
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
+	
+	@ApiOperation(value = "답글여부", notes = "답글여부 변경", response = String.class)
+	@PutMapping("/answer/{qno}")
+	public ResponseEntity<String> updateIsreply(@PathVariable("qno") @ApiParam(value = "답글여부 표시할 답글의 글번호.", required = true) int qno) throws Exception {
+		logger.info("updateIsreply - 호출");
+		if (qnaService.updateIsreply(qno)) {
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		}
+		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+	}
 
 }

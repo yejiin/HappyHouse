@@ -127,5 +127,12 @@ public class UserController {
 		}
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
-
+//	
+//	@PutMapping("/count")
+//	public ResponseEntity<String> updateCount(@RequestBody UserDto userDto) throws Exception {
+//		logger.debug("updateCount - 호출");
+//		userService.updateCount(userDto);
+//		return new ResponseEntity<String>(HttpStatus.OK);
+//	}
+//	
 }

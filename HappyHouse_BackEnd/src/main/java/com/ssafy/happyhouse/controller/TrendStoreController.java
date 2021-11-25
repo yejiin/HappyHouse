@@ -31,18 +31,11 @@ public class TrendStoreController {
 		return new ResponseEntity<TrendStoreDto>(userService.getStoreData(ageGroup), HttpStatus.OK);
 	}
 	
-//	@PostMapping("")
-//	public ResponseEntity<List<TrendStoreDto>> registTstore(@RequestParam(value = "concerns[]") List<String> concerns) throws Exception {
-//		logger.debug("registTstore - 호출");
-//		userService.registTstore(concerns);
-//		return new ResponseEntity<>(userService.listTstore(), HttpStatus.OK);
-//	}
-//	
-//	@PostMapping("{favStore}")
-//	public ResponseEntity<List<TrendStoreDto>> updateFavStoreCount(@PathVariable("favStore") String favStore) throws Exception {
-//		logger.debug("updateFavStoreCount - 호출");
-//		userService.updateCount(favStore);
-//		return new ResponseEntity<>(userService.listTstore(), HttpStatus.OK);
+//	@PutMapping("")
+//	public ResponseEntity<String> updateCount(@RequestBody UserDto userDto) throws Exception {
+//		logger.debug("updateCount - 호출");
+//		userService.updateCount(userDto);
+//		return new ResponseEntity<String>(HttpStatus.OK);
 //	}
 	
 }

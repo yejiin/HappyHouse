@@ -63,6 +63,12 @@
 		values (#{qno}, #{subject}, #{content}, now())
 	</insert>
 	
+	<update id="updateIsreply" parameterType="int">
+		update question
+		set isreply = 1
+		where qno = #{qno}
+	</update>
+	
 	<select id="getAnswer" parameterType="int" resultType="answerDto">
 		select subject, content, regtime
 		from answer

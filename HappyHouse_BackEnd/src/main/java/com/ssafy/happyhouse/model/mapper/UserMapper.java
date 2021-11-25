@@ -20,5 +20,5 @@ public interface UserMapper {
 //	TrendStore
 //	List<TrendStoreDto> listTstore() throws Exception;
 	TrendStoreDto getStoreData(int ageGroup) throws Exception;
-	int updateCount(String favStore) throws Exception;
+	int updateCount(UserDto userDto) throws Exception;
 }

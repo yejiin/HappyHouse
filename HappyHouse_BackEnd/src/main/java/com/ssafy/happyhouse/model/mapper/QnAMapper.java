@@ -22,4 +22,6 @@ public interface QnAMapper {
 	AnswerDto getAnswer(int qno) throws Exception;
 	int updateAnswer(AnswerDto answerDto) throws Exception;
 	int deleteAnswer(int qno) throws Exception;
+	
+	int updateIsreply(int qno) throws Exception;
 }
