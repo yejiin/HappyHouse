@@ -1,7 +1,7 @@
 package com.ssafy.happyhouse.model.service;
 
-import com.ssafy.happyhouse.model.TrendStoreDto;
-import com.ssafy.happyhouse.model.UserDto;
+import com.ssafy.happyhouse.model.dto.trendstore.TrendStoreDto;
+import com.ssafy.happyhouse.model.dto.user.UserDto;
 
 public interface UserService {
 	

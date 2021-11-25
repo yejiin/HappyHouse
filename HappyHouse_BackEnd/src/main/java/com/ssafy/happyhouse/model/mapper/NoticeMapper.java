@@ -3,8 +3,8 @@ package com.ssafy.happyhouse.model.mapper;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.ssafy.happyhouse.model.NoticeDto;
-import com.ssafy.happyhouse.model.NoticeParameterDto;
+import com.ssafy.happyhouse.model.dto.notice.NoticeDto;
+import com.ssafy.happyhouse.model.dto.notice.NoticeParameterDto;
 
 public interface NoticeMapper {
 
