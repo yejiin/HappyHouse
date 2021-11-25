@@ -22,7 +22,7 @@ import com.ssafy.happyhouse.model.dto.data.AptDetailDto;
 import com.ssafy.happyhouse.model.dto.data.AptDto;
 import com.ssafy.happyhouse.model.dto.data.DealDto;
 import com.ssafy.happyhouse.model.dto.housemap.GugunDto;
-import com.ssafy.happyhouse.model.service.DataService;
+import com.ssafy.happyhouse.model.service.DataServiceImpl;
 import com.ssafy.happyhouse.model.service.HouseMapService;
 
 import io.swagger.annotations.Api;
@@ -37,7 +37,7 @@ public class DataController {
 
 	private static final Logger logger = LoggerFactory.getLogger(DataController.class);
 
-	private final DataService dataService;
+	private final DataServiceImpl dataService;
 	private final HouseMapService houseMapService;
 
 	/* 오피스텔 전월세 정보 */

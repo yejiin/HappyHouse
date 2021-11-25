@@ -1,10 +1,9 @@
 package com.ssafy.happyhouse.model.dto.housemap;
 
-import lombok.Data;
-import lombok.ToString;
 
-@Data
-@ToString
+import lombok.Getter;
+
+@Getter
 public class AptListRequest {
 
 	private String gugunCode;

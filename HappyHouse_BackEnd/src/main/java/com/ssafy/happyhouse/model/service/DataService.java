@@ -1,60 +1,31 @@
 package com.ssafy.happyhouse.model.service;
 
+import java.sql.SQLException;
 import java.util.List;
-
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.ssafy.happyhouse.model.dto.data.AptBasicDto;
 import com.ssafy.happyhouse.model.dto.data.AptDetailDto;
 import com.ssafy.happyhouse.model.dto.data.AptDto;
 import com.ssafy.happyhouse.model.dto.data.DealDto;
-import com.ssafy.happyhouse.model.mapper.DataMapper;
 
-@Service
-public class DataService {
-	
-	@Autowired
-	private SqlSession sqlSession;
-	
-	public void addOfficeRentData(DealDto dto) {
-		sqlSession.getMapper(DataMapper.class).addOfficeRentData(dto);
-	}
-	
-	public void addOfficeDealData(DealDto dto) {
-		sqlSession.getMapper(DataMapper.class).addOfficeDealData(dto);
-	}
-	
-	public void addHomeRentData(DealDto dto) {
-		sqlSession.getMapper(DataMapper.class).addHomeRentData(dto);
-	}
+public interface DataService {
+	void addOfficeRentData(DealDto dto) throws SQLException;
 
-	public void addHomeDealData(DealDto dto) {
-		sqlSession.getMapper(DataMapper.class).addHomeDealData(dto);
-	}
-	
-	public void addAptRentData(DealDto dto) {
-		sqlSession.getMapper(DataMapper.class).addAptRentData(dto);
-	}
-	
-	public void addAptDealData(DealDto dto) {
-		sqlSession.getMapper(DataMapper.class).addAptDealData(dto);
-	}
+	void addOfficeDealData(DealDto dto) throws SQLException;
 
-	public void addAptListData(AptDto dto) {
-		sqlSession.getMapper(DataMapper.class).addAptListData(dto);
-	}
-	
-	public List<String> getAptCode() {
-		return sqlSession.getMapper(DataMapper.class).getAptCode();
-	}
+	void addHomeRentData(DealDto dto) throws SQLException;
 
-	public void addAptBasicData(AptBasicDto aptdto) {
-		sqlSession.getMapper(DataMapper.class).addAptBasicData(aptdto);
-	}
+	void addHomeDealData(DealDto dto) throws SQLException;
 
-	public void addAptDetailData(AptDetailDto aptdto) {
-		sqlSession.getMapper(DataMapper.class).addAptDetailData(aptdto);
-	}
+	void addAptRentData(DealDto dto) throws SQLException;
+
+	void addAptDealData(DealDto dto) throws SQLException;
+
+	void addAptListData(AptDto dto) throws SQLException;
+
+	List<String> getAptCode() throws SQLException;
+
+	void addAptBasicData(AptBasicDto aptdto) throws SQLException;
+
+	void addAptDetailData(AptDetailDto aptdto) throws SQLException;
 }

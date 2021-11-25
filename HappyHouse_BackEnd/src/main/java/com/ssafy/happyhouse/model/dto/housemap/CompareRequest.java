@@ -1,8 +1,11 @@
 package com.ssafy.happyhouse.model.dto.housemap;
 
-import lombok.Data;
+import java.util.List;
 
-@Data
+import lombok.Data;
+import lombok.Getter;
+
+@Getter
 public class CompareRequest {
 	
 	private String name;

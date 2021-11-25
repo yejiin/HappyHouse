@@ -2,11 +2,14 @@ package com.ssafy.happyhouse.model.dto.housemap;
 
 
 
+import java.util.List;
+
 import com.ssafy.happyhouse.model.dto.data.DealDto;
 
 import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 public class DealFormatDto {
 	
 	private String area;

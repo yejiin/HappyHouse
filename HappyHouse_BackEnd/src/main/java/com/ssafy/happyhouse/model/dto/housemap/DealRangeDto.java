@@ -1,8 +1,10 @@
 package com.ssafy.happyhouse.model.dto.housemap;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Setter
+@Getter
 public class DealRangeDto {
 	
 	private String minAmount;
