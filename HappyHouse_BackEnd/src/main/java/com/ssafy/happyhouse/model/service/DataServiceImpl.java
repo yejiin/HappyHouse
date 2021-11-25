@@ -1,5 +1,6 @@
 package com.ssafy.happyhouse.model.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -12,50 +13,52 @@ import com.ssafy.happyhouse.model.dto.data.AptDto;
 import com.ssafy.happyhouse.model.dto.data.DealDto;
 import com.ssafy.happyhouse.model.mapper.DataMapper;
 
-//@Service
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@Service
 public class DataServiceImpl implements DataService {
 	
-	@Autowired
-	private SqlSession sqlSession;
+	private final SqlSession sqlSession;
 	
-	@Autowired
-	public void addOfficeRentData(DealDto dto) {
+	@Override
+	public void addOfficeRentData(DealDto dto) throws Exception {
 		sqlSession.getMapper(DataMapper.class).addOfficeRentData(dto);
 	}
-	@Autowired
-	public void addOfficeDealData(DealDto dto) {
+	@Override
+	public void addOfficeDealData(DealDto dto) throws Exception {
 		sqlSession.getMapper(DataMapper.class).addOfficeDealData(dto);
 	}
-	@Autowired
-	public void addHomeRentData(DealDto dto) {
+	@Override
+	public void addHomeRentData(DealDto dto)throws Exception {
 		sqlSession.getMapper(DataMapper.class).addHomeRentData(dto);
 	}
-	@Autowired
-	public void addHomeDealData(DealDto dto) {
+	@Override
+	public void addHomeDealData(DealDto dto) throws Exception {
 		sqlSession.getMapper(DataMapper.class).addHomeDealData(dto);
 	}
-	@Autowired
-	public void addAptRentData(DealDto dto) {
+	@Override
+	public void addAptRentData(DealDto dto) throws Exception {
 		sqlSession.getMapper(DataMapper.class).addAptRentData(dto);
 	}
-	@Autowired
-	public void addAptDealData(DealDto dto) {
+	@Override
+	public void addAptDealData(DealDto dto) throws Exception {
 		sqlSession.getMapper(DataMapper.class).addAptDealData(dto);
 	}
-	@Autowired
-	public void addAptListData(AptDto dto) {
+	@Override
+	public void addAptListData(AptDto dto) throws Exception {
 		sqlSession.getMapper(DataMapper.class).addAptListData(dto);
 	}
-	@Autowired
-	public List<String> getAptCode() {
+	@Override
+	public List<String> getAptCode() throws Exception {
 		return sqlSession.getMapper(DataMapper.class).getAptCode();
 	}
-	@Autowired
-	public void addAptBasicData(AptBasicDto aptdto) {
+	@Override
+	public void addAptBasicData(AptBasicDto aptdto)throws Exception {
 		sqlSession.getMapper(DataMapper.class).addAptBasicData(aptdto);
 	}
-	@Autowired
-	public void addAptDetailData(AptDetailDto aptdto) {
+	@Override
+	public void addAptDetailData(AptDetailDto aptdto) throws Exception {
 		sqlSession.getMapper(DataMapper.class).addAptDetailData(aptdto);
 	}
 }

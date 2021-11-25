@@ -30,7 +30,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-//@RestController
+@RestController
 @RequestMapping("/api")
 @Api(value="house", description="Happy house")
 public class DataController {
