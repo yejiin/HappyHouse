@@ -27,4 +27,9 @@ public class UserDto {
 	@ApiModelProperty(value = "회원 관심지역")
 	private String favArea;
 
+//	public UserDto(int ageGroup, String favStore) {
+//		this.ageGroup = ageGroup;
+//		this.favStore = favStore;
+//	} --> 로그인 오류
+
 }
