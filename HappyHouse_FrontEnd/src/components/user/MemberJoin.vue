@@ -132,7 +132,7 @@ export default {
       this.user.favStore = this.favStore;
       await this.registerUser(this.user);
 
-      await this.updateCount(this.user);
+      // await this.updateCount(this.user);
       alert("회원가입 성공!");
       this.$router.push({ name: "SignIn" });
     },

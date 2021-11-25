@@ -24,6 +24,7 @@ import QnAWrite from "@/components/qna/QnAWrite.vue";
 import AnswerWrite from "@/components/qna/AnswerWrite.vue";
 import QnAView from "@/components/qna/QnAView.vue";
 import QnAUpdate from "@/components/qna/QnAUpdate.vue";
+import QnAUpdate2 from "@/components/qna/QnAUpdate2.vue";
 import QnADelete from "@/components/qna/QnADelete.vue";
 
 import Trend from "@/views/Trend.vue";
@@ -164,6 +165,12 @@ const routes = [
         name: "QnAUpdate",
         beforeEnter: onlyAuthUser,
         component: QnAUpdate,
+      },
+      {
+        path: "updatea/:qno",
+        name: "QnAUpdate2",
+        beforeEnter: onlyAuthUser,
+        component: QnAUpdate2,
       },
       {
         path: "delete/:qno",

@@ -35,6 +35,7 @@ function getAnswer(qno, success, fail) {
 }
 
 function modifyAnswer(answer, success, fail) {
+  console.log(answer);
   api.put(`/qna/answer`, JSON.stringify(answer)).then(success).catch(fail);
 }
 

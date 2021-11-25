@@ -34,8 +34,11 @@
           <b-button type="submit" variant="primary" class="m-1" v-else-if="this.type === 'reply'"
             >답글 등록</b-button
           >
-          <b-button type="submit" variant="primary" class="m-1" v-else-if="this.type === 'update'"
+          <b-button type="submit" variant="primary" class="m-1" v-else-if="this.type === 'modify'"
             >글수정</b-button
+          >
+          <b-button type="submit" variant="primary" class="m-1" v-else-if="this.type === 'updateA'"
+            >답글수정</b-button
           >
           <b-button type="reset" variant="secondary" class="m-1">초기화</b-button>
         </b-form>
@@ -45,10 +48,19 @@
 </template>
 
 <script>
-import { writeQuestion, getQuestion, modifyQuestion, writeAnswer, updateIsreply } from "@/api/qna";
+import {
+  writeQuestion,
+  getQuestion,
+  modifyQuestion,
+  writeAnswer,
+  // updateIsreply,
+  modifyAnswer,
+  getAnswer,
+} from "@/api/qna";
 import { mapState } from "vuex";
 
 const memberStore = "memberStore";
+// const qnaStore = "qnaStore";
 
 export default {
   name: "QnAWriteForm",
@@ -93,6 +105,20 @@ export default {
       );
       this.isUserid = true;
     }
+    if (this.type === "updateA") {
+      getAnswer(
+        this.$route.params.qno,
+
+        ({ data }) => {
+          this.question = data;
+          console.log(this.question);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+      this.isUserid = true;
+    }
     if (this.type === "reply") {
       this.question.qno = this.$route.params.qno;
       this.isUserid = true;
@@ -113,7 +139,8 @@ export default {
       if (!err) alert(msg);
       else {
         if (this.type === "register") this.registQuestion();
-        if (this.type === "update") this.updateQuestion();
+        if (this.type === "modify") this.updateQuestion();
+        if (this.type === "updateA") this.updateAnswer();
         if (this.type === "reply") this.registAnswer();
       }
     },
@@ -165,6 +192,28 @@ export default {
         }
       );
     },
+    updateAnswer() {
+      modifyAnswer(
+        {
+          qno: this.question.qno,
+          subject: this.question.subject,
+          content: this.question.content,
+        },
+        ({ data }) => {
+          console.log(data);
+          let msg = "답글수정 처리시 문제가 발생했습니다.";
+          if (data === "success") {
+            msg = "답글수정이 완료되었습니다.";
+          }
+          alert(msg);
+          // 현재 route를 /list로 변경.
+          this.$router.push({ name: "QnAList" });
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    },
     registAnswer() {
       writeAnswer(
         {
@@ -176,23 +225,6 @@ export default {
           let msg = "답글 작성시 문제가 발생했습니다.";
           if (data === "success") {
             msg = "답글 작성이 완료되었습니다.";
-          }
-          alert(msg);
-          // 현재 route를 /list로 변경.
-          // this.$router.push({ name: "QnAList" });
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-      updateIsreply(
-        {
-          qno: this.question.qno,
-        },
-        ({ data }) => {
-          let msg = "답변여부 처리시 문제가 발생했습니다.";
-          if (data === "success") {
-            msg = "답변여부 수정이 완료되었습니다.";
           }
           alert(msg);
           // 현재 route를 /list로 변경.

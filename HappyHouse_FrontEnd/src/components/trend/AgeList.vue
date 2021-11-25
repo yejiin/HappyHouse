@@ -1,15 +1,10 @@
 <template>
   <b-container class="bv-example-row mt-3">
-    <b-row>
+    <!-- <b-row class="mb-4">
       <b-col>
         <b-alert variant="" show><h3>트렌드</h3></b-alert>
       </b-col>
-    </b-row>
-    <b-row>
-      <b-col>
-        <b-alert class="text-left mt-5" variant="" show><h4>연령별 선호 상권 카테고리</h4></b-alert>
-      </b-col>
-    </b-row>
+    </b-row> -->
     <b-tabs content-class="mt-3" justified active-nav-item-class="font-weight-bold bg-light">
       <b-tab title="20대" v-model="ageValue" value="20" active @click="viewStore(20)"
         ><p><store></store></p

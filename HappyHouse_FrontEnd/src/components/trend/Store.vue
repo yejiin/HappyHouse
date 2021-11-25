@@ -2,7 +2,7 @@
   <div>
     <b-card no-body style="max-width: 100rem" class="mt-4">
       <b-card-body>
-        <b-card-title>상권 차트</b-card-title>
+        <!-- <b-card-title>연령별 선호 상권 카테고리</b-card-title> -->
         <bar-chart></bar-chart>
       </b-card-body>
     </b-card>
