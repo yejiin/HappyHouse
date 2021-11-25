@@ -1,9 +1,4 @@
-import {
-  favorite,
-  addFavorite,
-  cancelFavorite,
-  favoriteInGugun,
-} from "@/api/favorite.js";
+import { favorite, addFavorite, cancelFavorite, favoriteInGugun } from "@/api/favorite.js";
 
 const favoriteStore = {
   namespaced: true,
@@ -27,6 +22,9 @@ const favoriteStore = {
     },
     SET_FAVORITE_IN_GUGUN: (state, data) => {
       state.favoriteInGugun = data;
+    },
+    CLEAR_FAVORITE_IN_GUGUN: (state) => {
+      state.favoriteInGugun = [];
     },
   },
   actions: {

@@ -18,16 +18,20 @@
 	</select>
 	
 	<select id="getDongInGugun" parameterType="string" resultType="dongDto">
-		select dongName, dongCode
+		select dongName, bjdCode dongCode
 		from dongcode
-		where left(dongCode, 5) = #{gugun}
+		where left(bjdCode, 5) = #{gugun}
 		order by dongName
 	</select>
 	
 	<select id="getAptInDong" parameterType="String" resultType="aptInfoDto">
-		select distinct d.dong, d.guguncode, d.buildyear, d.name, d.jibun, g.gugunName
-		from deal_data d, guguncode g
-		where d.dong = #{dong} and d.guguncode = #{gugunCode} and d.guguncode = left(g.guguncode, 5) 
+		select distinct d.dong, d.guguncode, d.buildyear, d.name, d.jibun,  g.gugunName, a.aptCode
+		from deal_data d
+		left join apartment a
+		on d.dong = a.dong and d.name = a.aptName
+		join guguncode g
+		on d.guguncode = left(g.guguncode, 5) 
+		where d.dong = #{dong} and d.guguncode = #{gugunCode} and d.guguncode = left(g.guguncode, 5);
 	</select>
 	
 	<select id="getAptDeal" parameterType="String" resultType="dealDto">
@@ -48,6 +52,48 @@
 		from favoritehouse f, deal_data d
 		where f.userid = #{userid} and f.name = d.name and f.jibun = d.jibun
 	</select>
+	
+	<select id="getAptCode" parameterType="String" resultType="aptCodeDto">
+		select a.aptCode aptCode, b.aptAddr aptAddress
+		from apartment a, aptbasic b
+		where a.aptName = #{name} and a.dong = #{dong} and a.aptCode = b.aptCode
+	</select>
+	
+	<select id="getAptDetail" parameterType="String" resultType="aptDetailDto">
+		select aptCode, aptName, mgrCnt, secuCnt, eleCnt, parkUCnt, parkDCnt, cctvCnt,welFac, disBus, subLine, subStation, disSub, convFac, eduFac 
+		from aptdetail
+		where aptCode = #{aptCode}
+	</select>
+	
+	<select id="getDealLatest" parameterType="String" resultType="dealDto">
+		select area, dealday, dealmonth, dealyear, deposit, rentmoney, dealamount, floor, dong, guguncode, buildyear, name, jibun
+		from deal_data
+		where dong = #{dong} and name = #{name} 
+		order by dealmonth desc, dealday desc
+		limit 0, 3
+	</select>
+	
+		<select id="getChartData" parameterType="String" resultType="chartDto">
+		select name, lat, lng, convenience, education, traffic, publicfac, medical
+		from chart
+		where name = #{name}
+	</select>
+	
+	<select id="getMaxData" parameterType="String" resultType="chartDto">
+		select max(convenience) convenience, max(education) education, max(traffic) traffic, max(publicfac) publicfac, max(medical) medical
+		from chart
+	</select>
+
+	<select id="getAvgData" parameterType="String" resultType="chartDto">
+		select avg(convenience) convenience, avg(education) education, avg(traffic) traffic, avg(publicfac) publicfac, avg(medical) medical
+		from chart
+	</select>
+	
+	<insert id="addChartData" parameterType="chartDto">
+		insert into chart
+		(name, lat, lng, convenience, education, traffic, publicfac, medical)
+		values (#{name}, #{lat}, #{lng}, #{convenience}, #{education}, #{traffic}, #{publicFac}, #{medical})
+	</insert>
 	
 	<!-- select id="getHouseInDong" parameterType="houseListParamDto" resultType="houseInfoDto">
 		select d.no, d.area, d.dealday, d.dealmonth, d.dealyear, d.deposit, d.rentmoney, d.dealamount, d.floor, d.dong, d.guguncode, d.buildyear, d.name, d.jibun, d.dealcate, d.housecate, g.gugunName

@@ -2,7 +2,7 @@ package com.ssafy.happyhouse.model.mapper;
 
 import java.util.List;
 
-import com.ssafy.happyhouse.model.dto.favorite.FavoriteDto;
+import com.ssafy.happyhouse.model.dto.housemap.FavoriteDto;
 
 public interface FavoriteHouseMapper {
 	

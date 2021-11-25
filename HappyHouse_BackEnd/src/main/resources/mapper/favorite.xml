@@ -22,10 +22,11 @@
 	</delete>
 	
 	<select id="getFavoriteInGugun" parameterType="String" resultType="favoriteDto">
-		select distinct d.name name, f.gugunname gugunname, d.dong dong, d.jibun jibun 
-		from favoritehouse f, deal_data d
-		where f.userid = #{userid} and f.gugunname = #{gugunname} and f.name != #{name} and f.name = d.name;
+		select f.dong, f.gugunname, f.jibun, f.name, a.aptCode
+		from favoritehouse f
+		left join apartment a
+		on f.dong = a.dong and f.name = a.aptName
+		where userid = #{userid} and gugunname = #{gugunname}
 	</select>
-
 
 </mapper>

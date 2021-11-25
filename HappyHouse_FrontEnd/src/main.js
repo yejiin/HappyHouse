@@ -1,6 +1,6 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 
 // Import Bootstrap an BootstrapVue CSS files (order is important)
@@ -14,7 +14,11 @@ Vue.use(BootstrapVue);
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin);
 
-Vue.config.productionTip = false
+import VueAwesomeSwiper from "vue-awesome-swiper";
+import "swiper/css/swiper.css";
+Vue.use(VueAwesomeSwiper);
+
+Vue.config.productionTip = false;
 
 new Vue({
   router,
@@ -25,5 +29,5 @@ new Vue({
       await memberStore.dispatch("getUserInfo", token);
     }
   },
-  render: h => h(App)
-}).$mount('#app')
+  render: (h) => h(App),
+}).$mount("#app");
