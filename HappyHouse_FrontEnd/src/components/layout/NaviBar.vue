@@ -29,11 +29,13 @@
             ><h4 class="text-white">Q&A</h4></router-link
           >
         </b-navbar-nav>
-        <b-navbar-nav class="ml-5">
-          <router-link :to="{ name: 'HouseFavorite' }" class="link"><h5>Favorite</h5></router-link>
-        </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto" v-if="userInfo">
+          <b-navbar-nav class="ml-5 mt-2">
+            <router-link :to="{ name: 'HouseFavorite' }" class="link"
+              ><h4 class="text-white mr-5">Favorite</h4></router-link
+            >
+          </b-navbar-nav>
           <b-nav-item class="align-self-center">
             <b-avatar
               variant="info"
@@ -49,6 +51,7 @@
           <b-nav-item class="link align-self-center" @click.prevent="onClickLogout"
             ><h5 class="text-white">Logout</h5></b-nav-item
           >
+        </b-navbar-nav>
         <b-navbar-nav class="ml-auto" v-else>
           <b-nav-item class="align-self-center">
             <template #button-content>
@@ -63,7 +66,7 @@
               ><h5 class="text-white">Login</h5></router-link
             ></b-nav-item
           >
-          </b-navbar-nav>
+        </b-navbar-nav>
       </b-collapse>
     </b-navbar>
   </div>
