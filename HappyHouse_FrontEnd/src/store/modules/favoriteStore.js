@@ -87,13 +87,13 @@ const favoriteStore = {
         }
       );
     },
-    getFavoriteInGugun({ commit }, { gugunname, housename, userid }) {
+    async getFavoriteInGugun({ commit }, { gugunname, housename, userid }) {
       const params = {
         gugunname,
         housename,
         userid,
       };
-      favoriteInGugun(
+      await favoriteInGugun(
         params,
         ({ data }) => {
           console.log("구군 관심 지역 가져오기", data);

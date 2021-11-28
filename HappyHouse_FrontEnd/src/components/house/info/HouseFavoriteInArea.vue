@@ -20,8 +20,8 @@
           </v-row>
 
           <v-row>
-            <div v-if="house.comparable">
-              <b-button v-b-modal.modal-1 @click="compareHouse('현대뜨레비앙', '익선동')" style="float: right"
+            <div v-if="house.comparable && slide.aptCode">
+              <b-button v-b-modal.modal-1 @click="compareHouse(slide.name, slide.dong)" style="float: right"
                 >비교하기</b-button
               >
             </div>
@@ -38,7 +38,7 @@
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
 
-    <b-modal id="modal-1" size="lg" centered title="단지 비교하기" body-bg-variant="light" ok-only>
+    <b-modal id="modal-1" size="lg" centered title="단지 비교하기" body-bg-variant="light" v-if="compare" ok-only>
       <template>
         <div style="margin: 0; width: 100%">
           <b-row>
@@ -204,10 +204,20 @@ export default {
       ],
     };
   },
-  created() {
+  created() {},
+  mounted() {
     this.slides = this.favoriteInGugun;
     console.log("같은 지역 내 단지 조회", this.favoriteInGugun);
     console.log("비교 데이터", this.compare);
+    // setInterval(() => {
+    //   console.log("simulate async data");
+    //   this.favoriteInGugun.forEach((element) => {
+    //     this.slides.push(element);
+    //   });
+    //   // if (this.slides.length < 10) {
+    //   //   this.slides.push(this.favoriteInGugun[])
+    //   // }
+    // }, 3000);
   },
   watch: {
     compare: function () {
@@ -222,6 +232,7 @@ export default {
     ...mapActions(houseStore, ["getCompareData"]),
     compareHouse(name, dong) {
       this.compName = name;
+      console.log("compname: ", this.compName);
       this.getCompareData({
         name: this.house.name,
         dong: this.house.dong,

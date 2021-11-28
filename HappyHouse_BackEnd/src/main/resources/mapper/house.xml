@@ -75,7 +75,7 @@
 		from favoritehouse f
 		left join apartment a
 		on f.dong = a.dong and f.name = a.aptName
-		where userid = #{userid} and gugunname = #{gugunname}
+		where userid = #{userid} and gugunname = #{gugunname} and f.name != #{name}
 	</select>
 	
 	<select id="getAptCode" parameterType="String" resultType="aptCodeDto">

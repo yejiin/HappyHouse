@@ -295,7 +295,7 @@ export default {
         image: markerImage,
       });
 
-      this.addOverlay(house, this.marker, placePosition);
+      this.addOverlay(house, this.marker, placePosition, this.userInfo);
 
       this.marker.setMap(this.map);
     },

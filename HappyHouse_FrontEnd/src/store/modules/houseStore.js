@@ -146,7 +146,7 @@ const houseStore = {
         }
       );
     },
-    getCompareData: ({ commit }, { name, dong, compName, compDong }) => {
+    async getCompareData({ commit }, { name, dong, compName, compDong }) {
       const params = {
         name,
         dong,

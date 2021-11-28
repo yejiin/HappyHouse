@@ -21,8 +21,8 @@ function cancelFavorite(param, success, fail) {
   api.delete(`/house/${param.housename}/${param.userid}`).then(success).catch(fail);
 }
 
-function favoriteInGugun(param, success, fail) {
-  api.get(`/house/list/${param.gugunname}/${param.housename}/${param.userid}`).then(success).catch(fail);
+async function favoriteInGugun(param, success, fail) {
+  await api.get(`/house/list/${param.gugunname}/${param.housename}/${param.userid}`).then(success).catch(fail);
 }
 
 export { favorite, addFavorite, cancelFavorite, favoriteInGugun };

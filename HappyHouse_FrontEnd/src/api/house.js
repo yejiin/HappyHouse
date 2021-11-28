@@ -27,9 +27,9 @@ function favoriteList(param, success, fail) {
   api.get(`/house/apt/favorite/${param}`).then(success).catch(fail);
 }
 
-function compareData(params, success, fail) {
+async function compareData(params, success, fail) {
   console.log(params);
-  api.get(`/house/apt/compare`, { params: params }).then(success).catch(fail);
+  await api.get(`/house/apt/compare`, { params: params }).then(success).catch(fail);
 }
 
 export { sidoList, gugunList, dongList, aptList, dealList, favoriteList, compareData };
