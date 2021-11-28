@@ -11,7 +11,6 @@ import com.ssafy.happyhouse.model.dto.housemap.CompareResponse;
 import com.ssafy.happyhouse.model.dto.housemap.DealResponse;
 import com.ssafy.happyhouse.model.dto.housemap.SidoDto;
 import com.ssafy.happyhouse.model.dto.housemap.DongDto;
-import com.ssafy.happyhouse.model.dto.housemap.FavoriteDto;
 import com.ssafy.happyhouse.model.dto.housemap.GugunDto;
 
 public interface HouseMapService {
@@ -23,10 +22,6 @@ public interface HouseMapService {
 	DealResponse getAptDeal(String dong, String jibun) throws Exception;
 	
 	List<AptInfoDto> getFavoriteApt(String userid) throws Exception;
-	int favorite(String name, String userid) throws Exception;
-	boolean addfavorite(String name, String userid, String gugunname, String dong, String jibun) throws Exception;
-	boolean cancelfavorite(String name, String userid) throws Exception;
-	List<FavoriteDto> getFavoriteInGugun(String gugunname, String name, String userid) throws Exception;
 	
 	CompareResponse getCompareInfo(CompareRequest req) throws Exception;
 

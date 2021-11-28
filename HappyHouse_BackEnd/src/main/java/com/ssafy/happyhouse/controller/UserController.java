@@ -19,9 +19,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ssafy.happyhouse.model.dto.user.UserDto;
+import com.ssafy.happyhouse.model.UserDto;
 import com.ssafy.happyhouse.model.service.JwtService;
-import com.ssafy.happyhouse.model.service.JwtServiceImpl;
 import com.ssafy.happyhouse.model.service.UserService;
 
 import io.swagger.annotations.Api;

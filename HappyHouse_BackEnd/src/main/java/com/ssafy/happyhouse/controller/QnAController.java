@@ -16,9 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ssafy.happyhouse.model.dto.qna.AnswerDto;
-import com.ssafy.happyhouse.model.dto.qna.QuestionDto;
-import com.ssafy.happyhouse.model.dto.qna.QuestionParameterDto;
+
+import com.ssafy.happyhouse.model.AnswerDto;
+import com.ssafy.happyhouse.model.QuestionDto;
+import com.ssafy.happyhouse.model.QuestionParameterDto;
 import com.ssafy.happyhouse.model.service.QnAService;
 
 import io.swagger.annotations.Api;

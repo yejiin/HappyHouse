@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ssafy.happyhouse.model.dto.trendstore.TrendStoreDto;
-import com.ssafy.happyhouse.model.dto.user.UserDto;
+import com.ssafy.happyhouse.model.TrendStoreDto;
+import com.ssafy.happyhouse.model.UserDto;
 import com.ssafy.happyhouse.model.mapper.UserMapper;
 
 @Service

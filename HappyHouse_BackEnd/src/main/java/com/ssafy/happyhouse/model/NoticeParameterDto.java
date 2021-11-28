@@ -1,4 +1,4 @@
-package com.ssafy.happyhouse.model.dto.notice;
+package com.ssafy.happyhouse.model;
 
 public class NoticeParameterDto {
 

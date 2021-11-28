@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ssafy.happyhouse.model.dto.notice.NoticeDto;
-import com.ssafy.happyhouse.model.dto.notice.NoticeParameterDto;
+import com.ssafy.happyhouse.model.NoticeDto;
+import com.ssafy.happyhouse.model.NoticeParameterDto;
 import com.ssafy.happyhouse.model.service.NoticeService;
 
 import io.swagger.annotations.Api;

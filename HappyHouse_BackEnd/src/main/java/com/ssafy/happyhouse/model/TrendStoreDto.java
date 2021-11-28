@@ -1,4 +1,4 @@
-package com.ssafy.happyhouse.model.dto.trendstore;
+package com.ssafy.happyhouse.model;
 
 import lombok.Data;
 
