@@ -98,5 +98,11 @@ public class QnAServiceImpl implements QnAService {
 	public boolean deleteAnswer(int qno) throws Exception {
 		return sqlSession.getMapper(QnAMapper.class).deleteAnswer(qno) == 1;
 	}
+	
+	@Override
+	public boolean updateIsreply(int qno) throws Exception {
+		return sqlSession.getMapper(QnAMapper.class).updateIsreply(qno) == 1;
+	}
+
 
 }

@@ -18,6 +18,5 @@ public interface UserService {
 	
 //	List<TrendStoreDto> listTstore() throws Exception;
 	TrendStoreDto getStoreData(int ageGroup) throws Exception;
-	void registTstore(List<String> concerns) throws Exception;
-	boolean updateCount(String favStore) throws Exception;
+	boolean updateCount(UserDto userDto) throws Exception;
 }

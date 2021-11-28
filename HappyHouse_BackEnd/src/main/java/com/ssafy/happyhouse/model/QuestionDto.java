@@ -12,5 +12,6 @@ public class QuestionDto {
 	private String subject;
 	private String content;
 	private String regtime;
+	private int isreply;
 
 }
