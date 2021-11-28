@@ -1,44 +1,42 @@
 <template>
   <div>
-    <div v-swiper:mySwiper="swiperOption">
-      <div class="swiper-wrapper">
-        <div
-          class="swiper-slide"
-          v-for="slide in slides"
-          :key="slide.id"
-          style="height: 200px; background-color: #f1f2eb"
-        >
-          <b-container>
-            <v-row>
-              <h4 class="mt-5 text-center">
-                <strong>{{ slide.name }}</strong>
-              </h4>
-            </v-row>
-            <br />
+    <swiper :options="swiperOption">
+      <swiper-slide
+        class="swiper-slide"
+        v-for="slide in slides"
+        :key="slide.id"
+        style="height: 200px; background-color: #f1f2eb"
+      >
+        <b-container>
+          <v-row>
+            <h4 class="mt-5 text-center">
+              <strong>{{ slide.name }}</strong>
+            </h4>
+          </v-row>
+          <br />
 
-            <v-row>
-              <div class="text-center">{{ slide.gugunName }} {{ slide.dong }} {{ slide.jibun }}</div>
-            </v-row>
+          <v-row>
+            <div class="text-center">{{ slide.gugunName }} {{ slide.dong }} {{ slide.jibun }}</div>
+          </v-row>
 
-            <v-row>
-              <div v-if="house.comparable">
-                <b-button v-b-modal.modal-1 @click="compareHouse(slide.name, slide.dong)" style="float: right"
-                  >비교하기</b-button
-                >
-              </div>
-              <b-icon
-                style="float: right"
-                icon="exclamation-circle-fill"
-                v-else
-                v-b-tooltip.hover
-                title="비교데이터를 제공하지 않습니다."
-              ></b-icon>
-            </v-row>
-          </b-container>
-        </div>
-      </div>
-      <div class="swiper-pagination"></div>
-    </div>
+          <v-row>
+            <div v-if="house.comparable">
+              <b-button v-b-modal.modal-1 @click="compareHouse('현대뜨레비앙', '익선동')" style="float: right"
+                >비교하기</b-button
+              >
+            </div>
+            <b-icon
+              style="float: right"
+              icon="exclamation-circle-fill"
+              v-else
+              v-b-tooltip.hover
+              title="비교데이터를 제공하지 않습니다."
+            ></b-icon>
+          </v-row>
+        </b-container>
+      </swiper-slide>
+      <div class="swiper-pagination" slot="pagination"></div>
+    </swiper>
 
     <b-modal id="modal-1" size="lg" centered title="단지 비교하기" body-bg-variant="light" ok-only>
       <template>
@@ -172,7 +170,7 @@
 
 <script>
 // import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
-// import { Swiper, SwiperSlide } from "vue-awesome-swiper";
+import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import { mapState, mapActions } from "vuex";
 
 import "swiper/css/swiper.css";
@@ -182,8 +180,8 @@ const houseStore = "houseStore";
 
 export default {
   components: {
-    // Swiper,
-    // SwiperSlide,
+    Swiper,
+    SwiperSlide,
   },
 
   data() {

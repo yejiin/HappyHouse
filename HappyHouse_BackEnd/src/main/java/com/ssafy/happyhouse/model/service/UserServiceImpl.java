@@ -1,5 +1,7 @@
 package com.ssafy.happyhouse.model.service;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,8 +32,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean registerUser(UserDto userDto) throws Exception {
-		 sqlSession.getMapper(UserMapper.class).registerUser(userDto);
-		return sqlSession.getMapper(UserMapper.class).updateCount(userDto) == 1; 
+		return sqlSession.getMapper(UserMapper.class).registerUser(userDto) == 1;
 		
 	}
 
@@ -58,8 +59,16 @@ public class UserServiceImpl implements UserService {
 		return sqlSession.getMapper(UserMapper.class).getStoreData(ageGroup);
 	}
 	
-	public boolean updateCount(UserDto userDto) throws Exception {
-		return sqlSession.getMapper(UserMapper.class).updateCount(userDto) == 1; 
+	@Override
+	public void registTstore(List<String> concerns) throws Exception {
+		for(String concern : concerns) 
+			sqlSession.getMapper(UserMapper.class).updateCount(concern);
+		
+	}
+
+	@Override
+	public boolean updateCount(String favStore) throws Exception {
+		return sqlSession.getMapper(UserMapper.class).updateCount(favStore) == 1;
 	}
 	
 }

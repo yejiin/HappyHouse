@@ -1,5 +1,7 @@
 package com.ssafy.happyhouse.model.service;
 
+import java.util.List;
+
 import com.ssafy.happyhouse.model.TrendStoreDto;
 import com.ssafy.happyhouse.model.UserDto;
 
@@ -14,6 +16,8 @@ public interface UserService {
 	boolean updateUser(UserDto userDto) throws Exception;
 	boolean deleteUser(String userid) throws Exception;
 	
+//	List<TrendStoreDto> listTstore() throws Exception;
 	TrendStoreDto getStoreData(int ageGroup) throws Exception;
-	boolean updateCount(UserDto userDto) throws Exception;
+	void registTstore(List<String> concerns) throws Exception;
+	boolean updateCount(String favStore) throws Exception;
 }
