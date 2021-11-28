@@ -2,9 +2,9 @@ package com.ssafy.happyhouse.model.service;
 
 import java.util.List;
 
-import com.ssafy.happyhouse.model.AnswerDto;
-import com.ssafy.happyhouse.model.QuestionDto;
-import com.ssafy.happyhouse.model.QuestionParameterDto;
+import com.ssafy.happyhouse.model.dto.qna.AnswerDto;
+import com.ssafy.happyhouse.model.dto.qna.QuestionDto;
+import com.ssafy.happyhouse.model.dto.qna.QuestionParameterDto;
 import com.ssafy.util.PageNavigation;
 
 public interface QnAService {

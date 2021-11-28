@@ -2,8 +2,8 @@ package com.ssafy.happyhouse.model.service;
 
 import java.util.List;
 
-import com.ssafy.happyhouse.model.TrendStoreDto;
-import com.ssafy.happyhouse.model.UserDto;
+import com.ssafy.happyhouse.model.dto.user.TrendStoreDto;
+import com.ssafy.happyhouse.model.dto.user.UserDto;
 
 public interface UserService {
 	

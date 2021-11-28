@@ -1,16 +1,16 @@
-package com.ssafy.happyhouse.model;
+package com.ssafy.happyhouse.model.dto.qna;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class NoticeDto {
+public class AnswerDto {
 
-	private int nno;
+	private int ano;
+	private int qno;
 	private String subject;
 	private String content;
-	private int hit;
 	private String regtime;
 
 }

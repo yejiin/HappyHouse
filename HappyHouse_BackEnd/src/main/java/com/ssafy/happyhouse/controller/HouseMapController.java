@@ -24,7 +24,6 @@ import com.ssafy.happyhouse.model.dto.housemap.DongDto;
 import com.ssafy.happyhouse.model.dto.housemap.FavoriteDto;
 import com.ssafy.happyhouse.model.dto.housemap.FavoriteRequest;
 import com.ssafy.happyhouse.model.dto.housemap.GugunDto;
-import com.ssafy.happyhouse.model.service.FavoriteHouseService;
 import com.ssafy.happyhouse.model.service.HouseMapService;
 
 import lombok.RequiredArgsConstructor;
@@ -40,7 +39,6 @@ public class HouseMapController {
 	private static final String FAIL = "fail";
 	
 	private final HouseMapService houseMapService;
-	private final FavoriteHouseService favoriteService;
 	
 	@GetMapping("/sido")
 	public List<SidoDto> sido() throws Exception {
@@ -80,31 +78,31 @@ public class HouseMapController {
 	}
 	
 	@GetMapping("/{name}/{userid}")
-	public int favorite(@PathVariable("name") String name, @PathVariable("userid") String userid) {
-		log.info("관심 여부 조회 : " + name + ", " + userid + "," +favoriteService.favorite(name, userid));
-		return favoriteService.favorite(name, userid);
+	public int favorite(@PathVariable("name") String name, @PathVariable("userid") String userid) throws Exception {
+		log.info("관심 여부 조회 : " + name + ", " + userid + "," +houseMapService.favorite(name, userid));
+		return houseMapService.favorite(name, userid);
 	}
 	
 	@PostMapping("/{name}/{userid}")
-	public ResponseEntity<String> addfavorite(@PathVariable("name") String name, @PathVariable("userid") String userid, @RequestBody FavoriteRequest body) {
-		if(favoriteService.addfavorite(name, userid, body.getGugunname(), body.getDong(), body.getJibun())){
+	public ResponseEntity<String> addfavorite(@PathVariable("name") String name, @PathVariable("userid") String userid, @RequestBody FavoriteRequest body) throws Exception {
+		if(houseMapService.addfavorite(name, userid, body.getGugunname(), body.getDong(), body.getJibun())){
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		}
 		return new ResponseEntity<String>(FAIL, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{name}/{userid}")
-	public ResponseEntity<String> cancelFavorite(@PathVariable("name") String name, @PathVariable("userid") String userid) {
-		if (favoriteService.cancelfavorite(name, userid)) {
+	public ResponseEntity<String> cancelFavorite(@PathVariable("name") String name, @PathVariable("userid") String userid) throws Exception {
+		if (houseMapService.cancelfavorite(name, userid)) {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		}
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
 	
 	@GetMapping("/list/{gugunname}/{name}/{userid}")
-	public List<FavoriteDto> favoriteInGugun(@PathVariable("gugunname") String gugunname,@PathVariable("name") String name, @PathVariable("userid") String userid) {
+	public List<FavoriteDto> favoriteInGugun(@PathVariable("gugunname") String gugunname,@PathVariable("name") String name, @PathVariable("userid") String userid) throws Exception {
 		log.info("구군 관심 지역 조회");
-		return favoriteService.getFavoriteInGugun(gugunname, name, userid);
+		return houseMapService.getFavoriteInGugun(gugunname, name, userid);
 	}
 	
 	@GetMapping("/chart")

@@ -31,6 +31,7 @@ import com.ssafy.happyhouse.model.dto.housemap.SidoDto;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ssafy.happyhouse.model.dto.housemap.DongDto;
+import com.ssafy.happyhouse.model.dto.housemap.FavoriteDto;
 import com.ssafy.happyhouse.model.dto.housemap.GugunDto;
 import com.ssafy.happyhouse.model.mapper.HouseMapMapper;
 
@@ -207,6 +208,36 @@ public class HouseMapServiceImpl implements HouseMapService {
 	    
 	    sqlSession.getMapper(HouseMapMapper.class).addChartData(dto);
 	    return dto;
+	}
+	
+	@Override
+	public int favorite(String name, String userid) throws Exception {
+		return sqlSession.getMapper(HouseMapMapper.class).favorite(name, userid);
+	}
+
+	@Override
+	public boolean addfavorite(String name, String userid, String gugunname, String dong, String jibun)
+			throws Exception {
+		return sqlSession.getMapper(HouseMapMapper.class).addfavorite(name, userid, gugunname, dong, jibun) == 1;
+	}
+
+	@Override
+	public boolean cancelfavorite(String name, String userid) throws Exception {
+		return sqlSession.getMapper(HouseMapMapper.class).cancelfavorite(name, userid) == 1;
+	}
+
+	@Override
+	public List<FavoriteDto> getFavoriteInGugun(String gugunname, String name, String userid) throws Exception {
+		List<FavoriteDto> list = sqlSession.getMapper(HouseMapMapper.class).getFavoriteInGugun(gugunname, name, userid);
+		
+		for (int i = 0; i < list.size(); i++) {
+			list.get(i).setId(i + 1);
+			if (list.get(i).getAptCode() != null)
+				list.get(i).setComparable(true);
+		}
+		System.out.println(list);
+		
+		return list;
 	}
 
 	private String formatMoney(String money) {

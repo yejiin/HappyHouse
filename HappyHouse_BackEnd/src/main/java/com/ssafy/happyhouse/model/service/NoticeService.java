@@ -2,8 +2,8 @@ package com.ssafy.happyhouse.model.service;
 
 import java.util.List;
 
-import com.ssafy.happyhouse.model.NoticeDto;
-import com.ssafy.happyhouse.model.NoticeParameterDto;
+import com.ssafy.happyhouse.model.dto.notice.NoticeDto;
+import com.ssafy.happyhouse.model.dto.notice.NoticeParameterDto;
 import com.ssafy.util.PageNavigation;
 
 public interface NoticeService {
