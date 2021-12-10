@@ -15,6 +15,16 @@ __나에게 알맞은 집은 어디에 있을까? 원하는 집을 편하게 찾
 
 <br>
 
+## 개발 환경 & 기술 스택
+
+- 운영체제 : Window 10
+- Front : Vue.js, Vue-CLI, Vue-router, Vuex, axios, HTML, CSS5, JavaScript, BootStrap5, BootStap-Vue, Chart.js, Swiper.js
+- Back : SpringBoot, MyBatis, Swagger
+- Database : MySQL
+- Etc : Git, GitLab
+
+<br>
+
 
 ## 개발 기간
 ### 2021.11.19 ~ 2021.11.25
