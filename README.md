@@ -1,30 +1,53 @@
-# HappyHouse 🏠
+# 🏡 MvHouse 
+
+이사가고 싶은 지역을 찾아보자🔎 
+
+원하는 집을 찾고 싶은 사람들을 위한 주택 거래 정보 플랫폼.
+
+<br>
+
+
+## 기획배경
+
+__나에게 알맞은 집은 어디에 있을까? 원하는 집을 편하게 찾고 싶다!__
+
+이사할 동네를 찾아보고, 원하는 주택을 찾아낼 목적으로 매물 정보, 주변 상권을 조회하고 관심 매물을 비교할 수 있도록 하여 사용자가 가장 필요한 거주지를 찾을 수 있도록 다양한 서비스를 제공하고자 한다.
+
+<br>
+
+
 ## 개발 기간
 ### 2021.11.19 ~ 2021.11.25
 
+
+<br>
+
+
 ## 프로젝트 설계
 1. ERD
-![ERD](https://user-images.githubusercontent.com/63090006/143776652-ee206a6e-8d9c-4d28-83b1-33dab3c79190.PNG)
+<img src="https://user-images.githubusercontent.com/63090006/143776652-ee206a6e-8d9c-4d28-83b1-33dab3c79190.PNG" width="800" height="600"/>
 
 2. Class Diagram
-  - House
-  ![house](https://user-images.githubusercontent.com/63090006/143776683-a83173fe-3025-4445-9934-eae0e239368d.PNG)
-  ![house_dto](https://user-images.githubusercontent.com/63090006/143776690-d6cea20f-db60-4bcc-9082-1ddff1fa50f6.PNG)
+    - House
+    <img src="https://user-images.githubusercontent.com/63090006/143776683-a83173fe-3025-4445-9934-eae0e239368d.PNG" width="700" height="450"/>
+    <img src="https://user-images.githubusercontent.com/63090006/143776690-d6cea20f-db60-4bcc-9082-1ddff1fa50f6.PNG" width="700" height="450"/>
 
-  - Notice
-  ![notice](https://user-images.githubusercontent.com/63090006/143776715-ff6a7301-c96c-4e45-a9bd-4188180727e9.PNG)
+    - Notice
+    <img src="https://user-images.githubusercontent.com/63090006/143776715-ff6a7301-c96c-4e45-a9bd-4188180727e9.PNG" width="700" height="450"/>
 
-  - QnA
-  ![QnA](https://user-images.githubusercontent.com/63090006/143776721-eb3c176b-b016-40aa-86c6-8f9e2f553666.PNG)
+    - QnA
+    <img src="https://user-images.githubusercontent.com/63090006/143776721-eb3c176b-b016-40aa-86c6-8f9e2f553666.PNG" width="700" height="450"/>
 
-  - User
-  ![user](https://user-images.githubusercontent.com/63090006/143776725-84311385-4e48-4e9e-865a-3e135f0e110a.PNG)
+    - User
+    <img src="https://user-images.githubusercontent.com/63090006/143776725-84311385-4e48-4e9e-865a-3e135f0e110a.PNG" width="700" height="450"/>
 
-  - Data
-  ![data](https://user-images.githubusercontent.com/63090006/143776738-96b835f5-fc59-4c43-9e1a-db95bf14b1b7.PNG)
+    - Data
+    <img src="https://user-images.githubusercontent.com/63090006/143776738-96b835f5-fc59-4c43-9e1a-db95bf14b1b7.PNG" width="700" height="450"/>
+  
+  <br>
 
 ## 발표 자료
-![슬라이드1](https://user-images.githubusercontent.com/63090006/143777196-0ce19689-2688-4bf2-be43-f73a89314d9a.PNG)
+![슬라이드1](https://user-images.githubusercontent.com/63090006/145563402-04e53d78-186f-44f2-b4b9-48e32f3cdcd5.png)
 ![슬라이드2](https://user-images.githubusercontent.com/63090006/143777199-6b384ace-b973-412d-8d05-9cdf6cbea442.PNG)
 ![슬라이드3](https://user-images.githubusercontent.com/63090006/143777208-e2f7c03a-141b-4a31-8d1f-b8c1e58a584b.PNG)
 ![슬라이드4](https://user-images.githubusercontent.com/63090006/143777214-9048f662-c9f0-42c9-8aaf-3332c4716451.PNG)
