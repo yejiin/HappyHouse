@@ -55,6 +55,17 @@ __나에게 알맞은 집은 어디에 있을까? 원하는 집을 편하게 찾
     <img src="https://user-images.githubusercontent.com/63090006/143776738-96b835f5-fc59-4c43-9e1a-db95bf14b1b7.PNG" width="700" height="450"/>
   
   <br>
+ 
+## 개발 내용
+
+- 공공 데이터를 활용한 서울시 아파트 매물, 아파트 정보(기본, 상세 정보) DB 생성
+- kakao Map API를 활용한 아파트 정보, 주변 상권 정보 시각화
+- Chart.js를 활용한 편의시설 분포도 정보, 선호 상권 정보 시각화
+- JWT로 로그인 구현
+- Pagenation을 적용한 게시판, QnA 구현
+- Notion, Git을 활용한 협업
+
+<br>
 
 ## 발표 자료
 ![슬라이드1](https://user-images.githubusercontent.com/63090006/145563402-04e53d78-186f-44f2-b4b9-48e32f3cdcd5.png)
