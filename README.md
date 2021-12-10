@@ -35,24 +35,24 @@ __나에게 알맞은 집은 어디에 있을까? 원하는 집을 편하게 찾
 
 ## 프로젝트 설계
 1. ERD
-<img src="https://user-images.githubusercontent.com/63090006/145579208-d91f0893-bb51-49f9-aea6-1408f31bf119.PNG" width="700" height="700"/>
+<img src="https://user-images.githubusercontent.com/63090006/145579208-d91f0893-bb51-49f9-aea6-1408f31bf119.PNG" width="600" height="600"/>
 
 2. Class Diagram
     - House
-    <img src="https://user-images.githubusercontent.com/63090006/143776683-a83173fe-3025-4445-9934-eae0e239368d.PNG" width="700" height="450"/>
-    <img src="https://user-images.githubusercontent.com/63090006/143776690-d6cea20f-db60-4bcc-9082-1ddff1fa50f6.PNG" width="700" height="450"/>
+    <img src="https://user-images.githubusercontent.com/63090006/143776683-a83173fe-3025-4445-9934-eae0e239368d.PNG" width="600" height="450"/>
+    <img src="https://user-images.githubusercontent.com/63090006/143776690-d6cea20f-db60-4bcc-9082-1ddff1fa50f6.PNG" width="600" height="450"/>
 
     - Notice
-    <img src="https://user-images.githubusercontent.com/63090006/143776715-ff6a7301-c96c-4e45-a9bd-4188180727e9.PNG" width="700" height="450"/>
+    <img src="https://user-images.githubusercontent.com/63090006/143776715-ff6a7301-c96c-4e45-a9bd-4188180727e9.PNG" width="600" height="450"/>
 
     - QnA
-    <img src="https://user-images.githubusercontent.com/63090006/143776721-eb3c176b-b016-40aa-86c6-8f9e2f553666.PNG" width="700" height="450"/>
+    <img src="https://user-images.githubusercontent.com/63090006/143776721-eb3c176b-b016-40aa-86c6-8f9e2f553666.PNG" width="600" height="450"/>
 
     - User
-    <img src="https://user-images.githubusercontent.com/63090006/143776725-84311385-4e48-4e9e-865a-3e135f0e110a.PNG" width="700" height="450"/>
+    <img src="https://user-images.githubusercontent.com/63090006/143776725-84311385-4e48-4e9e-865a-3e135f0e110a.PNG" width="600" height="450"/>
 
     - Data
-    <img src="https://user-images.githubusercontent.com/63090006/143776738-96b835f5-fc59-4c43-9e1a-db95bf14b1b7.PNG" width="700" height="450"/>
+    <img src="https://user-images.githubusercontent.com/63090006/143776738-96b835f5-fc59-4c43-9e1a-db95bf14b1b7.PNG" width="600" height="450"/>
   
   <br>
  
