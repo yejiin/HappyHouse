@@ -35,7 +35,7 @@ __나에게 알맞은 집은 어디에 있을까? 원하는 집을 편하게 찾
 
 ## 프로젝트 설계
 1. ERD
-<img src="https://user-images.githubusercontent.com/63090006/143776652-ee206a6e-8d9c-4d28-83b1-33dab3c79190.PNG" width="800" height="600"/>
+<img src="https://user-images.githubusercontent.com/63090006/145579208-d91f0893-bb51-49f9-aea6-1408f31bf119.PNG" width="700" height="700"/>
 
 2. Class Diagram
     - House
